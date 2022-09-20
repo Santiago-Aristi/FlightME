@@ -17,8 +17,6 @@
 export LBC_GROUP_NAME=flightme
 export LBC_REPO_NAME=ata-lbc-project-TechnoMania007
 
-# David Bresich
-
 # Do not modify the rest of these unless you have been instructed to do so.
 export LBC_PROJECT_NAME=lbcproject
 export LBC_PIPELINE_STACK=$LBC_PROJECT_NAME-$LBC_GROUP_NAME
@@ -26,5 +24,3 @@ export LBC_ARTIFACT_BUCKET=$LBC_PROJECT_NAME-$LBC_GROUP_NAME-artifacts
 export LBC_DEPLOY_STACK=$LBC_PROJECT_NAME-$LBC_GROUP_NAME-application
 export LBC_APPLICATION_NAME=$LBC_PROJECT_NAME-$LBC_GROUP_NAME-application
 export LBC_ENVIRONMENT_NAME=$LBC_PROJECT_NAME-$LBC_GROUP_NAME-environment-dev
-
-#JASON
