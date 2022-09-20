@@ -1,0 +1,131 @@
+@font-face {
+    font-family: Bebas;
+    src: url(../styles/BebasNeue-Regular.ttf);
+}
+
+@font-face {
+    font-family: Alfa;
+    src: url(../styles/AlfaSlabOne-Regular.ttf);
+}
+
+body{
+    background-image: url(src/images/Gulfstream-G700.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 10px;
+    overflow: auto;
+    width: auto;
+}
+
+h3{
+    font-family: Bebas;
+    color:whitesmoke;
+    font-size: 50px;
+    background-color: black;
+    margin: auto;
+    padding: 5px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+    text-align: center;
+}
+
+.infosec{
+    text-align: center;
+}
+
+.infosec p{
+    font-size: 20px;
+    background-color: white;
+}
+
+.searchform{
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+}
+
+.search{
+    text-align: center;
+    font-size: 20px;
+    background-color: rgba(245, 29, 29, 0.7);
+    padding: 10px;
+}
+
+.textsearch{
+    text-align: center;
+    font-size: 20px;
+    background-color: rgba(245, 29, 29, 0.7);
+    padding: 8px;
+    font-family: Alfa;
+}
+
+.flex-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.welcome-message h4{
+    font-size: 30px;
+    text-align: center;
+    color: rgba(245, 29, 29, 0.7);
+    font-family: Alfa;
+    text-decoration: underline;
+}
+
+.welcome-message p{
+    font-size: 20px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    font-family: Bebas;
+}
+
+h2{
+    padding-left: 300px;
+    padding-right: 300px;
+    font-family: Alfa;
+}
+
+
+
+.cargo-image-button{
+    float: left;
+}
+
+.passenger-image-button{
+    float: right;
+}
+
+a{
+    background-color: black;
+    color: wheat;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.about{
+    text-align: right;
+}
+
+.about a{
+    background-color: black;
+    color: wheat;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+td{
+    text-align: center;
+    padding-bottom: 10px;
+    font-family: Alfa;
+    font-size: 20px;
+}
+
+table{
+    margin: auto;
+    width: 50%;
+}
