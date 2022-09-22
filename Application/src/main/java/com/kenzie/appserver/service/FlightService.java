@@ -7,10 +7,6 @@ import com.kenzie.appserver.service.model.FlightInfo;
 import java.util.List;
 
 public class FlightService {
-    // Hi
-    //Hi from Dave
-    //Hi from Jason
-    //Hello from Santi
     private FlightRepository flightRepository;
 
     public FlightService(FlightRepository flightRepository) {
@@ -36,5 +32,4 @@ public class FlightService {
     public FlightInfo deleteFlight(String flightId){
         return flightRepository.deleteFlight(flightId);
     }
-
 }
