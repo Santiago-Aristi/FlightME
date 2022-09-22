@@ -2,9 +2,8 @@ package com.kenzie.appserver.service.model;
 
 import java.util.Objects;
 
-public class Location {
+public class OriginZip {
     private String originZipcode;
-    private String destinationZipcode;
 
     public String getOriginZipcode() {
         return originZipcode;
@@ -14,24 +13,17 @@ public class Location {
         this.originZipcode = originZipcode;
     }
 
-    public String getDestinationZipcode() {
-        return destinationZipcode;
-    }
-
-    public void setDestinationZipcode(String destinationZipcode) {
-        this.destinationZipcode = destinationZipcode;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Location location = (Location) o;
-        return originZipcode.equals(location.originZipcode) && destinationZipcode.equals(location.destinationZipcode);
+        OriginZip location = (OriginZip) o;
+        return originZipcode.equals(location.originZipcode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(originZipcode, destinationZipcode);
+        return Objects.hash(originZipcode);
     }
 }

@@ -25,8 +25,8 @@ public class FlightController {
     public ResponseEntity<FlightResponse> createFlight(@RequestBody FlightCreateRequest flightCreateRequest){
         FlightInfo flightInfo = new FlightInfo();
         flightInfo.setFlightId(flightCreateRequest.getFlightId());
-        flightInfo.setLocation(flightCreateRequest.getLocation());
-        flightInfo.setUser(flightCreateRequest.getUser());
+        flightInfo.setOriginZip(flightCreateRequest.getOriginZip());
+        flightInfo.setDestinationZip(flightCreateRequest.getDestinationZip());
         flightInfo.setQuote(flightCreateRequest.getQuote());
         flightService.createFlight(flightInfo);
 
@@ -77,9 +77,9 @@ public class FlightController {
     public FlightResponse createFlightResponse(FlightInfo flightInfo) {
         FlightResponse flightResponse = new FlightResponse();
         flightResponse.setFlightId(flightInfo.getFlightId());
-        flightResponse.setUser(flightInfo.getUser());
         flightResponse.setQuote(flightInfo.getQuote());
-        flightResponse.setLocation(flightInfo.getLocation());
+        flightResponse.setOriginZip(flightInfo.getOriginZip());
+        flightResponse.setDestinationZip(flightInfo.getDestinationZip());
 
         return flightResponse;
     }

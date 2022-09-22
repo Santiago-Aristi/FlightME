@@ -2,9 +2,9 @@ package com.kenzie.appserver.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kenzie.appserver.service.model.Location;
+import com.kenzie.appserver.service.model.DestinationZip;
+import com.kenzie.appserver.service.model.OriginZip;
 import com.kenzie.appserver.service.model.Quote;
-import com.kenzie.appserver.service.model.UserInfo;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FlightResponse {
@@ -12,14 +12,14 @@ public class FlightResponse {
     @JsonProperty("flightId")
     private String flightId;
 
-    @JsonProperty("userId")
-    private UserInfo user;
-
     @JsonProperty("quote")
     private Quote quote;
 
-    @JsonProperty("location")
-    private Location location;
+    @JsonProperty("originZip")
+    private OriginZip originZip;
+
+    @JsonProperty("destinationZip")
+    private DestinationZip destinationZip;
 
     public String getFlightId() {
         return flightId;
@@ -27,14 +27,6 @@ public class FlightResponse {
 
     public void setFlightId(String flightId) {
         this.flightId = flightId;
-    }
-
-    public UserInfo getUser() {
-        return user;
-    }
-
-    public void setUser(UserInfo user) {
-        this.user = user;
     }
 
     public Quote getQuote() {
@@ -45,11 +37,19 @@ public class FlightResponse {
         this.quote = quote;
     }
 
-    public Location getLocation() {
-        return location;
+    public OriginZip getOriginZip() {
+        return originZip;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setOriginZip(OriginZip originZip) {
+        this.originZip = originZip;
+    }
+
+    public DestinationZip getDestinationZip() {
+        return destinationZip;
+    }
+
+    public void setDestinationZip(DestinationZip destinationZip) {
+        this.destinationZip = destinationZip;
     }
 }

@@ -30,7 +30,8 @@ public class FlightService {
         Iterable<FlightRecord> flightIterator = flightRepository.findAll();
         for(FlightRecord record : flightIterator){
             flightInfoList.add(new FlightInfo(record.getFlightId(),
-                    record.getLocation(),
+                    record.getOriginZipcode(),
+                    record.getDestinationZipcode(),
                     record.getPaymentMethod()));
         }
 
@@ -40,7 +41,8 @@ public class FlightService {
     public void createFlight(FlightInfo flightInfo) {
         FlightRecord flightRecord = new FlightRecord();
         flightRecord.setFlightId(flightInfo.getFlightId());
-        flightRecord.setLocation(flightInfo.getLocation());
+        flightRecord.setOriginZipcode(flightInfo.getOriginZip());
+        flightRecord.setDestinationZipcode(flightInfo.getDestinationZip());
         flightRecord.setPaymentMethod(flightInfo.getPaymentMethod());
     }
 
