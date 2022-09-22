@@ -1,9 +1,9 @@
 package com.kenzie.appserver.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kenzie.appserver.service.model.Location;
+import com.kenzie.appserver.service.model.DestinationZip;
+import com.kenzie.appserver.service.model.OriginZip;
 import com.kenzie.appserver.service.model.Quote;
-import com.kenzie.appserver.service.model.UserInfo;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -13,9 +13,6 @@ public class FlightCreateRequest {
     @JsonProperty
     private String flightId;
 
-    @NotEmpty
-    @JsonProperty
-    private UserInfo user;
 
     @NotEmpty
     @JsonProperty
@@ -23,7 +20,11 @@ public class FlightCreateRequest {
 
     @NotEmpty
     @JsonProperty
-    private Location location;
+    private OriginZip originZip;
+
+    @NotEmpty
+    @JsonProperty
+    private DestinationZip destinationZip;
 
     public String getFlightId() {
         return flightId;
@@ -31,14 +32,6 @@ public class FlightCreateRequest {
 
     public void setFlightId(String flightId) {
         this.flightId = flightId;
-    }
-
-    public UserInfo getUser() {
-        return user;
-    }
-
-    public void setUser(UserInfo user) {
-        this.user = user;
     }
 
     public Quote getQuote() {
@@ -49,11 +42,21 @@ public class FlightCreateRequest {
         this.quote = quote;
     }
 
-    public Location getLocation() {
-        return location;
+    public OriginZip getOriginZip() {
+        return originZip;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setOriginZip(OriginZip originZip) {
+        this.originZip = originZip;
+    }
+
+    public DestinationZip getDestinationZip() {
+        return destinationZip;
+    }
+
+    public void setDestinationZip(DestinationZip destinationZip) {
+        this.destinationZip = destinationZip;
     }
 }
+
+

@@ -1,22 +1,24 @@
 package com.kenzie.appserver.service.model;
 
-import com.kenzie.appserver.service.model.Location;
-import com.kenzie.appserver.service.model.Quote;
-import com.kenzie.appserver.service.model.UserInfo;
-
 import java.util.Objects;
 
 public class FlightInfo {
     private String flightId;
-    private UserInfo user;
     private Quote quote;
-    private Location location;
+    private OriginZip originZip;
+
+    private DestinationZip destinationZip;
     private String paymentMethod;
 
-    public FlightInfo(String flightId, Location location, String paymentMethod){
+    public FlightInfo(String flightId, OriginZip originZip, DestinationZip destinationZip, String paymentMethod){
         this.flightId = flightId;
-        this.location = location;
+        this.originZip = originZip;
+        this.destinationZip = destinationZip;
         this.paymentMethod = paymentMethod;
+    }
+
+    public FlightInfo() {
+
     }
 
     public String getFlightId() {
@@ -27,14 +29,6 @@ public class FlightInfo {
         this.flightId = flightId;
     }
 
-    public UserInfo getUser() {
-        return user;
-    }
-
-    public void setUser(UserInfo user) {
-        this.user = user;
-    }
-
     public Quote getQuote() {
         return quote;
     }
@@ -43,16 +37,24 @@ public class FlightInfo {
         this.quote = quote;
     }
 
-    public Location getLocation() {
-        return location;
+    public OriginZip getOriginZip() {
+        return originZip;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setOriginZip(OriginZip originZip) {
+        this.originZip = originZip;
     }
 
-    public void setPaymentMethod(){
+    public DestinationZip getDestinationZip() {
+        return destinationZip;
+    }
 
+    public void setDestinationZip(DestinationZip destinationZip) {
+        this.destinationZip = destinationZip;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     public String getPaymentMethod(){
@@ -63,13 +65,14 @@ public class FlightInfo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FlightInfo flight = (FlightInfo) o;
-        return Objects.equals(flightId, flight.flightId) && Objects.equals(user, flight.user) && Objects.equals(quote, flight.quote) && Objects.equals(location, flight.location);
+        FlightInfo that = (FlightInfo) o;
+        return Objects.equals(flightId, that.flightId) && Objects.equals(quote, that.quote) &&
+                Objects.equals(originZip, that.originZip) && Objects.equals(destinationZip, that.destinationZip)
+                && Objects.equals(paymentMethod, that.paymentMethod);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(flightId, user, quote, location);
+        return Objects.hash(flightId, quote, originZip, destinationZip, paymentMethod);
     }
-
 }
