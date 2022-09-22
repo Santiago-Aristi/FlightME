@@ -13,8 +13,10 @@ public class FlightInfo {
     private Location location;
     private String paymentMethod;
 
-    public FlightInfo(){
-
+    public FlightInfo(String flightId, Location location, String paymentMethod){
+        this.flightId = flightId;
+        this.location = location;
+        this.paymentMethod = paymentMethod;
     }
 
     public String getFlightId() {

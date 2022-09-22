@@ -5,6 +5,7 @@ import com.kenzie.appserver.repositories.FlightRepository;
 import com.kenzie.appserver.repositories.model.FlightRecord;
 import com.kenzie.appserver.service.model.FlightInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FlightService {
@@ -23,9 +24,18 @@ public class FlightService {
         return flightInfo;
     }
 
-//    public List<FlightInfo> getAllFlights(String userId) {
-//        return flightRepository.getFlights(userId);
-//    }
+    public List<FlightInfo> getAllFlights() {
+        List<FlightInfo> flightInfoList = new ArrayList<>();
+
+        Iterable<FlightRecord> flightIterator = flightRepository.findAll();
+        for(FlightRecord record : flightIterator){
+            flightInfoList.add(new FlightInfo(record.getFlightId(),
+                    record.getLocation(),
+                    record.getPaymentMethod()));
+        }
+
+        return flightInfoList;
+    }
 
     public void createFlight(FlightInfo flightInfo) {
         FlightRecord flightRecord = new FlightRecord();

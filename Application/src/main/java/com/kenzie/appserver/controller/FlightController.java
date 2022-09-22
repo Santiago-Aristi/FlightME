@@ -35,9 +35,9 @@ public class FlightController {
         return ResponseEntity.created(URI.create("/flight/" + flightResponse.getFlightId())).body(flightResponse);
     }
 
-    @GetMapping("/all/user/{userId}")
-    public ResponseEntity<List<FlightResponse>> getAllFlightsForUser(@PathVariable String userId){
-        List<FlightInfo> allFlights = flightService.getAllFlights(userId);
+    @GetMapping("/all/")
+    public ResponseEntity<List<FlightResponse>> getAllFlightsForUser(){
+        List<FlightInfo> allFlights = flightService.getAllFlights();
 
         if (allFlights.isEmpty() || allFlights == null) {
             return ResponseEntity.noContent().build();
