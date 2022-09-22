@@ -8,7 +8,6 @@ import java.util.Objects;
 
 public class FlightInfo {
     private String flightId;
-    private UserInfo user;
     private Quote quote;
     private Location location;
     private String paymentMethod;
@@ -17,6 +16,10 @@ public class FlightInfo {
         this.flightId = flightId;
         this.location = location;
         this.paymentMethod = paymentMethod;
+    }
+
+    public FlightInfo() {
+
     }
 
     public String getFlightId() {
@@ -64,12 +67,12 @@ public class FlightInfo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FlightInfo flight = (FlightInfo) o;
-        return Objects.equals(flightId, flight.flightId) && Objects.equals(user, flight.user) && Objects.equals(quote, flight.quote) && Objects.equals(location, flight.location);
+        return Objects.equals(flightId, flight.flightId) && Objects.equals(quote, flight.quote) && Objects.equals(location, flight.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(flightId, user, quote, location);
+        return Objects.hash(flightId, quote, location);
     }
 
 }
