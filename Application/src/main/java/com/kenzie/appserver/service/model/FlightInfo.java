@@ -71,4 +71,5 @@ public class FlightInfo {
     public int hashCode() {
 
     }
+    //
 }
