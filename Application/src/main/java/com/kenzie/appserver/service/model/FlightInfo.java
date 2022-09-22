@@ -30,14 +30,6 @@ public class FlightInfo {
         this.flightId = flightId;
     }
 
-    public UserInfo getUser() {
-        return user;
-    }
-
-    public void setUser(UserInfo user) {
-        this.user = user;
-    }
-
     public Quote getQuote() {
         return quote;
     }
