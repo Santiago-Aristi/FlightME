@@ -65,14 +65,10 @@ public class FlightInfo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FlightInfo that = (FlightInfo) o;
-        return Objects.equals(flightId, that.flightId) && Objects.equals(quote, that.quote) &&
-                Objects.equals(originZip, that.originZip) && Objects.equals(destinationZip, that.destinationZip)
-                && Objects.equals(paymentMethod, that.paymentMethod);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(flightId, quote, originZip, destinationZip, paymentMethod);
+
     }
 }
