@@ -7,7 +7,6 @@ import com.kenzie.appserver.service.model.FlightInfo;
 import java.util.List;
 
 public class FlightService {
-   
     private FlightRepository flightRepository;
 
     public FlightService(FlightRepository flightRepository) {
