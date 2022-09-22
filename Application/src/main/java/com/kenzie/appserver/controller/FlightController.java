@@ -28,6 +28,7 @@ public class FlightController {
         flightInfo.setLocation(flightCreateRequest.getLocation());
         flightInfo.setUser(flightCreateRequest.getUser());
         flightInfo.setQuote(flightCreateRequest.getQuote());
+        flightService.createFlight(flightInfo);
 
         FlightResponse flightResponse = createFlightResponse(flightInfo);
 
@@ -64,7 +65,7 @@ public class FlightController {
     @DeleteMapping("/{flightId}")
     public ResponseEntity<FlightResponse> deleteFlight(@PathVariable String flightId){
 
-        FlightInfo flightInfo = flightService.deleteFlight(flightId, userId);
+        FlightInfo flightInfo = flightService.deleteFlight(flightId);
 
         if (flightInfo == null) {
             return ResponseEntity.noContent().build();
