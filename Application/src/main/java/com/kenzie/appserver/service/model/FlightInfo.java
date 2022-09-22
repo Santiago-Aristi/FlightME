@@ -11,6 +11,13 @@ public class FlightInfo {
     private UserInfo user;
     private Quote quote;
     private Location location;
+    private String paymentMethod;
+
+    public FlightInfo(String flightId, Location location, String paymentMethod){
+        this.flightId = flightId;
+        this.location = location;
+        this.paymentMethod = paymentMethod;
+    }
 
     public String getFlightId() {
         return flightId;
@@ -42,6 +49,14 @@ public class FlightInfo {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public void setPaymentMethod(){
+
+    }
+
+    public String getPaymentMethod(){
+        return this.paymentMethod;
     }
 
     @Override

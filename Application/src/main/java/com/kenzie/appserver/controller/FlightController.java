@@ -35,9 +35,9 @@ public class FlightController {
         return ResponseEntity.created(URI.create("/flight/" + flightResponse.getFlightId())).body(flightResponse);
     }
 
-    @GetMapping("/all/user/{userId}")
-    public ResponseEntity<List<FlightResponse>> getAllFlightsForUser(@PathVariable String userId){
-        List<FlightInfo> allFlights = flightService.getAllFlights(userId);
+    @GetMapping("/all/")
+    public ResponseEntity<List<FlightResponse>> getAllFlightsForUser(){
+        List<FlightInfo> allFlights = flightService.getAllFlights();
 
         if (allFlights.isEmpty() || allFlights == null) {
             return ResponseEntity.noContent().build();
@@ -51,7 +51,7 @@ public class FlightController {
     }
 
     @GetMapping("/{flightId}")
-    public ResponseEntity<FlightResponse> getFlight(@PathVariable String flightId){
+    public ResponseEntity<FlightResponse> getFlight(@PathVariable("flightId") String flightId){
         FlightInfo flightInfo = flightService.getFlight(flightId);
 
         if (flightInfo == null) {
@@ -63,16 +63,15 @@ public class FlightController {
     }
 
     @DeleteMapping("/{flightId}")
-    public ResponseEntity<FlightResponse> deleteFlight(@PathVariable String flightId){
+    public ResponseEntity deleteFlight(@PathVariable("flightId") String flightId){
 
-        FlightInfo flightInfo = flightService.deleteFlight(flightId);
-
-        if (flightInfo == null) {
+        if (flightId == null) {
             return ResponseEntity.noContent().build();
         }
 
-        FlightResponse flightResponse = createFlightResponse(flightInfo);
-        return ResponseEntity.ok(flightResponse);
+        flightService.deleteFlight(flightId);
+
+        return ResponseEntity.noContent().build();
     }
 
     public FlightResponse createFlightResponse(FlightInfo flightInfo) {
