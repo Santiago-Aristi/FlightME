@@ -2,6 +2,7 @@ package com.kenzie.appserver.service;
 
 import com.kenzie.appserver.FlightNotFoundException;
 import com.kenzie.appserver.repositories.FlightRepository;
+import com.kenzie.appserver.repositories.model.FlightRecord;
 import com.kenzie.appserver.service.model.FlightInfo;
 
 import java.util.List;
@@ -14,22 +15,28 @@ public class FlightService {
     }
 
     public FlightInfo getFlight(String flightId) {
-        if (flightId.length() > 0) {
-            return flightRepository.getFlightById(flightId);
-        } else {
-            throw new FlightNotFoundException(flightId);
-        }
+        FlightInfo flightInfo = flightRepository
+                .findById(flightId)
+                .map(flight -> new FlightInfo())
+                .orElse(null);
+
+        return flightInfo;
     }
 
-    public List<FlightInfo> getAllFlights(String userId) {
-        return flightRepository.getFlights(userId);
-    }
+//    public List<FlightInfo> getAllFlights(String userId) {
+//        return flightRepository.getFlights(userId);
+//    }
 
     public void createFlight(FlightInfo flightInfo) {
-        flightRepository.createFlight(flightInfo);
+        FlightRecord flightRecord = new FlightRecord();
+        flightRecord.setFlightId(flightInfo.getFlightId());
+        flightRecord.setLocation(flightInfo.getLocation());
+        flightRecord.setPaymentMethod(flightInfo.getPaymentMethod());
     }
 
-    public FlightInfo deleteFlight(String flightId){
-        return flightRepository.deleteFlight(flightId);
+    public void deleteFlight(String flightId){
+        FlightRecord flightRecord = new FlightRecord();
+        flightRecord.setFlightId(flightId);
+        flightRepository.delete(flightRecord);
     }
 }
