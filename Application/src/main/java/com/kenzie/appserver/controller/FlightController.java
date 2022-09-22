@@ -23,7 +23,10 @@ public class FlightController {
 
     @PostMapping
     public ResponseEntity<FlightResponse> createFlight(@RequestBody FlightCreateRequest flightCreateRequest){
-        FlightInfo flightInfo = new FlightInfo();
+        FlightInfo flightInfo = new FlightInfo(flightCreateRequest.getFlightId(),
+                flightCreateRequest.getOriginZip(),
+                flightCreateRequest.getDestinationZip(),
+                flightCreateRequest.getPaymentMethod());
         flightInfo.setFlightId(flightCreateRequest.getFlightId());
         flightInfo.setOriginZip(flightCreateRequest.getOriginZip());
         flightInfo.setDestinationZip(flightCreateRequest.getDestinationZip());

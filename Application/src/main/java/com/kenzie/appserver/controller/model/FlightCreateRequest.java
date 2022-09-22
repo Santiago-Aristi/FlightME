@@ -13,7 +13,6 @@ public class FlightCreateRequest {
     @JsonProperty
     private String flightId;
 
-
     @NotEmpty
     @JsonProperty
     private Quote quote;
@@ -25,6 +24,10 @@ public class FlightCreateRequest {
     @NotEmpty
     @JsonProperty
     private DestinationZip destinationZip;
+
+    @NotEmpty
+    @JsonProperty
+    private String paymentMethod;
 
     public String getFlightId() {
         return flightId;
@@ -56,6 +59,14 @@ public class FlightCreateRequest {
 
     public void setDestinationZip(DestinationZip destinationZip) {
         this.destinationZip = destinationZip;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }
 

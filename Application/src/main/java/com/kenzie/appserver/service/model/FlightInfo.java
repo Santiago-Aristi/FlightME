@@ -17,10 +17,6 @@ public class FlightInfo {
         this.paymentMethod = paymentMethod;
     }
 
-    public FlightInfo() {
-
-    }
-
     public String getFlightId() {
         return flightId;
     }

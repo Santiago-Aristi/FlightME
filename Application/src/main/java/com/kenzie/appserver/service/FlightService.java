@@ -4,10 +4,12 @@ import com.kenzie.appserver.FlightNotFoundException;
 import com.kenzie.appserver.repositories.FlightRepository;
 import com.kenzie.appserver.repositories.model.FlightRecord;
 import com.kenzie.appserver.service.model.FlightInfo;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class FlightService {
     private FlightRepository flightRepository;
 
@@ -18,7 +20,10 @@ public class FlightService {
     public FlightInfo getFlight(String flightId) {
         FlightInfo flightInfo = flightRepository
                 .findById(flightId)
-                .map(flight -> new FlightInfo())
+                .map(flight -> new FlightInfo(flight.getFlightId(),
+                        flight.getOriginZipcode(),
+                        flight.getDestinationZipcode(),
+                        flight.getPaymentMethod()))
                 .orElse(null);
 
         return flightInfo;
