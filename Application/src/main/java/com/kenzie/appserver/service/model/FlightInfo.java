@@ -75,4 +75,5 @@ public class FlightInfo {
     public int hashCode() {
         return Objects.hash(flightId, quote, originZip, destinationZip, paymentMethod);
     }
+    //
 }
