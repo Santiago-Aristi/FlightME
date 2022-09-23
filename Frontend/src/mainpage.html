@@ -14,20 +14,48 @@
         <div class="welcome-message">
         <h4>Our Services</h4>
 
+        <p>Please complete the form below to create your flight enter information in the provided textboxes.</p>
+        </div>
+        <div class="createForm">
+        <form class="card-content" id="create-cargo-flight">
+            <p class="form-field">
+                <label>Company Name / Name</label>
+                <br>
+                <input type="text" required class="validated-field" id="create-flight-name" placeholder="Name">
+            </p>
 
-        <p>Please select the service you are needing, we offer either charters for cargo or passegners. After selceting you will be directed to a form to complete for you or your packages journey.</p>
+            <p class="form-field">
+                <label>Email</label>
+                <br>
+                <input type="text" required class="validated-field" id="create-flight-email" placeholder="Email">
+            </p>
+
+            <p class="form-field">
+                <label>Leaving From</label>
+                <br>
+                <input type="text" required class="validated-field" id="create-flight-from" placeholder="From">
+            </p>
+
+            <p class="form-field">
+                <label>Going To</label>
+                <br>
+                <input type="text" required class="validated-field" id="create-flight-goingTo" placeholder="Going To">
+            </p>
+
+            <p class="form-field">
+                <label>Weight of Items / Number of Passengers</label>
+                <br>
+                <input type="text" required class="validated-field" id="create-flight-weight" placeholder="Weight">
+            </p>
+            <button type="submit" id="create">Create Flight</button>
+        </form>
+        </div>
         </div>
 
-        <table>
-            <tr>
-                <td><a href="./cargo.html">Cargo Shipping</a></td>
-                <td><a href="./passenger.html">Personal Charters</a></td>
-            </tr>
-            <tr>
-                <td><img src="./images/cargo.png" alt="Cargo Shipping" height="300" width="300"></td>
-                <td><img src="./images/persons.png" alt="Personal Charters" height="300" width="300"></td>
-            </tr>
-        </table>
+        <div class="card" id="result">
+            <h2>Flight Creation Results</h2>
+            <p class="result-info"></p>
+        </div>
 
         <h2>Flight Info Requistion</h2>
 
@@ -40,7 +68,7 @@
         <p class="form-field">
             <label>Enter Flight ID</label>
             <br>
-            <input type="text" required class="validated-field" id="create-flight-quantity" placeholder="Flight ID">
+            <input type="text" required class="validated-field" id="flight-id-entry" placeholder="Flight ID">
           </p>
           <button type="submit" id="search">Search</button>
         </div>
