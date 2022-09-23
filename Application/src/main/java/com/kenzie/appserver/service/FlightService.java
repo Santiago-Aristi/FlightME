@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class FlightService {
@@ -45,7 +46,7 @@ public class FlightService {
 
     public void createFlight(FlightInfo flightInfo) {
         FlightRecord flightRecord = new FlightRecord();
-        flightRecord.setFlightId(flightInfo.getFlightId());
+        flightRecord.setFlightId(UUID.randomUUID().toString());
         flightRecord.setOriginZipcode(flightInfo.getOriginZip());
         flightRecord.setDestinationZipcode(flightInfo.getDestinationZip());
         flightRecord.setPaymentMethod(flightInfo.getPaymentMethod());
