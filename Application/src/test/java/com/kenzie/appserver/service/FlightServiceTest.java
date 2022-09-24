@@ -50,6 +50,7 @@ public class FlightServiceTest {
         when(flightRepository.findById(flightId)).thenReturn(Optional.of(flightRecord));
         FlightInfo flightInfo = flightService.getFlight(flightId);
 
+        // THEN
         Assertions.assertNotNull(flightInfo, "The flight is returned properly");
         Assertions.assertEquals(flightRecord.getFlightId(), flightInfo.getFlightId(), "Both id match");
         Assertions.assertEquals(flightRecord.getOriginZipcode(), flightInfo.getOriginZipcode(), "Both zip codes match");
@@ -62,8 +63,6 @@ public class FlightServiceTest {
         String name = "name";
         String email = "email";
         String flightId = UUID.randomUUID().toString();
-        String name = "name";
-        String email = "email";
         String paymentMethod = "Credit Card";
 
         OriginZip originZipcode = new OriginZip();
