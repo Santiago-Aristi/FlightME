@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Service
 public class FlightService {
-    private FlightRepository flightRepository;
+    private final FlightRepository flightRepository;
 
     public FlightService(FlightRepository flightRepository) {
         this.flightRepository = flightRepository;
