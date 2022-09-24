@@ -17,12 +17,12 @@ public class FlightController {
 
     private FlightService flightService;
 
-    FlightController (FlightService flightService) {
+    FlightController(FlightService flightService){
         this.flightService = flightService;
     }
 
     @PostMapping
-    public ResponseEntity<FlightResponse> createFlight(@RequestBody FlightCreateRequest flightCreateRequest){
+    public ResponseEntity<FlightResponse> createFlight(@RequestBody FlightCreateRequest flightCreateRequest) {
         FlightInfo flightInfo = new FlightInfo(flightCreateRequest.getFlightId(),
                 flightCreateRequest.getOriginZip(),
                 flightCreateRequest.getDestinationZip(),
@@ -39,7 +39,7 @@ public class FlightController {
     }
 
     @GetMapping("/all/")
-    public ResponseEntity<List<FlightResponse>> getAllFlightsForUser(){
+    public ResponseEntity<List<FlightResponse>> getAllFlightsForUser() {
         List<FlightInfo> allFlights = flightService.getAllFlights();
 
         if (allFlights.isEmpty() || allFlights == null) {
@@ -54,7 +54,7 @@ public class FlightController {
     }
 
     @GetMapping("/{flightId}")
-    public ResponseEntity<FlightResponse> getFlight(@PathVariable("flightId") String flightId){
+    public ResponseEntity<FlightResponse> getFlight(@PathVariable("flightId") String flightId) {
         FlightInfo flightInfo = flightService.getFlight(flightId);
 
         if (flightInfo == null) {
@@ -66,7 +66,7 @@ public class FlightController {
     }
 
     @DeleteMapping("/{flightId}")
-    public ResponseEntity deleteFlight(@PathVariable("flightId") String flightId){
+    public ResponseEntity deleteFlight(@PathVariable("flightId") String flightId) {
 
         if (flightId == null) {
             return ResponseEntity.noContent().build();
