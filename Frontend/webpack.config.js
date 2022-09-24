@@ -9,6 +9,7 @@ module.exports = {
   },
   entry: {
     examplePage: path.resolve(__dirname, 'src', 'pages', 'examplePage.js'),
+    flightPage: path.resolve(__dirname, 'src', 'pages', 'flightPage.js'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -30,19 +31,7 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html',
       inject: false
-    }),new HtmlWebpackPlugin({
-             template: './src/mainpage.html',
-             filename: 'mainpage.html',
-             inject: false
-           }),new HtmlWebpackPlugin({
-                    template: './src/cargo.html',
-                    filename: 'cargo.html',
-                    inject: false
-                  }),new HtmlWebpackPlugin({
-                           template: './src/passenger.html',
-                           filename: 'passenger.html',
-                           inject: false
-                         }),
+    }),
     new CopyPlugin({
       patterns: [
         {
