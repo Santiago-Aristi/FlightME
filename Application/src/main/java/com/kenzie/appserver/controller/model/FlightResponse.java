@@ -9,6 +9,12 @@ import com.kenzie.appserver.service.model.Quote;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FlightResponse {
 
+    @JsonProperty("name")
+    private String name;
+
+    @JsonProperty("email")
+    private String email;
+
     @JsonProperty("flightId")
     private String flightId;
 
@@ -20,6 +26,22 @@ public class FlightResponse {
 
     @JsonProperty("destinationZip")
     private DestinationZip destinationZip;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getFlightId() {
         return flightId;

@@ -21,7 +21,9 @@ public class FlightService {
     public FlightInfo getFlight(String flightId) {
         FlightInfo flightInfo = flightRepository
                 .findById(flightId)
-                .map(flight -> new FlightInfo(flight.getFlightId(),
+                .map(flight -> new FlightInfo(flight.getName(),
+                        flight.getEmail(),
+                        flight.getFlightId(),
                         flight.getOriginZipcode(),
                         flight.getDestinationZipcode(),
                         flight.getPaymentMethod()))
@@ -35,7 +37,9 @@ public class FlightService {
 
         Iterable<FlightRecord> flightIterator = flightRepository.findAll();
         for(FlightRecord record : flightIterator){
-            flightInfoList.add(new FlightInfo(record.getFlightId(),
+            flightInfoList.add(new FlightInfo(record.getName(),
+                    record.getEmail(),
+                    record.getFlightId(),
                     record.getOriginZipcode(),
                     record.getDestinationZipcode(),
                     record.getPaymentMethod()));
@@ -44,12 +48,14 @@ public class FlightService {
         return flightInfoList;
     }
 
-    public void createFlight(FlightInfo flightInfo) {
+    public FlightInfo createFlight(FlightInfo flightInfo) {
         FlightRecord flightRecord = new FlightRecord();
         flightRecord.setFlightId(UUID.randomUUID().toString());
         flightRecord.setOriginZipcode(flightInfo.getOriginZip());
         flightRecord.setDestinationZipcode(flightInfo.getDestinationZip());
         flightRecord.setPaymentMethod(flightInfo.getPaymentMethod());
+        flightRepository.save(flightRecord);
+        return flightInfo;
     }
 
     public void deleteFlight(String flightId){

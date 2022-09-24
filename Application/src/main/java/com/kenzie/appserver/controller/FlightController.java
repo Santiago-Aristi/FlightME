@@ -23,10 +23,14 @@ public class FlightController {
 
     @PostMapping
     public ResponseEntity<FlightResponse> createFlight(@RequestBody FlightCreateRequest flightCreateRequest) {
-        FlightInfo flightInfo = new FlightInfo(flightCreateRequest.getFlightId(),
+        FlightInfo flightInfo = new FlightInfo(flightCreateRequest.getName(),
+                flightCreateRequest.getEmail(),
+                flightCreateRequest.getFlightId(),
                 flightCreateRequest.getOriginZip(),
                 flightCreateRequest.getDestinationZip(),
                 flightCreateRequest.getPaymentMethod());
+        flightInfo.setName(flightCreateRequest.getName());
+        flightInfo.setEmail(flightCreateRequest.getEmail());
         flightInfo.setFlightId(flightCreateRequest.getFlightId());
         flightInfo.setOriginZip(flightCreateRequest.getOriginZip());
         flightInfo.setDestinationZip(flightCreateRequest.getDestinationZip());
@@ -79,6 +83,8 @@ public class FlightController {
 
     public FlightResponse createFlightResponse(FlightInfo flightInfo) {
         FlightResponse flightResponse = new FlightResponse();
+        flightResponse.setName(flightInfo.getName());
+        flightResponse.setEmail(flightInfo.getEmail());
         flightResponse.setFlightId(flightInfo.getFlightId());
         flightResponse.setQuote(flightInfo.getQuote());
         flightResponse.setOriginZip(flightInfo.getOriginZip());
