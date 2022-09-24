@@ -62,6 +62,8 @@ public class FlightServiceTest {
         String name = "name";
         String email = "email";
         String flightId = UUID.randomUUID().toString();
+        String name = "name";
+        String email = "email";
         String paymentMethod = "Credit Card";
 
         OriginZip originZipcode = new OriginZip();
