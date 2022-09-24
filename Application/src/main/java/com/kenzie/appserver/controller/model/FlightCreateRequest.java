@@ -11,6 +11,14 @@ public class FlightCreateRequest {
 
     @NotEmpty
     @JsonProperty
+    private String name;
+
+    @NotEmpty
+    @JsonProperty
+    private String email;
+
+    @NotEmpty
+    @JsonProperty
     private String flightId;
 
     @NotEmpty
@@ -28,6 +36,22 @@ public class FlightCreateRequest {
     @NotEmpty
     @JsonProperty
     private String paymentMethod;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getFlightId() {
         return flightId;
