@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Flight.Me</title>
-    <script type="text/javascript" src="examplePage.js"></script>
+    <script type="text/javascript" src="flightPage.js"></script>
     <link rel="stylesheet" href="css/styles/stylesheet.css" type="text/css">
 </head>
 <body>
@@ -18,7 +18,7 @@
     <p>Please complete the form below to create your flight enter information in the provided textboxes.</p>
 </div>
 <div class="createForm">
-    <form class="card-content" id="create-cargo-flight">
+    <form class="card-content" id="create-flight-form">
         <p class="form-field">
             <label>Company Name / Name</label>
             <br>
@@ -44,7 +44,7 @@
         </p>
 
         <p class="form-field">
-            <label>Weight of Items / Number of Passengers</label>
+            <label>Weight of Items</label>
             <br>
             <input type="text" required class="validated-field" id="create-flight-weight" placeholder="Weight">
         </p>
@@ -55,7 +55,7 @@
 
 <div class="card" id="result-create">
     <h2>Flight Creation Results</h2>
-    <p class="result-info"></p>
+    <p class="result-info-create"></p>
 </div>
 
 <h2>Flight Info Requistion</h2>
@@ -65,7 +65,7 @@
         If you are looking for a list of your flights, please enter your "User ID" into the User ID text field.</p>
 </div>
 
-<div class="searchform">
+<div class="searchform" id="search-form">
     <p class="form-field">
         <label>Enter Flight ID</label>
         <br>
@@ -77,7 +77,7 @@
 
 <div class="result-area">
     <h2>Flight Info</h2>
-
+    <p id="result-info"></p>
 </div>
 
 <div class="about">

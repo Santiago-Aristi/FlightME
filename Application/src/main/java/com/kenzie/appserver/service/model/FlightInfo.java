@@ -6,7 +6,6 @@ public class FlightInfo {
     private String flightId;
     private Quote quote;
     private OriginZip originZip;
-
     private DestinationZip destinationZip;
     private String paymentMethod;
 
