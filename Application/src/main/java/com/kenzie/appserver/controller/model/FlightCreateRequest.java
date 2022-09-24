@@ -19,11 +19,11 @@ public class FlightCreateRequest {
 
     @NotEmpty
     @JsonProperty
-    private OriginZip originZip;
+    private OriginZip originZipcode;
 
     @NotEmpty
     @JsonProperty
-    private DestinationZip destinationZip;
+    private DestinationZip destinationZipcode;
 
     @NotEmpty
     @JsonProperty
@@ -45,20 +45,20 @@ public class FlightCreateRequest {
         this.quote = quote;
     }
 
-    public OriginZip getOriginZip() {
-        return originZip;
+    public OriginZip getOriginZipcode() {
+        return originZipcode;
     }
 
-    public void setOriginZip(OriginZip originZip) {
-        this.originZip = originZip;
+    public void setOriginZipcode(OriginZip originZip) {
+        this.originZipcode = originZipcode;
     }
 
-    public DestinationZip getDestinationZip() {
-        return destinationZip;
+    public DestinationZip getDestinationZipcode() {
+        return destinationZipcode;
     }
 
-    public void setDestinationZip(DestinationZip destinationZip) {
-        this.destinationZip = destinationZip;
+    public void setDestinationZipcode(DestinationZip destinationZipcode) {
+        this.destinationZipcode = destinationZipcode;
     }
 
     public String getPaymentMethod() {

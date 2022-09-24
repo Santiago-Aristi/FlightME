@@ -7,5 +7,4 @@ import org.springframework.data.repository.CrudRepository;
 
 @EnableScan
 public interface FlightRepository extends CrudRepository<FlightRecord, String> {
-
 }

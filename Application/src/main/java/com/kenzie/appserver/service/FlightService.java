@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Service
 public class FlightService {
-    private FlightRepository flightRepository;
+    private final FlightRepository flightRepository;
 
     public FlightService(FlightRepository flightRepository) {
         this.flightRepository = flightRepository;
@@ -47,8 +47,8 @@ public class FlightService {
     public void createFlight(FlightInfo flightInfo) {
         FlightRecord flightRecord = new FlightRecord();
         flightRecord.setFlightId(UUID.randomUUID().toString());
-        flightRecord.setOriginZipcode(flightInfo.getOriginZip());
-        flightRecord.setDestinationZipcode(flightInfo.getDestinationZip());
+        flightRecord.setOriginZipcode(flightInfo.getOriginZipcode());
+        flightRecord.setDestinationZipcode(flightInfo.getDestinationZipcode());
         flightRecord.setPaymentMethod(flightInfo.getPaymentMethod());
     }
 

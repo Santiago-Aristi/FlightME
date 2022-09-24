@@ -5,15 +5,14 @@ import java.util.Objects;
 public class FlightInfo {
     private String flightId;
     private Quote quote;
-    private OriginZip originZip;
-
-    private DestinationZip destinationZip;
+    private OriginZip originZipcode;
+    private DestinationZip destinationZipcode;
     private String paymentMethod;
 
-    public FlightInfo(String flightId, OriginZip originZip, DestinationZip destinationZip, String paymentMethod){
+    public FlightInfo(String flightId, OriginZip originZipcode, DestinationZip destinationZipcode, String paymentMethod){
         this.flightId = flightId;
-        this.originZip = originZip;
-        this.destinationZip = destinationZip;
+        this.originZipcode = originZipcode;
+        this.destinationZipcode = destinationZipcode;
         this.paymentMethod = paymentMethod;
     }
 
@@ -33,20 +32,20 @@ public class FlightInfo {
         this.quote = quote;
     }
 
-    public OriginZip getOriginZip() {
-        return originZip;
+    public OriginZip getOriginZipcode() {
+        return originZipcode;
     }
 
-    public void setOriginZip(OriginZip originZip) {
-        this.originZip = originZip;
+    public void setOriginZipcode(OriginZip originZipcode) {
+        this.originZipcode = originZipcode;
     }
 
-    public DestinationZip getDestinationZip() {
-        return destinationZip;
+    public DestinationZip getDestinationZipcode() {
+        return destinationZipcode;
     }
 
-    public void setDestinationZip(DestinationZip destinationZip) {
-        this.destinationZip = destinationZip;
+    public void setDestinationZipcode(DestinationZip destinationZipcode) {
+        this.destinationZipcode = destinationZipcode;
     }
 
     public void setPaymentMethod(String paymentMethod) {
@@ -63,13 +62,13 @@ public class FlightInfo {
         if (o == null || getClass() != o.getClass()) return false;
         FlightInfo that = (FlightInfo) o;
         return Objects.equals(flightId, that.flightId) && Objects.equals(quote, that.quote) &&
-                Objects.equals(originZip, that.originZip) && Objects.equals(destinationZip, that.destinationZip)
+                Objects.equals(originZipcode, that.originZipcode) && Objects.equals(destinationZipcode, that.destinationZipcode)
                 && Objects.equals(paymentMethod, that.paymentMethod);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(flightId, quote, originZip, destinationZip, paymentMethod);
+        return Objects.hash(flightId, quote, originZipcode, destinationZipcode, paymentMethod);
     }
     //
 }

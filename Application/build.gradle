@@ -84,4 +84,8 @@ task bootRunDev {
     }
 }
 
+test {
+    useJUnitPlatform()
+}
+
 bootRunDev.finalizedBy bootRun
