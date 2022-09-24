@@ -24,21 +24,13 @@ public class FlightController {
     @PostMapping
     public ResponseEntity<FlightResponse> createFlight(@RequestBody FlightCreateRequest flightCreateRequest) {
 
-        FlightInfo flightInfo = new FlightInfo(flightCreateRequest.getFlightId(),
-                flightCreateRequest.getOriginZipcode(),
-                flightCreateRequest.getDestinationZipcode(),
         FlightInfo flightInfo = new FlightInfo(flightCreateRequest.getName(),
                 flightCreateRequest.getEmail(),
                 flightCreateRequest.getFlightId(),
-                flightCreateRequest.getOriginZip(),
-                flightCreateRequest.getDestinationZip(),
+                flightCreateRequest.getOriginZipcode(),
+                flightCreateRequest.getDestinationZipcode(),
                 flightCreateRequest.getPaymentMethod());
-        flightInfo.setName(flightCreateRequest.getName());
-        flightInfo.setEmail(flightCreateRequest.getEmail());
-        flightInfo.setFlightId(flightCreateRequest.getFlightId());
-        flightInfo.setOriginZipcode(flightCreateRequest.getOriginZipcode());
-        flightInfo.setDestinationZipcode(flightCreateRequest.getDestinationZipcode());
-        flightInfo.setQuote(flightCreateRequest.getQuote());
+
         flightService.createFlight(flightInfo);
 
         FlightResponse flightResponse = createFlightResponse(flightInfo);

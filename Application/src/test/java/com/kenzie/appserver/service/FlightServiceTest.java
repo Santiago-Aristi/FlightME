@@ -59,6 +59,8 @@ public class FlightServiceTest {
 
     @Test
     public void createFlight_validInput_CreatesValidFlight(){
+        String name = "name";
+        String email = "email";
         String flightId = UUID.randomUUID().toString();
         String paymentMethod = "Credit Card";
 
@@ -68,7 +70,7 @@ public class FlightServiceTest {
         DestinationZip destinationZipcode = new DestinationZip();
         destinationZipcode.setDestinationZipcode("54321");
 
-        FlightInfo flightInfo = new FlightInfo(flightId, originZipcode, destinationZipcode, paymentMethod);
+        FlightInfo flightInfo = new FlightInfo(name, email, flightId, originZipcode, destinationZipcode, paymentMethod);
 
 //        doNothing().when(flightRepository).findById(flightId);
         flightService.createFlight(flightInfo);

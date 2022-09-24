@@ -12,9 +12,7 @@ public class FlightInfo {
     private String paymentMethod;
 
 
-    public FlightInfo(String flightId, OriginZip originZipcode, DestinationZip destinationZipcode, String paymentMethod){
-
-    public FlightInfo(String name, String email, String flightId, OriginZip originZip, DestinationZip destinationZip, String paymentMethod){
+    public FlightInfo(String name, String email, String flightId, OriginZip originZipcode, DestinationZip destinationZipcode, String paymentMethod){
         this.name = name;
         this.email = email;
         this.flightId = flightId;
