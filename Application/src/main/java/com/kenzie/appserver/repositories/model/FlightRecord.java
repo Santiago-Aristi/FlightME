@@ -32,19 +32,21 @@ public class FlightRecord {
         return originZipcode;
     }
 
-    @DynamoDBAttribute(attributeName = "destinationZipCode")
-    public DestinationZip getDestinationZipcode() {
-        return destinationZipcode;
-    }
 
     public void setOriginZipcode(OriginZip originZipcode) {
         this.originZipcode = originZipcode;
+    }
+
+    @DynamoDBAttribute(attributeName = "destinationZipCode")
+    public DestinationZip getDestinationZipcode() {
+        return destinationZipcode;
     }
 
     public void setDestinationZipcode(DestinationZip destinationZipcode) {
         this.destinationZipcode = destinationZipcode;
     }
 
+    @DynamoDBAttribute(attributeName = "paymentMethod")
     public String getPaymentMethod() {
         return paymentMethod;
     }
