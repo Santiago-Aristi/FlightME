@@ -18,6 +18,7 @@ public class FlightRecord {
     private List<FlightInfo> flights;
     private OriginZip originZipcode;
     private DestinationZip destinationZipcode;
+    private Integer numOfPassengers;
     private String paymentMethod;
 
     @DynamoDBHashKey(attributeName = "flightId")
@@ -57,6 +58,7 @@ public class FlightRecord {
         this.paymentMethod = paymentMethod;
     }
 
+    @DynamoDBAttribute(attributeName = "name")
     public String getName() {
         return name;
     }
@@ -65,12 +67,22 @@ public class FlightRecord {
         this.name = name;
     }
 
+    @DynamoDBAttribute(attributeName = "email")
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @DynamoDBAttribute(attributeName = "numOfPassengers")
+    public Integer getNumOfPassengers() {
+        return numOfPassengers;
+    }
+
+    public void setNumOfPassengers(Integer numOfPassengers) {
+        this.numOfPassengers = numOfPassengers;
     }
 
     //TODO: need to figure out how to implement a list to return all flights!!!!!!!!!!!!!!!!

@@ -27,6 +27,7 @@ public class FlightService {
                         flight.getFlightId(),
                         flight.getOriginZipcode(),
                         flight.getDestinationZipcode(),
+                        flight.getNumOfPassengers(),
                         flight.getPaymentMethod()))
                 .orElse(null);
 
@@ -43,6 +44,7 @@ public class FlightService {
                     record.getFlightId(),
                     record.getOriginZipcode(),
                     record.getDestinationZipcode(),
+                    record.getNumOfPassengers(),
                     record.getPaymentMethod()));
         }
 
@@ -56,6 +58,7 @@ public class FlightService {
         flightRecord.setFlightId(flightInfo.getFlightId());
         flightRecord.setOriginZipcode(flightInfo.getOriginZipcode());
         flightRecord.setDestinationZipcode(flightInfo.getDestinationZipcode());
+        flightRecord.setNumOfPassengers(flightInfo.getNumOfPassengers());
         flightRecord.setPaymentMethod(flightInfo.getPaymentMethod());
         flightRepository.save(flightRecord);
 
