@@ -65,14 +65,18 @@ class FlightPage extends BaseClass {
         }
     }
 
-    async onCreate(event) {
+    async onCreate(flight) {
         // Prevent the page from refreshing on form submit
-        event.preventDefault();
-        this.dataStore.set("example", null);
+        flight.preventDefault();
+        this.dataStore.set("flight", null);
 
-        let name = document.getElementById("create-name-field").value;
+        let name = document.getElementById("create-flight-name").value;
+        let email = document.getElementById("create-flight-email").value;
+        let originZipcode = document.getElementById("create-flight-from").value;
+        let destinationZipcode = document.getElementById("create-flight-goingTo").value;
+        let payment = document.getElementById("create-flight-pay").value;
 
-        const createdFlight = await this.client.createExample(name, this.errorHandler);
+        const createdFlight = await this.client.createFlight(name, this.errorHandler);
         this.dataStore.set("example", createdExample);
 
         if (createdFlight) {

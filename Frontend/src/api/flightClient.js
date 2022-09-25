@@ -37,17 +37,18 @@ export default class FlightClient extends BaseClass {
         }
     }
 
-    async createFlight(name, email, originZip, destinationZip, numOfPassengers, errorCallback) {
+    async createFlight(name, email, destinationZipcode, destinationZipcode, payment, errorCallback) {
         try {
             const response = await this.client.post(`/flight`, {
                 "name" : name,
                 "email" : email,
-                "originZip" : originZip,
-                "destinationZip" : destinationZip
+                "originZipcode" : originZipcode,
+                "destinationZipcode" : destinationZipcode,
+                "payment" : payment
             });
             return response.data;
         } catch (error) {
-            this.handleError("createExample", error, errorCallback);
+            this.handleError("createFlight", error, errorCallback);
         }
     }
 
