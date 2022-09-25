@@ -29,22 +29,15 @@ class FlightPage extends BaseClass {
     async renderFlight() {
         let resultArea = document.getElementById("result-info-create");
 
-        const flights = this.dataStore.get("flights");
+                const flight = this.dataStore.get("flight");
 
-        let result = "";
-        result+="<ul>"
-
-        for(let flight of flights){
-            result+=`<h3>${flight.name}</h3>`;
-        }
-
-        result+="</ul>"
-
-        if (result) {
-            resultArea.innerHTML = result;
-        } else {
-            resultArea.innerHTML = "No Item";
-        }
+                if (flight) {
+                    resultArea.innerHTML = `
+                    <div>NAME: ${flight.name}</div>
+                    `
+                } else {
+                    resultArea.innerHTML = "No Item";
+                }
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------

@@ -8,7 +8,6 @@ module.exports = {
     usedExports: true
   },
   entry: {
-    examplePage: path.resolve(__dirname, 'src', 'pages', 'examplePage.js'),
     flightPage: path.resolve(__dirname, 'src', 'pages', 'flightPage.js'),
   },
   output: {
