@@ -18,14 +18,17 @@ public class FlightResponse {
     @JsonProperty("flightId")
     private String flightId;
 
-    @JsonProperty("quote")
-    private Quote quote;
-
     @JsonProperty("originZip")
     private OriginZip originZip;
 
     @JsonProperty("destinationZip")
     private DestinationZip destinationZip;
+
+    @JsonProperty("numOfPassengers")
+    private Integer numOfPassengers;
+
+    @JsonProperty("paymentMethod")
+    private String paymentMethod;
 
     public String getName() {
         return name;
@@ -51,14 +54,6 @@ public class FlightResponse {
         this.flightId = flightId;
     }
 
-    public Quote getQuote() {
-        return quote;
-    }
-
-    public void setQuote(Quote quote) {
-        this.quote = quote;
-    }
-
     public OriginZip getOriginZip() {
         return originZip;
     }
@@ -73,5 +68,21 @@ public class FlightResponse {
 
     public void setDestinationZip(DestinationZip destinationZip) {
         this.destinationZip = destinationZip;
+    }
+
+    public Integer getNumOfPassengers() {
+        return numOfPassengers;
+    }
+
+    public void setNumOfPassengers(Integer numOfPassengers) {
+        this.numOfPassengers = numOfPassengers;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }

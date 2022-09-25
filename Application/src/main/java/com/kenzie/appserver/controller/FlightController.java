@@ -28,6 +28,7 @@ public class FlightController {
                 flightCreateRequest.getFlightId(),
                 flightCreateRequest.getOriginZipcode(),
                 flightCreateRequest.getDestinationZipcode(),
+                flightCreateRequest.getNumOfPassengers(),
                 flightCreateRequest.getPaymentMethod());
 
         flightService.createFlight(flightInfo);
@@ -81,9 +82,10 @@ public class FlightController {
         flightResponse.setName(flightInfo.getName());
         flightResponse.setEmail(flightInfo.getEmail());
         flightResponse.setFlightId(flightInfo.getFlightId());
-        flightResponse.setQuote(flightInfo.getQuote());
         flightResponse.setOriginZip(flightInfo.getOriginZipcode());
         flightResponse.setDestinationZip(flightInfo.getDestinationZipcode());
+        flightResponse.setNumOfPassengers(flightInfo.getNumOfPassengers());
+        flightResponse.setPaymentMethod(flightInfo.getPaymentMethod());
 
         return flightResponse;
     }
