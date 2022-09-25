@@ -23,7 +23,6 @@ public class FlightController {
 
     @PostMapping
     public ResponseEntity<FlightResponse> createFlight(@RequestBody FlightCreateRequest flightCreateRequest) {
-
         FlightInfo flightInfo = new FlightInfo(flightCreateRequest.getName(),
                 flightCreateRequest.getEmail(),
                 flightCreateRequest.getFlightId(),
