@@ -29,13 +29,13 @@ class FlightPage extends BaseClass {
     async renderFlight() {
         let resultArea = document.getElementById("result-info-create");
 
-        const flight = this.dataStore.get("flights");
+        const flights = this.dataStore.get("flights");
 
         let result = "";
         result+="<ul>"
 
         for(let flight of flights){
-            result+=`<h3>flight.name</h3>`;
+            result+=`<h3>${flight.name}</h3>`;
         }
 
         result+="</ul>"
@@ -53,10 +53,10 @@ class FlightPage extends BaseClass {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
 
-        let id = document.getElementById("search").value;
+        let flightId = document.getElementById("search").value;
         this.dataStore.set("flight", null);
 
-        let result = await this.client.getFlight(id, this.errorHandler);
+        let result = await this.client.getFlight(flightId, this.errorHandler);
         this.dataStore.set("flight", result);
         if (result) {
             this.showMessage(`Got ${result.name}!`)
@@ -74,10 +74,11 @@ class FlightPage extends BaseClass {
         let email = document.getElementById("create-flight-email").value;
         let originZipcode = document.getElementById("create-flight-from").value;
         let destinationZipcode = document.getElementById("create-flight-goingTo").value;
+        let numOfPassengers = document.getElementById("create-flight-passenger").value;
         let payment = document.getElementById("create-flight-pay").value;
 
-        const createdFlight = await this.client.createFlight(name, this.errorHandler);
-        this.dataStore.set("example", createdExample);
+        const createdFlight = await this.client.createFlight(name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod, this.errorHandler);
+        this.dataStore.set("flight", createdFlight);
 
         if (createdFlight) {
             this.showMessage(`Created ${createdFlight.name}!`)
