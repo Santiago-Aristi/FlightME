@@ -27,13 +27,13 @@ class FlightPage extends BaseClass {
     // Render Methods --------------------------------------------------------------------------------------------------
 
     async renderFlight() {
-        let resultArea = document.getElementById("result-info-create");
+        let resultArea = document.getElementById("result-info");
 
-                const flight = this.dataStore.get("flight");
+                const flightInfo = this.dataStore.get("flightInfo");
 
-                if (flight) {
+                if (flightInfo) {
                     resultArea.innerHTML = `
-                    <div>NAME: ${flight.name}</div>
+                    <div>NAME: ${flightInfo.name}</div>
                     `
                 } else {
                     resultArea.innerHTML = "No Item";
@@ -42,7 +42,7 @@ class FlightPage extends BaseClass {
 
     // Event Handlers --------------------------------------------------------------------------------------------------
 
-    async onGet(event) {
+    async onGetFlight(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
 
@@ -58,7 +58,7 @@ class FlightPage extends BaseClass {
         }
     }
 
-    async onCreate(flight) {
+    async onCreateFlight(flight) {
         // Prevent the page from refreshing on form submit
         flight.preventDefault();
         this.dataStore.set("flight", null);
@@ -74,7 +74,7 @@ class FlightPage extends BaseClass {
         this.dataStore.set("flight", createdFlight);
 
         if (createdFlight) {
-            this.showMessage(`Created ${createdFlight.name}!`)
+            this.showMessage(`Created flight ${createdFlight.name}!`)
         } else {
             this.errorHandler("Error creating!  Try again...");
         }
