@@ -8,6 +8,7 @@ import com.kenzie.appserver.service.model.FlightInfo;
 import com.kenzie.appserver.service.model.OriginZip;
 
 import java.util.List;
+import java.util.Objects;
 
 @DynamoDBTable(tableName = "Flights")
 public class FlightRecord {
@@ -15,7 +16,6 @@ public class FlightRecord {
     private String name;
     private String email;
     private String flightId;
-    private List<FlightInfo> flights;
     private OriginZip originZipcode;
     private DestinationZip destinationZipcode;
     private Integer numOfPassengers;
@@ -85,13 +85,17 @@ public class FlightRecord {
         this.numOfPassengers = numOfPassengers;
     }
 
-    //TODO: need to figure out how to implement a list to return all flights!!!!!!!!!!!!!!!!
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FlightRecord that = (FlightRecord) o;
+        return flightId.equals(that.flightId);
+    }
 
-//    public List<FlightInfo> getFlights() {
-//        return flights;
-//    }
-//
-//    public void setFlights(List<FlightInfo> flights) {
-//        this.flights = flights;
-//    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(flightId);
+    }
+
 }
