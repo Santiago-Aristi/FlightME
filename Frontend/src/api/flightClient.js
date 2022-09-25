@@ -44,7 +44,7 @@ export default class FlightClient extends BaseClass {
                 "email" : email,
                 "originZipcode" : originZipcode,
                 "destinationZipcode" : destinationZipcode,
-                "numOfpassengers" : numOfPassengers,
+                "numOfPassengers" : numOfPassengers,
                 "paymentMethod" : paymentMethod
             });
             return response.data;
