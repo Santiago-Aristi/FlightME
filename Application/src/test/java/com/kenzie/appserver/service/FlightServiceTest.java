@@ -8,8 +8,7 @@ import com.kenzie.appserver.service.model.OriginZip;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.ArgumentCaptor;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -17,10 +16,8 @@ import java.util.UUID;
 import static org.mockito.Mockito.*;
 
 public class FlightServiceTest {
-    @Mock
     private FlightRepository flightRepository;
 
-    @InjectMocks
     private FlightService flightService;
 
     @BeforeEach
@@ -32,15 +29,18 @@ public class FlightServiceTest {
     @Test
     public void getFlight_validInput_returnsValidFLights() {
         // GIVEN
+        String name = "name";
+        String email = "email@google.com";
         String flightId = UUID.randomUUID().toString();
 
         OriginZip originZipcode = new OriginZip();
         originZipcode.setOriginZipcode("12345");
-
         DestinationZip destinationZipcode = new DestinationZip();
         destinationZipcode.setDestinationZipcode("54321");
 
         FlightRecord flightRecord = new FlightRecord();
+        flightRecord.setName(name);
+        flightRecord.setEmail(email);
         flightRecord.setFlightId(flightId);
         flightRecord.setOriginZipcode(originZipcode);
         flightRecord.setDestinationZipcode(destinationZipcode);
@@ -52,6 +52,8 @@ public class FlightServiceTest {
 
         // THEN
         Assertions.assertNotNull(flightInfo, "The flight is returned properly");
+        Assertions.assertEquals(flightRecord.getName(), flightInfo.getName(), "Both names match");
+        Assertions.assertEquals(flightRecord.getEmail(), flightInfo.getEmail(), "Both emails match");
         Assertions.assertEquals(flightRecord.getFlightId(), flightInfo.getFlightId(), "Both id match");
         Assertions.assertEquals(flightRecord.getOriginZipcode(), flightInfo.getOriginZipcode(), "Both zip codes match");
         Assertions.assertEquals(flightRecord.getDestinationZipcode(), flightInfo.getDestinationZipcode(), "Both zip codes match");
@@ -61,21 +63,63 @@ public class FlightServiceTest {
     @Test
     public void createFlight_validInput_CreatesValidFlight(){
         String name = "name";
-        String email = "email";
+        String email = "email@google.com";
         String flightId = UUID.randomUUID().toString();
         String paymentMethod = "Credit Card";
 
         OriginZip originZipcode = new OriginZip();
         originZipcode.setOriginZipcode("12345");
-
         DestinationZip destinationZipcode = new DestinationZip();
         destinationZipcode.setDestinationZipcode("54321");
 
         FlightInfo flightInfo = new FlightInfo(name, email, flightId, originZipcode, destinationZipcode, paymentMethod);
+        ArgumentCaptor<FlightRecord> flightRecordCaptor = ArgumentCaptor.forClass(FlightRecord.class);
 
-//        doNothing().when(flightRepository).findById(flightId);
-        flightService.createFlight(flightInfo);
+        // WHEN
+        FlightInfo returnedFlight = flightService.createFlight(flightInfo);
 
+        // THEN
+        Assertions.assertNotNull(returnedFlight);
+        verify(flightRepository).save(flightRecordCaptor.capture());
+        FlightRecord flightRecord = flightRecordCaptor.getValue();
+
+        Assertions.assertNotNull(flightRecord, "The flightRecord record is returned");
+        Assertions.assertEquals(flightRecord.getName(), flightInfo.getName(), "The flight name matches");
+        Assertions.assertEquals(flightRecord.getEmail(), flightInfo.getEmail(), "The flight email matches");
+        Assertions.assertEquals(flightRecord.getFlightId(), flightInfo.getFlightId(), "The flight id matches");
+        Assertions.assertEquals(flightRecord.getOriginZipcode(), flightInfo.getOriginZipcode(), "The flight origin zipcode matches");
+        Assertions.assertEquals(flightRecord.getDestinationZipcode(), flightInfo.getDestinationZipcode(), "The flight destination zipcode matches");
+        Assertions.assertEquals(flightRecord.getPaymentMethod(), flightInfo.getPaymentMethod(), "The payment method matches");
+    }
+
+    @Test
+    public void deleteFlight() {
+        // GIVEN
+        String name = "name";
+        String email = "email@google.com";
+        String flightId = UUID.randomUUID().toString();
+        String paymentMethod = "Credit Card";
+
+        OriginZip originZipcode = new OriginZip();
+        originZipcode.setOriginZipcode("12345");
+        DestinationZip destinationZipcode = new DestinationZip();
+        destinationZipcode.setDestinationZipcode("54321");
+
+        FlightInfo flightInfo = new FlightInfo(name, email, flightId, originZipcode, destinationZipcode, paymentMethod);
+        ArgumentCaptor<FlightRecord> flightRecordCaptor = ArgumentCaptor.forClass(FlightRecord.class);
+
+        // WHEN
+        flightService.deleteFlight(flightId);
+
+        // THEN
+        verify(flightRepository).delete(flightRecordCaptor.capture());
+
+        FlightRecord flightRecord = flightRecordCaptor.getValue();
+
+        Assertions.assertNotNull(flightRecord, "The flight record is returned");
+        Assertions.assertNotNull(flightInfo, "The flight info is returned");
+        Assertions.assertEquals(flightRecord.getFlightId(), flightInfo.getFlightId(), "The flightId matches");
 
     }
+
 }

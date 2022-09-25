@@ -4,16 +4,17 @@ import com.kenzie.appserver.FlightNotFoundException;
 import com.kenzie.appserver.repositories.FlightRepository;
 import com.kenzie.appserver.repositories.model.FlightRecord;
 import com.kenzie.appserver.service.model.FlightInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class FlightService {
     private final FlightRepository flightRepository;
 
+    @Autowired
     public FlightService(FlightRepository flightRepository) {
         this.flightRepository = flightRepository;
     }
@@ -50,11 +51,14 @@ public class FlightService {
 
     public FlightInfo createFlight(FlightInfo flightInfo) {
         FlightRecord flightRecord = new FlightRecord();
-        flightRecord.setFlightId(UUID.randomUUID().toString());
+        flightRecord.setName(flightInfo.getName());
+        flightRecord.setEmail(flightInfo.getEmail());
+        flightRecord.setFlightId(flightInfo.getFlightId());
         flightRecord.setOriginZipcode(flightInfo.getOriginZipcode());
         flightRecord.setDestinationZipcode(flightInfo.getDestinationZipcode());
         flightRecord.setPaymentMethod(flightInfo.getPaymentMethod());
         flightRepository.save(flightRecord);
+
         return flightInfo;
     }
 
