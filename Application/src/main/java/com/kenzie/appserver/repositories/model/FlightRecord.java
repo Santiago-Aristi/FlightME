@@ -16,8 +16,8 @@ public class FlightRecord {
     private String name;
     private String email;
     private String flightId;
-    private OriginZip originZipcode;
-    private DestinationZip destinationZipcode;
+    private String originZipcode;
+    private String destinationZipcode;
     private Integer numOfPassengers;
     private String paymentMethod;
 
@@ -31,21 +31,21 @@ public class FlightRecord {
     }
 
     @DynamoDBAttribute(attributeName = "originZipCode")
-    public OriginZip getOriginZipcode() {
+    public String getOriginZipcode() {
         return originZipcode;
     }
 
 
-    public void setOriginZipcode(OriginZip originZipcode) {
+    public void setOriginZipcode(String originZipcode) {
         this.originZipcode = originZipcode;
     }
 
     @DynamoDBAttribute(attributeName = "destinationZipCode")
-    public DestinationZip getDestinationZipcode() {
+    public String getDestinationZipcode() {
         return destinationZipcode;
     }
 
-    public void setDestinationZipcode(DestinationZip destinationZipcode) {
+    public void setDestinationZipcode(String destinationZipcode) {
         this.destinationZipcode = destinationZipcode;
     }
 

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kenzie.appserver.service.model.DestinationZip;
 import com.kenzie.appserver.service.model.OriginZip;
-import com.kenzie.appserver.service.model.Quote;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FlightResponse {
@@ -18,11 +17,11 @@ public class FlightResponse {
     @JsonProperty("flightId")
     private String flightId;
 
-    @JsonProperty("originZip")
-    private OriginZip originZip;
+    @JsonProperty("originZipcode")
+    private String originZipcode;
 
-    @JsonProperty("destinationZip")
-    private DestinationZip destinationZip;
+    @JsonProperty("destinationZipcode")
+    private String destinationZipcode;
 
     @JsonProperty("numOfPassengers")
     private Integer numOfPassengers;
@@ -54,20 +53,20 @@ public class FlightResponse {
         this.flightId = flightId;
     }
 
-    public OriginZip getOriginZip() {
-        return originZip;
+    public String getOriginZipcode() {
+        return originZipcode;
     }
 
-    public void setOriginZip(OriginZip originZip) {
-        this.originZip = originZip;
+    public void setOriginZipcode(String originZipcode) {
+        this.originZipcode = originZipcode;
     }
 
-    public DestinationZip getDestinationZip() {
-        return destinationZip;
+    public String getDestinationZipcode() {
+        return destinationZipcode;
     }
 
-    public void setDestinationZip(DestinationZip destinationZip) {
-        this.destinationZip = destinationZip;
+    public void setDestinationZipcode(String destinationZipcode) {
+        this.destinationZipcode = destinationZipcode;
     }
 
     public Integer getNumOfPassengers() {

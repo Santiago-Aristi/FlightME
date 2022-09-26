@@ -29,15 +29,16 @@ class FlightPage extends BaseClass {
     async renderFlight() {
         let resultArea = document.getElementById("result-info");
 
-                const flightInfo = this.dataStore.get("flightInfo");
+        const flightInfo = this.dataStore.get("flightInfo");
 
-                if (flightInfo) {
-                    resultArea.innerHTML = `
-                    <div>NAME: ${flightInfo.name}</div>
-                    `
-                } else {
-                    resultArea.innerHTML = "No Item";
-                }
+        if (flightInfo) {
+            resultArea.innerHTML = `
+            <div>FlightId: ${flightInfo.flightId}</div>
+            <div>NAME: ${flightInfo.name}</div>
+            `
+        } else {
+            resultArea.innerHTML = "No Item";
+        }
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
@@ -46,7 +47,7 @@ class FlightPage extends BaseClass {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
 
-        let flightId = document.getElementById("search").value;
+        let flightId = document.getElementById("flight-id-entry").value;
         this.dataStore.set("flight", null);
 
         let result = await this.client.getFlight(flightId, this.errorHandler);
