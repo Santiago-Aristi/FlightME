@@ -59,20 +59,20 @@ class FlightPage extends BaseClass {
         }
     }
 
-    async onCreateFlight(flight) {
+    async onCreateFlight(flightInfo) {
         // Prevent the page from refreshing on form submit
-        flight.preventDefault();
-        this.dataStore.set("flight", null);
+        flightInfo.preventDefault();
+        this.dataStore.set("flightInfo", null);
 
         let name = document.getElementById("create-flight-name").value;
         let email = document.getElementById("create-flight-email").value;
         let originZipcode = document.getElementById("create-flight-from").value;
         let destinationZipcode = document.getElementById("create-flight-goingTo").value;
         let numOfPassengers = document.getElementById("create-flight-passenger").value;
-        let payment = document.getElementById("create-flight-pay").value;
+        let paymentMethod = document.getElementById("create-flight-pay").value;
 
-        const createdFlight = await this.client.createFlight(flightId, name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod, this.errorHandler);
-        this.dataStore.set("flight", createdFlight);
+        const createdFlight = await this.client.createFlight(name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod, this.errorHandler);
+        this.dataStore.set("flightInfo", createdFlight);
 
         if (createdFlight) {
             this.showMessage(`Created flight ${createdFlight.name}!`)
