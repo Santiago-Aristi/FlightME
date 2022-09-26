@@ -3,18 +3,18 @@ package com.kenzie.appserver.service.model;
 import java.util.Objects;
 
 public class FlightInfo {
+    private String flightId;
     private String name;
     private String email;
-    private String flightId;
-    private OriginZip originZipcode;
-    private DestinationZip destinationZipcode;
+    private String originZipcode;
+    private String destinationZipcode;
     private Integer numOfPassengers;
     private String paymentMethod;
 
-    public FlightInfo(String name, String email, String flightId, OriginZip originZipcode, DestinationZip destinationZipcode, Integer numOfPassengers, String paymentMethod){
+    public FlightInfo(String flightId, String name, String email, String originZipcode, String destinationZipcode, Integer numOfPassengers, String paymentMethod){
+        this.flightId = flightId;
         this.name = name;
         this.email = email;
-        this.flightId = flightId;
         this.originZipcode = originZipcode;
         this.destinationZipcode = destinationZipcode;
         this.numOfPassengers = numOfPassengers;
@@ -45,19 +45,19 @@ public class FlightInfo {
         this.flightId = flightId;
     }
 
-    public OriginZip getOriginZipcode() {
+    public String getOriginZipcode() {
         return originZipcode;
     }
 
-    public void setOriginZipcode(OriginZip originZipcode) {
+    public void setOriginZipcode(String originZipcode) {
         this.originZipcode = originZipcode;
     }
 
-    public DestinationZip getDestinationZipcode() {
+    public String getDestinationZipcode() {
         return destinationZipcode;
     }
 
-    public void setDestinationZipcode(DestinationZip destinationZipcode) {
+    public void setDestinationZipcode(String destinationZipcode) {
         this.destinationZipcode = destinationZipcode;
     }
 
@@ -77,16 +77,5 @@ public class FlightInfo {
         this.numOfPassengers = numOfPassengers;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FlightInfo that = (FlightInfo) o;
-        return name.equals(that.name) && email.equals(that.email) && flightId.equals(that.flightId) && originZipcode.equals(that.originZipcode) && destinationZipcode.equals(that.destinationZipcode) && numOfPassengers.equals(that.numOfPassengers) && paymentMethod.equals(that.paymentMethod);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, email, flightId, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
-    }
 }

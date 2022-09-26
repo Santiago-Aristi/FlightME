@@ -1,6 +1,9 @@
 import BaseClass from "../util/baseClass";
 import axios from 'axios'
 
+/**
+ * Client to call the FlightService.
+ */
 export default class FlightClient extends BaseClass {
 
     constructor(props = {}){
@@ -28,9 +31,9 @@ export default class FlightClient extends BaseClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The concert
      */
-    async getFlight(id, errorCallback) {
+    async getFlight(flightId, errorCallback) {
         try {
-            const response = await this.client.get(`/flight/${id}`);
+            const response = await this.client.get(`/flight/${flightId}`);
             return response.data;
         } catch (error) {
             this.handleError("getFlight", error, errorCallback)
@@ -39,13 +42,13 @@ export default class FlightClient extends BaseClass {
 
     async createFlight(name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod, errorCallback) {
         try {
-            const response = await this.client.post(`flight`, {
-                name : name,
-                email : email,
-                originZipcode : originZipcode,
-                destinationZipcode : destinationZipcode,
-                numOfPassengers : numOfPassengers,
-                paymentMethod : paymentMethod
+            const response = await this.client.post(`/flight`, {
+                "name" : name,
+                "email" : email,
+                "originZipcode" : originZipcode,
+                "destinationZipcode" : destinationZipcode,
+                "numOfPassengers" : numOfPassengers,
+                "paymentMethod" : paymentMethod
             });
             return response.data;
         } catch (error) {

@@ -2,9 +2,9 @@ package com.kenzie.appserver.service;
 
 import com.kenzie.appserver.repositories.FlightRepository;
 import com.kenzie.appserver.repositories.model.FlightRecord;
-import com.kenzie.appserver.service.model.DestinationZip;
+//import com.kenzie.appserver.service.model.DestinationZip;
 import com.kenzie.appserver.service.model.FlightInfo;
-import com.kenzie.appserver.service.model.OriginZip;
+//import com.kenzie.appserver.service.model.OriginZip;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,8 @@ public class FlightServiceTest {
     public static final Integer numOfPassengers = 3;
     public static final String flightId = UUID.randomUUID().toString();
     public static final String paymentMethod = "Credit Card";
-
+    public static final String originZipcode = "12345";
+    public static final String destinationZipcode = "54321";
 
     private FlightRepository flightRepository;
 
@@ -36,11 +37,6 @@ public class FlightServiceTest {
     @Test
     public void getFlight_validInput_returnsValidFLights() {
         // GIVEN
-        OriginZip originZipcode = new OriginZip();
-        originZipcode.setOriginZipcode("12345");
-        DestinationZip destinationZipcode = new DestinationZip();
-        destinationZipcode.setDestinationZipcode("54321");
-
         FlightRecord flightRecord = new FlightRecord();
         flightRecord.setName(name);
         flightRecord.setEmail(email);
@@ -67,11 +63,6 @@ public class FlightServiceTest {
 
     @Test
     public void createFlight_validInput_CreatesValidFlight(){
-        OriginZip originZipcode = new OriginZip();
-        originZipcode.setOriginZipcode("12345");
-        DestinationZip destinationZipcode = new DestinationZip();
-        destinationZipcode.setDestinationZipcode("54321");
-
         FlightInfo flightInfo = new FlightInfo(name, email, flightId, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
         ArgumentCaptor<FlightRecord> flightRecordCaptor = ArgumentCaptor.forClass(FlightRecord.class);
 
@@ -96,11 +87,6 @@ public class FlightServiceTest {
     @Test
     public void deleteFlight() {
         // GIVEN
-        OriginZip originZipcode = new OriginZip();
-        originZipcode.setOriginZipcode("12345");
-        DestinationZip destinationZipcode = new DestinationZip();
-        destinationZipcode.setDestinationZipcode("54321");
-
         FlightInfo flightInfo = new FlightInfo(name, email, flightId, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
         ArgumentCaptor<FlightRecord> flightRecordCaptor = ArgumentCaptor.forClass(FlightRecord.class);
 

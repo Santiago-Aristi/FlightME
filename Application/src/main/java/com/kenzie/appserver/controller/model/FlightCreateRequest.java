@@ -3,7 +3,6 @@ package com.kenzie.appserver.controller.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kenzie.appserver.service.model.DestinationZip;
 import com.kenzie.appserver.service.model.OriginZip;
-import com.kenzie.appserver.service.model.Quote;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -17,17 +16,17 @@ public class FlightCreateRequest {
     @JsonProperty
     private String email;
 
-    @NotEmpty
-    @JsonProperty
-    private String flightId;
+//    @NotEmpty
+//    @JsonProperty
+//    private String flightId;
 
     @NotEmpty
     @JsonProperty
-    private OriginZip originZipcode;
+    private String originZipcode;
 
     @NotEmpty
     @JsonProperty
-    private DestinationZip destinationZipcode;
+    private String destinationZipcode;
 
     @NotEmpty
     @JsonProperty
@@ -53,27 +52,27 @@ public class FlightCreateRequest {
         this.email = email;
     }
 
-    public String getFlightId() {
-        return flightId;
-    }
+//    public String getFlightId() {
+//        return flightId;
+//    }
+//
+//    public void setFlightId(String flightId) {
+//        this.flightId = flightId;
+//    }
 
-    public void setFlightId(String flightId) {
-        this.flightId = flightId;
-    }
-
-    public OriginZip getOriginZipcode() {
+    public String getOriginZipcode() {
         return originZipcode;
     }
 
-    public void setOriginZipcode(OriginZip originZip) {
+    public void setOriginZipcode(String originZip) {
         this.originZipcode = originZipcode;
     }
 
-    public DestinationZip getDestinationZipcode() {
+    public String getDestinationZipcode() {
         return destinationZipcode;
     }
 
-    public void setDestinationZipcode(DestinationZip destinationZipcode) {
+    public void setDestinationZipcode(String destinationZipcode) {
         this.destinationZipcode = destinationZipcode;
     }
 
