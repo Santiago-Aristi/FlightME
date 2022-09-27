@@ -31,21 +31,23 @@ class FlightPage extends BaseClass {
 
         const flightInfo = this.dataStore.get("flightInfo");
 
-        let myNewHTML = "";
-        myNewHTML += "<ul>"
+//        let myNewHTML = "";
+//        myNewHTML += "<ul>"
+//
+//        for(let flight of flightInfo) {
+//            myNewHTML += `<li><h3>Flight Id: ${flight.flightId}</h3></li><h4>Booked By: ${flight.name}</h4>`;
+//        }
+//        if(result){
+//            resultArea.innerHTML = myNewHTML;
+//        }else{
+//            resultArea.innerHTML = "No comments";
+//        }
 
-        for(let flight of flightInfo) {
-            myNewHTML += `<li><h3>Flight Id: ${flight.flightId}</h3></li><h4>Booked By: ${flight.name}</h4>`;
-        }
-        if(result){
-            resultArea.innerHTML = myNewHTML;
-        }else{
-            resultArea.innerHTML = "No comments";
-        }
-
+          resultArea = `<div>${flightInfo.name}</div>`;
+//
 //        if (flightInfo) {
 //            resultArea.innerHTML = `
-//                <div>FlightId: ${flightInfo.flightId}</div>
+////                <div>FlightId: ${flightInfo.flightId}</div>
 //                <div>NAME: ${flightInfo.name}</div>
 //            `
 //        } else {
@@ -63,7 +65,7 @@ class FlightPage extends BaseClass {
         this.dataStore.set("flight", null);
 
         let result = await this.client.getFlight(flightId, this.errorHandler);
-        this.dataStore.set("flight", result);
+        this.dataStore.set("flightInfo", result);
         if (result) {
             this.showMessage(`Got ${result.name}!`)
         } else {
@@ -74,7 +76,7 @@ class FlightPage extends BaseClass {
     async onCreateFlight(flightInfo) {
         // Prevent the page from refreshing on form submit
         flightInfo.preventDefault();
-        this.dataStore.set("flight", null);
+        this.dataStore.set("flightInfo", null);
 
         let name = document.getElementById("create-flight-name").value;
         let email = document.getElementById("create-flight-email").value;
