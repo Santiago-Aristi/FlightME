@@ -8,7 +8,7 @@ module.exports = {
     usedExports: true
   },
   entry: {
-    flightPage: path.resolve(__dirname, 'src', 'pages', 'flightPage.js'),
+    flightPage: path.resolve(__dirname, 'src', 'pages', 'flightPage.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
