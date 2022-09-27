@@ -43,16 +43,14 @@ class FlightPage extends BaseClass {
 //            resultArea.innerHTML = "No comments";
 //        }
 
-          resultArea = `<div>${flightInfo.name}</div>`;
-//
-//        if (flightInfo) {
-//            resultArea.innerHTML = `
-////                <div>FlightId: ${flightInfo.flightId}</div>
-//                <div>NAME: ${flightInfo.name}</div>
-//            `
-//        } else {
-//            resultArea.innerHTML = "No Item";
-//        }
+        if (flightInfo) {
+            resultArea.innerHTML = `
+//                <div>FlightId: ${flightInfo.flightId}</div>
+                <div>NAME: ${flightInfo.name}</div>
+            `
+        } else {
+            resultArea.innerHTML = "No Item";
+        }
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
@@ -62,7 +60,7 @@ class FlightPage extends BaseClass {
         event.preventDefault();
 
         let flightId = document.getElementById("flight-id-entry").value;
-        this.dataStore.set("flight", null);
+        this.dataStore.set("flightInfo", null);
 
         let result = await this.client.getFlight(flightId, this.errorHandler);
         this.dataStore.set("flightInfo", result);
