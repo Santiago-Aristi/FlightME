@@ -17,7 +17,7 @@ class FlightPage extends BaseClass {
      * Once the page has loaded, set up the event handlers and fetch the concert list.
      */
     async mount() {
-        document.getElementById('search-form').addEventListener('submit', this.onGet);
+//        document.getElementById('search-form').addEventListener('submit', this.onGet);
         document.getElementById('create-flight-form').addEventListener('submit', this.onCreate);
         this.client = new FlightClient();
 
@@ -31,14 +31,26 @@ class FlightPage extends BaseClass {
 
         const flightInfo = this.dataStore.get("flightInfo");
 
-        if (flightInfo) {
-            resultArea.innerHTML = `
-            <div>FlightId: ${flightInfo.flightId}</div>
-            <div>NAME: ${flightInfo.name}</div>
-            `
-        } else {
-            resultArea.innerHTML = "No Item";
+        let myNewHTML = "";
+        myNewHTML += "<ul>"
+
+        for(let flight of flightInfo) {
+            myNewHTML += `<li><h3>Flight Id: ${flight.flightId}</h3></li><h4>Booked By: ${flight.name}</h4>`;
         }
+        if(result){
+            resultArea.innerHTML = myNewHTML;
+        }else{
+            resultArea.innerHTML = "No comments";
+        }
+
+//        if (flightInfo) {
+//            resultArea.innerHTML = `
+//                <div>FlightId: ${flightInfo.flightId}</div>
+//                <div>NAME: ${flightInfo.name}</div>
+//            `
+//        } else {
+//            resultArea.innerHTML = "No Item";
+//        }
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
@@ -62,7 +74,7 @@ class FlightPage extends BaseClass {
     async onCreateFlight(flightInfo) {
         // Prevent the page from refreshing on form submit
         flightInfo.preventDefault();
-        this.dataStore.set("flightInfo", null);
+        this.dataStore.set("flight", null);
 
         let name = document.getElementById("create-flight-name").value;
         let email = document.getElementById("create-flight-email").value;

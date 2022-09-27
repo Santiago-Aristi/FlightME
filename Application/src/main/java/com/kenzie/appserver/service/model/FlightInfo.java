@@ -1,7 +1,5 @@
 package com.kenzie.appserver.service.model;
 
-import java.util.Objects;
-
 public class FlightInfo {
     private String flightId;
     private String name;
