@@ -33,7 +33,7 @@ export default class FlightClient extends BaseClass {
      */
     async getFlight(flightId, errorCallback) {
         try {
-            const response = await this.client.get(`/flight/${flightId}`);
+            const response = await this.client.get(`flight/${flightId}`);
             return response.data;
         } catch (error) {
             this.handleError("getFlight", error, errorCallback)
@@ -42,8 +42,8 @@ export default class FlightClient extends BaseClass {
 
     async createFlight(name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod, errorCallback) {
         try {
-            const response = await this.client.post(`flight`, {
-                name : name,
+            const response = await this.client.post(`http://localhost:8080/` + `flight`, {
+                "name" : name,
                 "email" : email,
                 "originZipcode" : originZipcode,
                 "destinationZipcode" : destinationZipcode,

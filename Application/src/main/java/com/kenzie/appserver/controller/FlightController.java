@@ -34,13 +34,13 @@ public class FlightController {
         flightService.createFlight(flightInfo);
 
         FlightResponse flightResponse = createFlightResponse(flightInfo);
-        flightResponse.setFlightId(flightInfo.getFlightId());
-        flightResponse.setName(flightInfo.getName());
-        flightResponse.setEmail(flightInfo.getEmail());
-        flightResponse.setOriginZipcode(flightInfo.getOriginZipcode());
-        flightResponse.setDestinationZipcode(flightInfo.getDestinationZipcode());
-        flightResponse.setNumOfPassengers(flightInfo.getNumOfPassengers());
-        flightResponse.setPaymentMethod(flightInfo.getPaymentMethod());
+//        flightResponse.setFlightId(flightInfo.getFlightId());
+//        flightResponse.setName(flightInfo.getName());
+//        flightResponse.setEmail(flightInfo.getEmail());
+//        flightResponse.setOriginZipcode(flightInfo.getOriginZipcode());
+//        flightResponse.setDestinationZipcode(flightInfo.getDestinationZipcode());
+//        flightResponse.setNumOfPassengers(flightInfo.getNumOfPassengers());
+//        flightResponse.setPaymentMethod(flightInfo.getPaymentMethod());
 
         return ResponseEntity.created(URI.create("/flight/" + flightResponse.getFlightId())).body(flightResponse);
     }
@@ -84,7 +84,7 @@ public class FlightController {
         return ResponseEntity.noContent().build();
     }
 
-    public FlightResponse createFlightResponse(FlightInfo flightInfo) {
+    private FlightResponse createFlightResponse(FlightInfo flightInfo) {
         FlightResponse flightResponse = new FlightResponse();
         flightResponse.setFlightId(flightInfo.getFlightId());
         flightResponse.setName(flightInfo.getName());
