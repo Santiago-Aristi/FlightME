@@ -3,22 +3,18 @@ package com.kenzie.appserver.repositories.model;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import com.kenzie.appserver.service.model.DestinationZip;
-import com.kenzie.appserver.service.model.FlightInfo;
-import com.kenzie.appserver.service.model.OriginZip;
 
-import java.util.List;
 import java.util.Objects;
 
 @DynamoDBTable(tableName = "Flights")
 public class FlightRecord {
 
+    private String flightId;
     private String name;
     private String email;
-    private String flightId;
     private String originZipcode;
     private String destinationZipcode;
-    private Integer numOfPassengers;
+    private String numOfPassengers;
     private String paymentMethod;
 
     @DynamoDBHashKey(attributeName = "flightId")
@@ -28,34 +24,6 @@ public class FlightRecord {
 
     public void setFlightId(String flightId) {
         this.flightId = flightId;
-    }
-
-    @DynamoDBAttribute(attributeName = "originZipCode")
-    public String getOriginZipcode() {
-        return originZipcode;
-    }
-
-
-    public void setOriginZipcode(String originZipcode) {
-        this.originZipcode = originZipcode;
-    }
-
-    @DynamoDBAttribute(attributeName = "destinationZipCode")
-    public String getDestinationZipcode() {
-        return destinationZipcode;
-    }
-
-    public void setDestinationZipcode(String destinationZipcode) {
-        this.destinationZipcode = destinationZipcode;
-    }
-
-    @DynamoDBAttribute(attributeName = "paymentMethod")
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
     }
 
     @DynamoDBAttribute(attributeName = "name")
@@ -76,21 +44,50 @@ public class FlightRecord {
         this.email = email;
     }
 
+    @DynamoDBAttribute(attributeName = "originZipcode")
+    public String getOriginZipcode() {
+        return originZipcode;
+    }
+
+    public void setOriginZipcode(String originZipcode) {
+        this.originZipcode = originZipcode;
+    }
+
+    @DynamoDBAttribute(attributeName = "destinationZipcode")
+    public String getDestinationZipcode() {
+        return destinationZipcode;
+    }
+
+    public void setDestinationZipcode(String destinationZipcode) {
+        this.destinationZipcode = destinationZipcode;
+    }
+
     @DynamoDBAttribute(attributeName = "numOfPassengers")
-    public Integer getNumOfPassengers() {
+    public String getNumOfPassengers() {
         return numOfPassengers;
     }
 
-    public void setNumOfPassengers(Integer numOfPassengers) {
+    public void setNumOfPassengers(String numOfPassengers) {
         this.numOfPassengers = numOfPassengers;
     }
+
+    @DynamoDBAttribute(attributeName = "paymentMethod")
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         FlightRecord that = (FlightRecord) o;
-        return flightId.equals(that.flightId);
+        return Objects.equals(flightId, that.flightId);
     }
 
     @Override

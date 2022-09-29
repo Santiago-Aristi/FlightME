@@ -2,20 +2,17 @@ package com.kenzie.appserver.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kenzie.appserver.service.model.DestinationZip;
-import com.kenzie.appserver.service.model.OriginZip;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FlightResponse {
+    @JsonProperty("flightId")
+    private String flightId;
 
     @JsonProperty("name")
     private String name;
 
     @JsonProperty("email")
     private String email;
-
-    @JsonProperty("flightId")
-    private String flightId;
 
     @JsonProperty("originZipcode")
     private String originZipcode;
@@ -24,10 +21,18 @@ public class FlightResponse {
     private String destinationZipcode;
 
     @JsonProperty("numOfPassengers")
-    private Integer numOfPassengers;
+    private String numOfPassengers;
 
     @JsonProperty("paymentMethod")
     private String paymentMethod;
+
+    public String getFlightId() {
+        return flightId;
+    }
+
+    public void setFlightId(String flightId) {
+        this.flightId = flightId;
+    }
 
     public String getName() {
         return name;
@@ -43,14 +48,6 @@ public class FlightResponse {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getFlightId() {
-        return flightId;
-    }
-
-    public void setFlightId(String flightId) {
-        this.flightId = flightId;
     }
 
     public String getOriginZipcode() {
@@ -69,11 +66,11 @@ public class FlightResponse {
         this.destinationZipcode = destinationZipcode;
     }
 
-    public Integer getNumOfPassengers() {
+    public String getNumOfPassengers() {
         return numOfPassengers;
     }
 
-    public void setNumOfPassengers(Integer numOfPassengers) {
+    public void setNumOfPassengers(String numOfPassengers) {
         this.numOfPassengers = numOfPassengers;
     }
 

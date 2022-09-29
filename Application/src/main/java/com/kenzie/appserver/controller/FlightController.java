@@ -2,6 +2,7 @@ package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.controller.model.FlightCreateRequest;
 import com.kenzie.appserver.controller.model.FlightResponse;
+import com.kenzie.appserver.repositories.model.FlightRecord;
 import com.kenzie.appserver.service.FlightService;
 import com.kenzie.appserver.service.model.FlightInfo;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+import static java.util.UUID.randomUUID;
 
 @RestController
 @RequestMapping("/flight")
@@ -24,7 +25,7 @@ public class FlightController {
 
     @PostMapping
     public ResponseEntity<FlightResponse> createFlight(@RequestBody FlightCreateRequest flightCreateRequest) {
-        FlightInfo flightInfo = new FlightInfo(UUID.randomUUID().toString(),
+        FlightInfo flightInfo = new FlightInfo(randomUUID().toString(),
                 flightCreateRequest.getName(),
                 flightCreateRequest.getEmail(),
                 flightCreateRequest.getOriginZipcode(),
@@ -33,14 +34,15 @@ public class FlightController {
                 flightCreateRequest.getPaymentMethod());
         flightService.createFlight(flightInfo);
 
-        FlightResponse flightResponse = createFlightResponse(flightInfo);
-//        flightResponse.setFlightId(flightInfo.getFlightId());
-//        flightResponse.setName(flightInfo.getName());
-//        flightResponse.setEmail(flightInfo.getEmail());
-//        flightResponse.setOriginZipcode(flightInfo.getOriginZipcode());
-//        flightResponse.setDestinationZipcode(flightInfo.getDestinationZipcode());
-//        flightResponse.setNumOfPassengers(flightInfo.getNumOfPassengers());
-//        flightResponse.setPaymentMethod(flightInfo.getPaymentMethod());
+//        FlightResponse flightResponse = createFlightResponse(flightInfo);
+        FlightResponse flightResponse = new FlightResponse();
+        flightResponse.setFlightId(flightInfo.getFlightId());
+        flightResponse.setName(flightInfo.getName());
+        flightResponse.setEmail(flightInfo.getEmail());
+        flightResponse.setOriginZipcode(flightInfo.getOriginZipcode());
+        flightResponse.setDestinationZipcode(flightInfo.getDestinationZipcode());
+        flightResponse.setNumOfPassengers(flightInfo.getNumOfPassengers());
+        flightResponse.setPaymentMethod(flightInfo.getPaymentMethod());
 
         return ResponseEntity.created(URI.create("/flight/" + flightResponse.getFlightId())).body(flightResponse);
     }

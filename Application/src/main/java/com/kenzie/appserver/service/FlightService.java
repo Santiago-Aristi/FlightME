@@ -14,7 +14,6 @@ import java.util.List;
 public class FlightService {
     private final FlightRepository flightRepository;
 
-
     public FlightService(FlightRepository flightRepository) {
         this.flightRepository = flightRepository;
     }
@@ -22,9 +21,9 @@ public class FlightService {
     public FlightInfo getFlight(String flightId) {
         FlightInfo flightInfo = flightRepository
                 .findById(flightId)
-                .map(flight -> new FlightInfo(flight.getName(),
+                .map(flight -> new FlightInfo(flight.getFlightId(),
+                        flight.getName(),
                         flight.getEmail(),
-                        flight.getFlightId(),
                         flight.getOriginZipcode(),
                         flight.getDestinationZipcode(),
                         flight.getNumOfPassengers(),
@@ -53,9 +52,9 @@ public class FlightService {
 
     public FlightInfo createFlight(FlightInfo flightInfo) {
         FlightRecord flightRecord = new FlightRecord();
+        flightRecord.setFlightId(flightInfo.getFlightId());
         flightRecord.setName(flightInfo.getName());
         flightRecord.setEmail(flightInfo.getEmail());
-        flightRecord.setFlightId(flightInfo.getFlightId());
         flightRecord.setOriginZipcode(flightInfo.getOriginZipcode());
         flightRecord.setDestinationZipcode(flightInfo.getDestinationZipcode());
         flightRecord.setNumOfPassengers(flightInfo.getNumOfPassengers());

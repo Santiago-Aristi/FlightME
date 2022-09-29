@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 public class FlightServiceTest {
     public static final String name = "name";
     public static final String email = "email@gmail.com";
-    public static final Integer numOfPassengers = 3;
+    public static final String numOfPassengers = "3";
     public static final String flightId = UUID.randomUUID().toString();
     public static final String paymentMethod = "Credit Card";
     public static final String originZipcode = "12345";
@@ -87,7 +87,7 @@ public class FlightServiceTest {
     @Test
     public void deleteFlight() {
         // GIVEN
-        FlightInfo flightInfo = new FlightInfo(name, email, flightId, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
+        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
         ArgumentCaptor<FlightRecord> flightRecordCaptor = ArgumentCaptor.forClass(FlightRecord.class);
 
         // WHEN
