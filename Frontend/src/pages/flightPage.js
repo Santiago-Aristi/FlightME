@@ -17,12 +17,11 @@ class FlightPage extends BaseClass {
      * Once the page has loaded, set up the event handlers and fetch the concert list.
      */
     async mount() {
-       document.getElementById('search-form').addEventListener('submit', this.onGet);
-       document.getElementById('create-flight-form').addEventListener('submit', this.onCreate);
+       document.getElementById('search-form').addEventListener('submit', this.onGetFlight);
+       document.getElementById('create-flight-form').addEventListener('submit', this.onCreateFlight);
        this.client = new FlightClient();
 
        this.dataStore.addChangeListener(this.renderFlight);
-       this.onGetFlight();
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
@@ -30,28 +29,15 @@ class FlightPage extends BaseClass {
     async renderFlight() {
         let resultArea = document.getElementById("result-info");
 
-        const flights = this.dataStore.get("flightInfo");
-
-        let myNewHTML = "";
-        myNewHTML += "<ul>";
-
-        // for(let flight of flights) {
-        //    myNewHTML += `<li><h3>Flight Id: ${flight.id}</h3></li>`;
-        //    myNewHTML += `<h4>Booked By: ${flight.name}</h4>`;
-        // }
-        // if(flights){
-        //    resultArea.innerHTML = myNewHTML;
-        // }else{
-        //    resultArea.innerHTML = "No comments";
-        // }
+        const flights = this.dataStore.get("flightId");
 
         if (flights) {
             resultArea.innerHTML = `
-                <div>FlightId: ${flightInfo.value}</div>
-                <div>NAME: ${flightInfo.name}</div>
+                <div>FlightId: ${flights.flightId}</div>
+                <div>NAME: ${flights.name}</div>
             `
         } else {
-            resultArea.innerHTML = "No Item";
+            resultArea.innerHTML = "No Items here to see at this time!!!!!";
         }
     }
 
@@ -66,24 +52,22 @@ class FlightPage extends BaseClass {
         // this.dataStore.set("flightInfo", result);
 
         let flightId = document.getElementById("id-field").value;
-        this.dataStore.set("flightInfo", null);
+        this.dataStore.set("flight", null);
         //
         let result = await this.client.getFlight(flightId, this.errorHandler);
-        this.dataStore.set("flightInfo", result);
+        this.dataStore.set("flight", result);
         if (result) {
             this.showMessage(`Got ${result.name}!`)
         } else {
             this.errorHandler("Error doing GET!  Try again...");
         }
-        // event.preventDefault();
-        // this.dataStore.set("flightInfo", null);
 
     }
 
     async onCreateFlight(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
-        // this.dataStore.set("flightInfo", null);
+        this.dataStore.set("flightInfo", null);
 
         let name = document.getElementById("create-flight-name").value;
         let email = document.getElementById("create-flight-email").value;
@@ -93,14 +77,13 @@ class FlightPage extends BaseClass {
         let paymentMethod = document.getElementById("create-flight-pay").value;
 
         const createdFlight = await this.client.createFlight(name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod, this.errorHandler);
-        // this.dataStore.set("flightInfo", createdFlight);
+        this.dataStore.set("flightInfo", createdFlight);
 
         if (createdFlight) {
-            this.showMessage("Created flight")
+            this.showMessage(`Created by ${createdFlight.name}!`)
         } else {
             this.errorHandler("Error creating!  Try again...");
         }
-        await this.onGetFlight();
     }
 }
 

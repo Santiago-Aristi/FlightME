@@ -1,39 +1,32 @@
 package com.kenzie.appserver.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kenzie.appserver.service.model.DestinationZip;
-import com.kenzie.appserver.service.model.OriginZip;
-
 import javax.validation.constraints.NotEmpty;
 
 public class FlightCreateRequest {
 
     @NotEmpty
-    @JsonProperty
+    @JsonProperty("name")
     private String name;
 
     @NotEmpty
-    @JsonProperty
+    @JsonProperty("email")
     private String email;
 
-//    @NotEmpty
-//    @JsonProperty
-//    private String flightId;
-
     @NotEmpty
-    @JsonProperty
+    @JsonProperty("originZipcode")
     private String originZipcode;
 
     @NotEmpty
-    @JsonProperty
+    @JsonProperty("destinationZipcode")
     private String destinationZipcode;
 
     @NotEmpty
-    @JsonProperty
-    private Integer numOfPassengers;
+    @JsonProperty("numOfPassengers")
+    private String numOfPassengers;
 
     @NotEmpty
-    @JsonProperty
+    @JsonProperty("paymentMethod")
     private String paymentMethod;
 
     public String getName() {
@@ -51,14 +44,6 @@ public class FlightCreateRequest {
     public void setEmail(String email) {
         this.email = email;
     }
-
-//    public String getFlightId() {
-//        return flightId;
-//    }
-//
-//    public void setFlightId(String flightId) {
-//        this.flightId = flightId;
-//    }
 
     public String getOriginZipcode() {
         return originZipcode;
@@ -84,11 +69,11 @@ public class FlightCreateRequest {
         this.paymentMethod = paymentMethod;
     }
 
-    public Integer getNumOfPassengers() {
+    public String getNumOfPassengers() {
         return numOfPassengers;
     }
 
-    public void setNumOfPassengers(Integer numOfPassengers) {
+    public void setNumOfPassengers(String numOfPassengers) {
         this.numOfPassengers = numOfPassengers;
     }
 }
