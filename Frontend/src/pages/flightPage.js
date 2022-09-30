@@ -29,12 +29,17 @@ class FlightPage extends BaseClass {
     async renderFlight() {
         let resultArea = document.getElementById("result-info");
 
-        const flights = this.dataStore.get("flightId");
+        const flights = this.dataStore.get("flightInfo");
 
         if (flights) {
             resultArea.innerHTML = `
                 <div>FlightId: ${flights.flightId}</div>
-                <div>NAME: ${flights.name}</div>
+                <div>Name: ${flights.name}</div>
+                <div>Email: ${flights.email}</div>
+                <div>Origin ZipCode: ${flights.originZipcode}</div>
+                <div>Destination ZipCode: ${flights.destinationZipcode}</div>
+                <div>Number of Passengers: ${flights.numOfPassengers}</div>
+                <div>Payment Method: ${flights.paymentMethod}</div>
             `
         } else {
             resultArea.innerHTML = "No Items here to see at this time!!!!!";
@@ -52,10 +57,10 @@ class FlightPage extends BaseClass {
         // this.dataStore.set("flightInfo", result);
 
         let flightId = document.getElementById("id-field").value;
-        this.dataStore.set("flight", null);
+        this.dataStore.set("flightInfo", null);
         //
         let result = await this.client.getFlight(flightId, this.errorHandler);
-        this.dataStore.set("flight", result);
+        this.dataStore.set("flightInfo", result);
         if (result) {
             this.showMessage(`Got ${result.name}!`)
         } else {
