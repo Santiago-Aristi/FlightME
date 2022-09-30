@@ -38,9 +38,9 @@ public class FlightService {
 
         Iterable<FlightRecord> flightIterator = flightRepository.findAll();
         for(FlightRecord record : flightIterator){
-            flightInfoList.add(new FlightInfo(record.getName(),
+            flightInfoList.add(new FlightInfo(record.getFlightId(),
+                    record.getName(),
                     record.getEmail(),
-                    record.getFlightId(),
                     record.getOriginZipcode(),
                     record.getDestinationZipcode(),
                     record.getNumOfPassengers(),

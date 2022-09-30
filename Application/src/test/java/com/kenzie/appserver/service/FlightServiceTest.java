@@ -2,9 +2,7 @@ package com.kenzie.appserver.service;
 
 import com.kenzie.appserver.repositories.FlightRepository;
 import com.kenzie.appserver.repositories.model.FlightRecord;
-//import com.kenzie.appserver.service.model.DestinationZip;
 import com.kenzie.appserver.service.model.FlightInfo;
-//import com.kenzie.appserver.service.model.OriginZip;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,13 +11,14 @@ import org.mockito.ArgumentCaptor;
 import java.util.Optional;
 import java.util.UUID;
 
+import static java.util.UUID.randomUUID;
 import static org.mockito.Mockito.*;
 
 public class FlightServiceTest {
     public static final String name = "name";
     public static final String email = "email@gmail.com";
     public static final String numOfPassengers = "3";
-    public static final String flightId = UUID.randomUUID().toString();
+    public static final String flightId = randomUUID().toString();
     public static final String paymentMethod = "Credit Card";
     public static final String originZipcode = "12345";
     public static final String destinationZipcode = "54321";
@@ -59,6 +58,40 @@ public class FlightServiceTest {
         Assertions.assertEquals(flightRecord.getDestinationZipcode(), flightInfo.getDestinationZipcode(), "Both zip codes match");
         Assertions.assertEquals(flightRecord.getNumOfPassengers(), flightInfo.getNumOfPassengers(), "Both number of passengers match");
         Assertions.assertEquals(flightRecord.getPaymentMethod(), flightInfo.getPaymentMethod(), "Both payments match");
+    }
+
+    @Test
+    void getFlightById_emptyId() {
+        // GIVEN
+        when(flightRepository.findById(flightId)).thenReturn(Optional.empty());
+
+        // WHEN
+        FlightInfo flight = flightService.getFlight(flightId);
+
+        // THEN
+        Assertions.assertNull(flight, "The example is null when not found");
+    }
+
+    @Test
+    void getFlightById_invalidId() {
+        // GIVEN
+        String differentFlightId = randomUUID().toString();
+        FlightRecord flightRecord = new FlightRecord();
+        flightRecord.setName(name);
+        flightRecord.setEmail(email);
+        flightRecord.setFlightId(flightId);
+        flightRecord.setOriginZipcode(originZipcode);
+        flightRecord.setDestinationZipcode(destinationZipcode);
+        flightRecord.setNumOfPassengers(numOfPassengers);
+        flightRecord.setPaymentMethod(paymentMethod);
+
+        when(flightRepository.findById(flightId)).thenReturn(Optional.of(flightRecord));
+
+        // WHEN
+        FlightInfo flight = flightService.getFlight(differentFlightId);
+
+        // THEN
+        Assertions.assertNull(flight, "The example is null when not found");
     }
 
     @Test

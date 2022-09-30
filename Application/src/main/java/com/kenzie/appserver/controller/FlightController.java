@@ -2,7 +2,6 @@ package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.controller.model.FlightCreateRequest;
 import com.kenzie.appserver.controller.model.FlightResponse;
-import com.kenzie.appserver.repositories.model.FlightRecord;
 import com.kenzie.appserver.service.FlightService;
 import com.kenzie.appserver.service.model.FlightInfo;
 import org.springframework.http.ResponseEntity;
@@ -76,13 +75,11 @@ public class FlightController {
 
     @DeleteMapping("/{flightId}")
     public ResponseEntity deleteFlight(@PathVariable("flightId") String flightId) {
-
         if (flightId == null) {
             return ResponseEntity.noContent().build();
         }
 
         flightService.deleteFlight(flightId);
-
         return ResponseEntity.noContent().build();
     }
 
