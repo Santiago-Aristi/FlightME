@@ -57,7 +57,7 @@ class FlightPage extends BaseClass {
             searchingFlight.innerHTML =`
                 <div>FlightId: ${getFlightData.flightId}</div>
                 <div>Name: ${getFlightData.name}</div>
-                <div>Name: ${getFlightData.numOfPassengers}</div>
+                <div>Number Of Passengers: ${getFlightData.numOfPassengers}</div>
             `
         } else {
             searchedFlight.innerHTML = "Flight doesn't exist in database!"
