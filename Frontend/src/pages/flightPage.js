@@ -9,7 +9,7 @@ class FlightPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGetFlight', 'onCreateFlight', 'renderFlight', 'renderFlightSearched'], this);
+        this.bindClassMethods(['onGetFlight', 'onCreateFlight', 'onGetAllFlights', 'renderFlight', 'renderFlightSearched'], this);
         this.dataStore = new DataStore();
     }
 
@@ -19,10 +19,12 @@ class FlightPage extends BaseClass {
     async mount() {
        document.getElementById('search-flight-form').addEventListener('submit', this.onGetFlight);
        document.getElementById('create-flight-form').addEventListener('submit', this.onCreateFlight);
+       document.getElementById('flight-list-form').addEventListener('submit', this.onGetAllFlights);
        this.client = new FlightClient();
 
        this.dataStore.addChangeListener(this.renderFlight);
        this.dataStore.addChangeListener(this.renderFlightSearched);
+       this.dataStore.addChangeListener(this.onGetAllFlights);
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
@@ -100,7 +102,21 @@ class FlightPage extends BaseClass {
         result += "<li>"
 
         for(let flight of flights) {
-            result += `<li>Name: ${flight.name}</li>`
+            result += `<div>FlightId: ${flights.flightId}</div>
+               <div>Name: ${flights.name}</div>
+               <div>Email: ${flights.email}</div>
+               <div>Origin ZipCode: ${flights.originZipcode}</div>
+               <div>Destination ZipCode: ${flights.destinationZipcode}</div>
+               <div>Number of Passengers: ${flights.numOfPassengers}</div>
+               <div>Payment Method: ${flights.paymentMethod}</div>`
+        }
+        result += "</li>"
+        result += "</ul>"
+
+        if(result){
+            allFlights.innerHTML = result;
+        }else{
+            allFlights.innerHTML = "No current flights";
         }
 
     }
