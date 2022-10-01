@@ -87,14 +87,12 @@ public class FlightServiceTest {
 
         when(flightRepository.findById(flightRecord.getFlightId())).thenReturn(Optional.of(flightRecord));
 
-        // WHEN
-        FlightInfo flight = flightService.getFlight(flightRecord.getFlightId());
-
-        // THEN
-        Assertions.assertNotNull(flight, "The example is null when not found");
+        // WHEN & THEN
         assertThrows(FlightNotFoundException.class,
                 () -> flightService.getFlight(flightRecord.getFlightId()));
     }
+
+    @
 
     @Test
     public void createFlight_validInput_CreatesValidFlight(){
