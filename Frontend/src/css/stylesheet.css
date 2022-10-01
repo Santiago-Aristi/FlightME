@@ -70,6 +70,10 @@ h2{
     flex-direction: row;
 }
 
+.flightList{
+    text-align: center;
+}
+
 .welcome-message h4{
     font-size: 30px;
     text-align: center;

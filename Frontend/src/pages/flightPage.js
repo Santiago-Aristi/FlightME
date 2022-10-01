@@ -56,12 +56,12 @@ class FlightPage extends BaseClass {
         if(getFlightData) {
             searchingFlight.innerHTML =`
                 <div>FlightId: ${flights.flightId}</div>
-                                <div>Name: ${flights.name}</div>
-                                <div>Email: ${flights.email}</div>
-                                <div>Origin ZipCode: ${flights.originZipcode}</div>
-                                <div>Destination ZipCode: ${flights.destinationZipcode}</div>
-                                <div>Number of Passengers: ${flights.numOfPassengers}</div>
-                                <div>Payment Method: ${flights.paymentMethod}</div>
+                <div>Name: ${flights.name}</div>
+                <div>Email: ${flights.email}</div>
+                <div>Origin ZipCode: ${flights.originZipcode}</div>
+                <div>Destination ZipCode: ${flights.destinationZipcode}</div>
+                <div>Number of Passengers: ${flights.numOfPassengers}</div>
+                <div>Payment Method: ${flights.paymentMethod}</div>
             `
         } else {
             searchedFlight.innerHTML = "Flight doesn't exist in database!"
@@ -88,6 +88,23 @@ class FlightPage extends BaseClass {
 
     }
 
+    async onGetAllFlights(event){
+        event.preventDefault();
+
+        let allFlights = document.getElementById("result-info");
+
+        const flights = this.dataStore.get("flightInformation");
+
+        let result = "";
+        result += "<ul>"
+        result += "<li>"
+
+        for(let flight of flights) {
+            result += `<li>Name: ${flight.name}</li>`
+        }
+
+    }
+
     async onCreateFlight(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
@@ -104,7 +121,7 @@ class FlightPage extends BaseClass {
         this.dataStore.set("flightInformation", createdFlight);
 
         if (createdFlight) {
-            this.showMessage(`Created by ${createdFlight.name}!`)
+            this.showMessage(`Sky travel initiated successfully by ${createdFlight.name}!`)
         } else {
             this.errorHandler("Error creating!  Try again...");
         }
