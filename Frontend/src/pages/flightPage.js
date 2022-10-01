@@ -30,7 +30,7 @@ class FlightPage extends BaseClass {
     async renderFlight() {
         let creatingFlight = document.getElementById("result-info");
 
-        const flights = this.dataStore.get("flightInfo");
+        const flights = this.dataStore.get("flightInformation");
 
         if (flights) {
             creatingFlight.innerHTML = `
@@ -43,7 +43,7 @@ class FlightPage extends BaseClass {
                 <div>Payment Method: ${flights.paymentMethod}</div>
             `
         } else {
-            creatingFlight.innerHTML = "No Items here to see at this time!!!!!";
+            creatingFlight.innerHTML = "Flight doesn't exist in database!";
         }
 
     }
@@ -55,9 +55,13 @@ class FlightPage extends BaseClass {
 
         if(getFlightData) {
             searchingFlight.innerHTML =`
-                <div>FlightId: ${getFlightData.flightId}</div>
-                <div>Name: ${getFlightData.name}</div>
-                <div>Number Of Passengers: ${getFlightData.numOfPassengers}</div>
+                <div>FlightId: ${flights.flightId}</div>
+                                <div>Name: ${flights.name}</div>
+                                <div>Email: ${flights.email}</div>
+                                <div>Origin ZipCode: ${flights.originZipcode}</div>
+                                <div>Destination ZipCode: ${flights.destinationZipcode}</div>
+                                <div>Number of Passengers: ${flights.numOfPassengers}</div>
+                                <div>Payment Method: ${flights.paymentMethod}</div>
             `
         } else {
             searchedFlight.innerHTML = "Flight doesn't exist in database!"
@@ -79,7 +83,7 @@ class FlightPage extends BaseClass {
         if (searchedFlight) {
             this.showMessage(`Got ${searchedFlight.name}!`)
         } else {
-            this.errorHandler("Error doing GET!  Try again...");
+            this.errorHandler("Error finding flight, please enter a valid flight ID!");
         }
 
     }
@@ -87,7 +91,7 @@ class FlightPage extends BaseClass {
     async onCreateFlight(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
-        this.dataStore.set("flightInfo", null);
+        this.dataStore.set("flightInformation", null);
 
         let name = document.getElementById("create-flight-name").value;
         let email = document.getElementById("create-flight-email").value;
@@ -97,7 +101,7 @@ class FlightPage extends BaseClass {
         let paymentMethod = document.getElementById("create-flight-pay").value;
 
         const createdFlight = await this.client.createFlight(name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod, this.errorHandler);
-        this.dataStore.set("flightInfo", createdFlight);
+        this.dataStore.set("flightInformation", createdFlight);
 
         if (createdFlight) {
             this.showMessage(`Created by ${createdFlight.name}!`)

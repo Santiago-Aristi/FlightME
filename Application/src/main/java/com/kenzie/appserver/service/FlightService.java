@@ -21,22 +21,26 @@ public class FlightService {
     }
 
     public FlightInfo getFlight(String flightId) {
-        FlightInfo flightInfo = flightRepository
-                .findById(flightId)
-                .map(flight -> new FlightInfo(flight.getFlightId(),
-                        flight.getName(),
-                        flight.getEmail(),
-                        flight.getOriginZipcode(),
-                        flight.getDestinationZipcode(),
-                        flight.getNumOfPassengers(),
-                        flight.getPaymentMethod()))
-                .orElse(null);
 
         if (StringUtils.isEmpty(flightId) || isInvalidUuid(flightId)) {
             throw new FlightNotFoundException("Flight doesn't exist in our database!");
         }
 
-        return flightInfo;
+        try{
+            FlightInfo flightInfo = flightRepository
+                    .findById(flightId)
+                    .map(flight -> new FlightInfo(flight.getFlightId(),
+                            flight.getName(),
+                            flight.getEmail(),
+                            flight.getOriginZipcode(),
+                            flight.getDestinationZipcode(),
+                            flight.getNumOfPassengers(),
+                            flight.getPaymentMethod()))
+                    .orElse(null);
+            return flightInfo;
+        }catch(RuntimeException e){
+            throw new FlightNotFoundException("Flight was unable to be found!");
+        }
     }
 
     public List<FlightInfo> getAllFlights() {
