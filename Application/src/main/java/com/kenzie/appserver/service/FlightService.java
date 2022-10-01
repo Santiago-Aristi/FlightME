@@ -4,11 +4,13 @@ import com.kenzie.appserver.FlightNotFoundException;
 import com.kenzie.appserver.repositories.FlightRepository;
 import com.kenzie.appserver.repositories.model.FlightRecord;
 import com.kenzie.appserver.service.model.FlightInfo;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.UUID.fromString;
 
 @Service
 public class FlightService {
@@ -29,6 +31,10 @@ public class FlightService {
                         flight.getNumOfPassengers(),
                         flight.getPaymentMethod()))
                 .orElse(null);
+
+        if (StringUtils.isEmpty(flightId) || isInvalidUuid(flightId)) {
+            throw new FlightNotFoundException("Flight doesn't exist in our database!");
+        }
 
         return flightInfo;
     }
@@ -68,5 +74,14 @@ public class FlightService {
         FlightRecord flightRecord = new FlightRecord();
         flightRecord.setFlightId(flightId);
         flightRepository.delete(flightRecord);
+    }
+
+    private boolean isInvalidUuid(String uuid) {
+        try {
+            fromString(uuid);
+        } catch (IllegalArgumentException exception) {
+            return true;
+        }
+        return false;
     }
 }

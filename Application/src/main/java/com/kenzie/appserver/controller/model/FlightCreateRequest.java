@@ -49,7 +49,7 @@ public class FlightCreateRequest {
         return originZipcode;
     }
 
-    public void setOriginZipcode(String originZip) {
+    public void setOriginZipcode(String originZipcode) {
         this.originZipcode = originZipcode;
     }
 

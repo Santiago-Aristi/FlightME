@@ -1,5 +1,6 @@
 package com.kenzie.appserver.controller;
 
+import com.kenzie.appserver.FlightNotFoundException;
 import com.kenzie.appserver.controller.model.FlightCreateRequest;
 import com.kenzie.appserver.controller.model.FlightResponse;
 import com.kenzie.appserver.service.FlightService;
@@ -33,15 +34,7 @@ public class FlightController {
                 flightCreateRequest.getPaymentMethod());
         flightService.createFlight(flightInfo);
 
-//        FlightResponse flightResponse = createFlightResponse(flightInfo);
-        FlightResponse flightResponse = new FlightResponse();
-        flightResponse.setFlightId(flightInfo.getFlightId());
-        flightResponse.setName(flightInfo.getName());
-        flightResponse.setEmail(flightInfo.getEmail());
-        flightResponse.setOriginZipcode(flightInfo.getOriginZipcode());
-        flightResponse.setDestinationZipcode(flightInfo.getDestinationZipcode());
-        flightResponse.setNumOfPassengers(flightInfo.getNumOfPassengers());
-        flightResponse.setPaymentMethod(flightInfo.getPaymentMethod());
+        FlightResponse flightResponse = createFlightResponse(flightInfo);
 
         return ResponseEntity.created(URI.create("/flight/" + flightResponse.getFlightId())).body(flightResponse);
     }
