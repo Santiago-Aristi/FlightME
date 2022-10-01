@@ -9,7 +9,7 @@ class FlightPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGetFlight', 'onCreateFlight', 'renderFlight'], this);
+        this.bindClassMethods(['onGetFlight', 'onCreateFlight', 'renderFlight', 'renderFlightSearched'], this);
         this.dataStore = new DataStore();
     }
 
@@ -17,22 +17,23 @@ class FlightPage extends BaseClass {
      * Once the page has loaded, set up the event handlers and fetch the concert list.
      */
     async mount() {
-       document.getElementById('search-form').addEventListener('submit', this.onGetFlight);
+       document.getElementById('search-flight-form').addEventListener('submit', this.onGetFlight);
        document.getElementById('create-flight-form').addEventListener('submit', this.onCreateFlight);
        this.client = new FlightClient();
 
        this.dataStore.addChangeListener(this.renderFlight);
+       this.dataStore.addChangeListener(this.renderFlightSearched);
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
 
     async renderFlight() {
-        let resultArea = document.getElementById("result-info");
+        let creatingFlight = document.getElementById("result-info");
 
         const flights = this.dataStore.get("flightInfo");
 
         if (flights) {
-            resultArea.innerHTML = `
+            creatingFlight.innerHTML = `
                 <div>FlightId: ${flights.flightId}</div>
                 <div>Name: ${flights.name}</div>
                 <div>Email: ${flights.email}</div>
@@ -42,7 +43,24 @@ class FlightPage extends BaseClass {
                 <div>Payment Method: ${flights.paymentMethod}</div>
             `
         } else {
-            resultArea.innerHTML = "No Items here to see at this time!!!!!";
+            creatingFlight.innerHTML = "No Items here to see at this time!!!!!";
+        }
+
+    }
+
+    async renderFlightSearched() {
+        let searchingFlight = document.getElementById("result-info");
+
+        const getFlightData = this.dataStore.get("flightInformation");
+
+        if(getFlightData) {
+            searchingFlight.innerHTML =`
+                <div>FlightId: ${getFlightData.flightId}</div>
+                <div>Name: ${getFlightData.name}</div>
+                <div>Name: ${getFlightData.numOfPassengers}</div>
+            `
+        } else {
+            searchedFlight.innerHTML = "Flight doesn't exist in database!"
         }
     }
 
@@ -50,19 +68,16 @@ class FlightPage extends BaseClass {
 
     async onGetFlight(event) {
         // Prevent the page from refreshing on form submit
-        // event.preventDefault();
-        // let flightId = document.getElementById("flight-id-entry").value;
-        // const flights = this.dataStore.get("flightInfo");
-        // let result = await this.client.getFlight();
-        // this.dataStore.set("flightInfo", result);
+        event.preventDefault();
 
-        let flightId = document.getElementById("id-field").value;
-        this.dataStore.set("flightInfo", null);
-        //
-        let result = await this.client.getFlight(flightId, this.errorHandler);
-        this.dataStore.set("flightInfo", result);
-        if (result) {
-            this.showMessage(`Got ${result.name}!`)
+        let flightId = document.getElementById("search-flight-field").value;
+        this.dataStore.set("flightInformation", null);
+
+        let searchedFlight = await this.client.getFlight(flightId, this.errorHandler);
+        this.dataStore.set("flightInformation", searchedFlight);
+
+        if (searchedFlight) {
+            this.showMessage(`Got ${searchedFlight.name}!`)
         } else {
             this.errorHandler("Error doing GET!  Try again...");
         }

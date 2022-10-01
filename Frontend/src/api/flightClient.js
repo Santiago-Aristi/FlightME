@@ -26,10 +26,10 @@ export default class FlightClient extends BaseClass {
     }
 
     /**
-     * Gets the concert for the given ID.
-     * @param id Unique identifier for a concert
+     * Gets the flight for the given flightId.
+     * @param flightId Unique identifier for a flight
      * @param errorCallback (Optional) A function to execute if the call fails.
-     * @returns The concert
+     * @returns The flight
      */
     async getFlight(flightId, errorCallback) {
         try {
