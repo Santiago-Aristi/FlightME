@@ -40,6 +40,15 @@ export default class FlightClient extends BaseClass {
         }
     }
 
+    async getAllFlights(errorCallback){
+        try{
+            const response = await this.client.get(`/flight/all`);
+            return response.data;
+        }catch(error) {
+            this.handleError("getAllFlights", error, errorCallback)
+        }
+    }
+
     async createFlight(name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod, errorCallback) {
         try {
             const response = await this.client.post(`/flight`, {
