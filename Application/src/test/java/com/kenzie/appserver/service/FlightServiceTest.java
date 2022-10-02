@@ -4,15 +4,16 @@ import com.kenzie.appserver.FlightNotFoundException;
 import com.kenzie.appserver.repositories.FlightRepository;
 import com.kenzie.appserver.repositories.model.FlightRecord;
 import com.kenzie.appserver.service.model.FlightInfo;
+import net.andreinc.mockneat.MockNeat;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
-import java.util.Optional;
+import java.util.*;
 
 import static java.util.UUID.randomUUID;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class FlightServiceTest {
@@ -28,6 +29,8 @@ public class FlightServiceTest {
 
     private FlightService flightService;
 
+    private final MockNeat mockNeat = MockNeat.threadLocal();
+
     @BeforeEach
     void setup() {
         flightRepository = mock(FlightRepository.class);
@@ -35,7 +38,7 @@ public class FlightServiceTest {
     }
 
     @Test
-    public void getFlight_validInput_returnsValidFLights() {
+    void getFlight_validInput_returnsValidFLights() {
         // GIVEN
         FlightRecord flightRecord = new FlightRecord();
         flightRecord.setName(name);
@@ -51,14 +54,14 @@ public class FlightServiceTest {
         FlightInfo flightInfo = flightService.getFlight(flightId);
 
         // THEN
-        Assertions.assertNotNull(flightInfo, "The flight is returned properly");
-        Assertions.assertEquals(flightRecord.getName(), flightInfo.getName(), "Both names match");
-        Assertions.assertEquals(flightRecord.getEmail(), flightInfo.getEmail(), "Both emails match");
-        Assertions.assertEquals(flightRecord.getFlightId(), flightInfo.getFlightId(), "Both id match");
-        Assertions.assertEquals(flightRecord.getOriginZipcode(), flightInfo.getOriginZipcode(), "Both zip codes match");
-        Assertions.assertEquals(flightRecord.getDestinationZipcode(), flightInfo.getDestinationZipcode(), "Both zip codes match");
-        Assertions.assertEquals(flightRecord.getNumOfPassengers(), flightInfo.getNumOfPassengers(), "Both number of passengers match");
-        Assertions.assertEquals(flightRecord.getPaymentMethod(), flightInfo.getPaymentMethod(), "Both payments match");
+        assertNotNull(flightInfo, "The flight is returned properly");
+        assertEquals(flightRecord.getName(), flightInfo.getName(), "Both names match");
+        assertEquals(flightRecord.getEmail(), flightInfo.getEmail(), "Both emails match");
+        assertEquals(flightRecord.getFlightId(), flightInfo.getFlightId(), "Both id match");
+        assertEquals(flightRecord.getOriginZipcode(), flightInfo.getOriginZipcode(), "Both zip codes match");
+        assertEquals(flightRecord.getDestinationZipcode(), flightInfo.getDestinationZipcode(), "Both zip codes match");
+        assertEquals(flightRecord.getNumOfPassengers(), flightInfo.getNumOfPassengers(), "Both number of passengers match");
+        assertEquals(flightRecord.getPaymentMethod(), flightInfo.getPaymentMethod(), "Both payments match");
     }
 
     @Test
@@ -70,7 +73,7 @@ public class FlightServiceTest {
         FlightInfo flight = flightService.getFlight(flightId);
 
         // THEN
-        Assertions.assertNull(flight, "The example is null when not found");
+        assertNull(flight, "The example is null when not found");
     }
 
     @Test
@@ -92,10 +95,37 @@ public class FlightServiceTest {
                 () -> flightService.getFlight(flightRecord.getFlightId()));
     }
 
-    @
+    @Test
+    void getAllFlights() {
+        // GIVEN
+        List<FlightRecord> flightRecordList = new ArrayList<>();
+        FlightRecord flightRecord = new FlightRecord();
+        flightRecord.setFlightId(flightId);
+        flightRecord.setName(name);
+        flightRecord.setEmail(email);
+        flightRecord.setOriginZipcode(originZipcode);
+        flightRecord.setDestinationZipcode(destinationZipcode);
+        flightRecord.setNumOfPassengers(numOfPassengers);
+        flightRecord.setPaymentMethod(paymentMethod);
+        flightRecordList.add(flightRecord);
+
+        // WHEN
+        when(flightRepository.findAll()).thenReturn(flightRecordList);
+        List<FlightInfo> flightInfoList = flightService.getAllFlights();
+
+        // THEN
+        assertEquals(flightInfoList.size(), 1);
+        assertEquals(flightInfoList.get(0).getFlightId(), flightId);
+        assertEquals(flightInfoList.get(0).getName(), name);
+        assertEquals(flightInfoList.get(0).getEmail(), email);
+        assertEquals(flightInfoList.get(0).getOriginZipcode(), originZipcode);
+        assertEquals(flightInfoList.get(0).getDestinationZipcode(), destinationZipcode);
+        assertEquals(flightInfoList.get(0).getNumOfPassengers(), numOfPassengers);
+        assertEquals(flightInfoList.get(0).getPaymentMethod(), paymentMethod);
+    }
 
     @Test
-    public void createFlight_validInput_CreatesValidFlight(){
+    void createFlight_validInput_CreatesValidFlight(){
         FlightInfo flightInfo = new FlightInfo(name, email, flightId, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
         ArgumentCaptor<FlightRecord> flightRecordCaptor = ArgumentCaptor.forClass(FlightRecord.class);
 
@@ -107,18 +137,18 @@ public class FlightServiceTest {
         verify(flightRepository).save(flightRecordCaptor.capture());
         FlightRecord flightRecord = flightRecordCaptor.getValue();
 
-        Assertions.assertNotNull(flightRecord, "The flightRecord record is returned");
-        Assertions.assertEquals(flightRecord.getName(), flightInfo.getName(), "The flight name matches");
-        Assertions.assertEquals(flightRecord.getEmail(), flightInfo.getEmail(), "The flight email matches");
-        Assertions.assertEquals(flightRecord.getFlightId(), flightInfo.getFlightId(), "The flight id matches");
-        Assertions.assertEquals(flightRecord.getOriginZipcode(), flightInfo.getOriginZipcode(), "The flight origin zipcode matches");
-        Assertions.assertEquals(flightRecord.getDestinationZipcode(), flightInfo.getDestinationZipcode(), "The flight destination zipcode matches");
-        Assertions.assertEquals(flightRecord.getNumOfPassengers(), flightInfo.getNumOfPassengers(), "The number of passengers match");
-        Assertions.assertEquals(flightRecord.getPaymentMethod(), flightInfo.getPaymentMethod(), "The payment method matches");
+        assertNotNull(flightRecord, "The flightRecord record is returned");
+        assertEquals(flightRecord.getName(), flightInfo.getName(), "The flight name matches");
+        assertEquals(flightRecord.getEmail(), flightInfo.getEmail(), "The flight email matches");
+        assertEquals(flightRecord.getFlightId(), flightInfo.getFlightId(), "The flight id matches");
+        assertEquals(flightRecord.getOriginZipcode(), flightInfo.getOriginZipcode(), "The flight origin zipcode matches");
+        assertEquals(flightRecord.getDestinationZipcode(), flightInfo.getDestinationZipcode(), "The flight destination zipcode matches");
+        assertEquals(flightRecord.getNumOfPassengers(), flightInfo.getNumOfPassengers(), "The number of passengers match");
+        assertEquals(flightRecord.getPaymentMethod(), flightInfo.getPaymentMethod(), "The payment method matches");
     }
 
     @Test
-    public void deleteFlight() {
+    void deleteFlight() {
         // GIVEN
         FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
         ArgumentCaptor<FlightRecord> flightRecordCaptor = ArgumentCaptor.forClass(FlightRecord.class);
@@ -131,10 +161,9 @@ public class FlightServiceTest {
 
         FlightRecord flightRecord = flightRecordCaptor.getValue();
 
-        Assertions.assertNotNull(flightRecord, "The flight record is returned");
-        Assertions.assertNotNull(flightInfo, "The flight info is returned");
-        Assertions.assertEquals(flightRecord.getFlightId(), flightInfo.getFlightId(), "The flightId matches");
-
+        assertNotNull(flightRecord, "The flight record is returned");
+        assertNotNull(flightInfo, "The flight info is returned");
+        assertEquals(flightRecord.getFlightId(), flightInfo.getFlightId(), "The flightId matches");
     }
 
 }

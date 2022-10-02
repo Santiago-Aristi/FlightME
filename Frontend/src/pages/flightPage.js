@@ -24,7 +24,7 @@ class FlightPage extends BaseClass {
 
        this.dataStore.addChangeListener(this.renderFlight);
        this.dataStore.addChangeListener(this.renderFlightSearched);
-       this.dataStore.addChangeListener(this.onGetAllFlights);
+       this.onGetAllFlights();
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
@@ -70,6 +70,38 @@ class FlightPage extends BaseClass {
         }
     }
 
+    async onGetAllFlights(event){
+        event.preventDefault();
+
+        let allFlights = document.getElementById("result-info");
+        this.dataStore.set("flightInformation", null);
+
+        const flights = this.dataStore.get("flightInformation");
+
+        let result = "";
+        result += "<ul>"
+        result += "<li>"
+
+        for(let flight of flights) {
+            result += `<div>FlightId: ${flight.flightId}</div>
+               <div>Name: ${flight.name}</div>
+               <div>Email: ${flight.email}</div>
+               <div>Origin ZipCode: ${flight.originZipcode}</div>
+               <div>Destination ZipCode: ${flight.destinationZipcode}</div>
+               <div>Number of Passengers: ${flight.numOfPassengers}</div>
+               <div>Payment Method: ${flight.paymentMethod}</div>`
+        }
+        result += "</li>"
+        result += "</ul>"
+
+        if(result){
+            allFlights.innerHTML = result;
+        }else{
+            allFlights.innerHTML = "No current flights";
+        }
+
+    }
+
     // Event Handlers --------------------------------------------------------------------------------------------------
 
     async onGetFlight(event) {
@@ -90,37 +122,9 @@ class FlightPage extends BaseClass {
 
     }
 
-    async onGetAllFlights(event){
-        event.preventDefault();
 
-        let allFlights = document.getElementById("result-info");
-
-        const flights = this.dataStore.get("flightInformation");
-
-        let result = "";
-        result += "<ul>"
-        result += "<li>"
-
-        for(let flight of flights) {
-            result += `<div>FlightId: ${flights.flightId}</div>
-               <div>Name: ${flights.name}</div>
-               <div>Email: ${flights.email}</div>
-               <div>Origin ZipCode: ${flights.originZipcode}</div>
-               <div>Destination ZipCode: ${flights.destinationZipcode}</div>
-               <div>Number of Passengers: ${flights.numOfPassengers}</div>
-               <div>Payment Method: ${flights.paymentMethod}</div>`
-        }
-        result += "</li>"
-        result += "</ul>"
-
-        if(result){
-            allFlights.innerHTML = result;
-        }else{
-            allFlights.innerHTML = "No current flights";
-        }
-
+    async renderAllFlights() {
     }
-
     async onCreateFlight(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
