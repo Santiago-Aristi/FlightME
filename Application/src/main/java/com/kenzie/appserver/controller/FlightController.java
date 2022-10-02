@@ -1,6 +1,5 @@
 package com.kenzie.appserver.controller;
 
-import com.kenzie.appserver.FlightNotFoundException;
 import com.kenzie.appserver.controller.model.FlightCreateRequest;
 import com.kenzie.appserver.controller.model.FlightResponse;
 import com.kenzie.appserver.service.FlightService;

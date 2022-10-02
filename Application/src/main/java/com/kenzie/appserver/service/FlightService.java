@@ -21,12 +21,11 @@ public class FlightService {
     }
 
     public FlightInfo getFlight(String flightId) {
-
         if (StringUtils.isEmpty(flightId) || isInvalidUuid(flightId)) {
             throw new FlightNotFoundException("Flight doesn't exist in our database!");
         }
 
-        try{
+
             FlightInfo flightInfo = flightRepository
                     .findById(flightId)
                     .map(flight -> new FlightInfo(flight.getFlightId(),
@@ -38,16 +37,16 @@ public class FlightService {
                             flight.getPaymentMethod()))
                     .orElse(null);
             return flightInfo;
-        }catch(RuntimeException e){
-            throw new FlightNotFoundException("Flight was unable to be found!");
-        }
+//        } catch (RuntimeException e) {
+//            throw new FlightNotFoundException("Flight was unable to be found!");
+//        }
     }
 
     public List<FlightInfo> getAllFlights() {
         List<FlightInfo> flightInfoList = new ArrayList<>();
 
         Iterable<FlightRecord> flightIterator = flightRepository.findAll();
-        for(FlightRecord record : flightIterator){
+        for (FlightRecord record : flightIterator) {
             flightInfoList.add(new FlightInfo(record.getFlightId(),
                     record.getName(),
                     record.getEmail(),
@@ -74,7 +73,11 @@ public class FlightService {
         return flightInfo;
     }
 
-    public void deleteFlight(String flightId){
+    public void deleteFlight(String flightId) {
+        if (StringUtils.isEmpty(flightId) || isInvalidUuid(flightId)) {
+            throw new FlightNotFoundException("Flight doesn't exist in our database!");
+        }
+
         FlightRecord flightRecord = new FlightRecord();
         flightRecord.setFlightId(flightId);
         flightRepository.delete(flightRecord);

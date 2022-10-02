@@ -29,8 +29,6 @@ public class FlightServiceTest {
 
     private FlightService flightService;
 
-    private final MockNeat mockNeat = MockNeat.threadLocal();
-
     @BeforeEach
     void setup() {
         flightRepository = mock(FlightRepository.class);
@@ -77,12 +75,31 @@ public class FlightServiceTest {
     }
 
     @Test
-    void getFlightById_notValidFlightIdType_throwsException() throws Exception {
+    void getFlightById_notValidFlightIdType_throwsException() throws FlightNotFoundException {
         // GIVEN
         FlightRecord flightRecord = new FlightRecord();
+        flightRecord.setFlightId("abc");
         flightRecord.setName(name);
         flightRecord.setEmail(email);
-        flightRecord.setFlightId("abc");
+        flightRecord.setOriginZipcode(originZipcode);
+        flightRecord.setDestinationZipcode(destinationZipcode);
+        flightRecord.setNumOfPassengers(numOfPassengers);
+        flightRecord.setPaymentMethod(paymentMethod);
+
+        when(flightRepository.findById(flightRecord.getFlightId())).thenReturn(Optional.of(flightRecord));
+
+        // WHEN & THEN
+        assertThrows(FlightNotFoundException.class,
+                () -> flightService.getFlight(flightRecord.getFlightId()));
+    }
+
+    @Test
+    void getFlightById_emptyFlightId_throwsException() throws FlightNotFoundException {
+        // GIVEN
+        FlightRecord flightRecord = new FlightRecord();
+        flightRecord.setFlightId("");
+        flightRecord.setName(name);
+        flightRecord.setEmail(email);
         flightRecord.setOriginZipcode(originZipcode);
         flightRecord.setDestinationZipcode(destinationZipcode);
         flightRecord.setNumOfPassengers(numOfPassengers);
@@ -162,8 +179,33 @@ public class FlightServiceTest {
         FlightRecord flightRecord = flightRecordCaptor.getValue();
 
         assertNotNull(flightRecord, "The flight record is returned");
-        assertNotNull(flightInfo, "The flight info is returned");
+        assertNotNull(flightInfo, "The flight info exists");
         assertEquals(flightRecord.getFlightId(), flightInfo.getFlightId(), "The flightId matches");
     }
 
+    @Test
+    void deleteFlight_invalidFlightIdType_throwsException() throws FlightNotFoundException {
+        // GIVEN
+        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
+        String flightId = "abc";
+
+        // THEN
+        assertNotNull(flightInfo, "The flight info exists");
+        assertNotEquals(flightId, flightInfo.getFlightId(), "The flightId's don't match");
+        assertThrows(FlightNotFoundException.class,
+                () -> flightService.deleteFlight(flightId));
+    }
+
+    @Test
+    void deleteFlight_emptyFlightId_throwsException() throws FlightNotFoundException {
+        // GIVEN
+        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
+        String flightId = "";
+
+        // THEN
+        assertNotNull(flightInfo, "The flight info exists");
+        assertNotEquals(flightId, flightInfo.getFlightId(), "The flightId's don't match");
+        assertThrows(FlightNotFoundException.class,
+                () -> flightService.deleteFlight(flightId));
+    }
 }
