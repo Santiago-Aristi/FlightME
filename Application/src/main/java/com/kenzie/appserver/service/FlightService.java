@@ -25,7 +25,6 @@ public class FlightService {
             throw new FlightNotFoundException("Flight doesn't exist in our database!");
         }
 
-
             FlightInfo flightInfo = flightRepository
                     .findById(flightId)
                     .map(flight -> new FlightInfo(flight.getFlightId(),
@@ -45,17 +44,20 @@ public class FlightService {
     public List<FlightInfo> getAllFlights() {
         List<FlightInfo> flightInfoList = new ArrayList<>();
 
-        Iterable<FlightRecord> flightIterator = flightRepository.findAll();
-        for (FlightRecord record : flightIterator) {
-            flightInfoList.add(new FlightInfo(record.getFlightId(),
-                    record.getName(),
-                    record.getEmail(),
-                    record.getOriginZipcode(),
-                    record.getDestinationZipcode(),
-                    record.getNumOfPassengers(),
-                    record.getPaymentMethod()));
-        }
-
+//        Iterable<FlightRecord> flightIterator = flightRepository.findAll();
+//        for (FlightRecord record : flightIterator) {
+//            flightInfoList.add(new FlightInfo(record.getFlightId(),
+//                    record.getName(),
+//                    record.getEmail(),
+//                    record.getOriginZipcode(),
+//                    record.getDestinationZipcode(),
+//                    record.getNumOfPassengers(),
+//                    record.getPaymentMethod()));
+//        }
+        flightRepository
+                .findAll()
+                .forEach(flight -> flightInfoList.add(new FlightInfo(flight.getFlightId(), flight.getName(), flight.getEmail(), flight.getOriginZipcode(),
+                        flight.getDestinationZipcode(), flight.getNumOfPassengers(), flight.getPaymentMethod())));
         return flightInfoList;
     }
 
