@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import static java.util.UUID.randomUUID;
 
 @RestController
@@ -40,17 +42,22 @@ public class FlightController {
 
     @GetMapping("/all/")
     public ResponseEntity<List<FlightResponse>> getAllFlights() {
-        List<FlightInfo> allFlights = flightService.getAllFlights();
+//        List<FlightInfo> allFlights = flightService.getAllFlights();
+//
+//        if (allFlights.isEmpty() || allFlights == null) {
+//            return ResponseEntity.noContent().build();
+//        }
+//
+//        List<FlightResponse> flightList = new ArrayList<>();
+//        for (FlightInfo flight : allFlights) {
+//            flightList.add(this.createFlightResponse(flight));
+//        }
 
-        if (allFlights.isEmpty() || allFlights == null) {
-            return ResponseEntity.noContent().build();
-        }
+        List<FlightInfo> flights = flightService.getAllFlights();
 
-        List<FlightResponse> flightList = new ArrayList<>();
-        for (FlightInfo flight : allFlights) {
-            flightList.add(this.createFlightResponse(flight));
-        }
-        return ResponseEntity.ok(flightList);
+        List<FlightResponse> responses = flights.stream().map(this::createFlightResponse).collect(Collectors.toList());
+
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/{flightId}")

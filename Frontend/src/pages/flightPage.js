@@ -9,7 +9,7 @@ class FlightPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGetFlight', 'onCreateFlight', 'onGetAllFlights', 'renderFlight', 'renderFlightSearched'], this);
+        this.bindClassMethods(['onGetFlight', 'onCreateFlight', 'onGetAllFlights', 'renderFlight', 'renderFlightSearched', 'renderAllFlights'], this);
         this.dataStore = new DataStore();
     }
 
@@ -19,7 +19,7 @@ class FlightPage extends BaseClass {
     async mount() {
        document.getElementById('search-flight-form').addEventListener('submit', this.onGetFlight);
        document.getElementById('create-flight-form').addEventListener('submit', this.onCreateFlight);
-       document.getElementById('flight-list-form').addEventListener('submit', this.onGetAllFlights);
+//       document.getElementById('flight-list-form').addEventListener('submit', this.onGetAllFlights);
        this.client = new FlightClient();
 
        this.dataStore.addChangeListener(this.renderFlight);
@@ -70,36 +70,35 @@ class FlightPage extends BaseClass {
         }
     }
 
-    async onGetAllFlights(event){
-        event.preventDefault();
+    async renderAllFlights(){
+//        event.preventDefault();
 
         let allFlights = document.getElementById("result-info");
-        this.dataStore.set("flightInformation", null);
+//        this.dataStore.set("flightInformation", null);
 
         const flights = this.dataStore.get("flightInformation");
 
         let result = "";
         result += "<ul>"
-        result += "<li>"
+//        result += "<li>"
 
         for(let flight of flights) {
-            result += `<div>FlightId: ${flight.flightId}</div>
+            result += `<li><div>FlightId: ${flight.flightId}</div></li>
                <div>Name: ${flight.name}</div>
                <div>Email: ${flight.email}</div>
                <div>Origin ZipCode: ${flight.originZipcode}</div>
                <div>Destination ZipCode: ${flight.destinationZipcode}</div>
                <div>Number of Passengers: ${flight.numOfPassengers}</div>
-               <div>Payment Method: ${flight.paymentMethod}</div>`
+               <div>Payment Method: ${flight.paymentMethod}</div>`;
         }
-        result += "</li>"
-        result += "</ul>"
+//        result += "</li>"
+//        result += "</ul>"
 
         if(result){
             allFlights.innerHTML = result;
         }else{
             allFlights.innerHTML = "No current flights";
         }
-
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
@@ -122,9 +121,11 @@ class FlightPage extends BaseClass {
 
     }
 
-
-    async renderAllFlights() {
+    async onGetAllFlights() {
+        let result = await this.client.getAllFlights(this.errorHandler);
+        this.dataStore.set("flightInformation", result);
     }
+
     async onCreateFlight(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();

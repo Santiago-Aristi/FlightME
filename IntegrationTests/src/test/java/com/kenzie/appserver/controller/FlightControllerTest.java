@@ -14,8 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static java.util.UUID.randomUUID;
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -32,7 +31,7 @@ public class FlightControllerTest {
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Test
-    public void getById_Exists() throws Exception {
+    public void getFlightById_Exists() throws Exception {
         String flightId = randomUUID().toString();
         String name = mockNeat.strings().valStr();
         String email = mockNeat.strings().valStr();
@@ -41,7 +40,8 @@ public class FlightControllerTest {
         String numOfPassengers = mockNeat.strings().valStr();
         String paymentMethod = mockNeat.strings().valStr();
 
-        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
+        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode,
+                destinationZipcode, numOfPassengers, paymentMethod);
         FlightInfo persistedFlight = flightService.createFlight(flightInfo);
         this.mvc.perform(get("/flight/{flightId}", persistedFlight.getFlightId())
                         .accept(MediaType.APPLICATION_JSON))
@@ -101,4 +101,25 @@ public class FlightControllerTest {
                         .value(is(paymentMethod)))
                 .andExpect(status().isCreated());
     }
+
+    @Test
+    public void deleteFlight_deleteSuccessful() throws Exception {
+        String flightId = randomUUID().toString();
+        String name = mockNeat.strings().valStr();
+        String email = mockNeat.strings().valStr();
+        String originZipcode = mockNeat.strings().valStr();
+        String destinationZipcode = mockNeat.strings().valStr();
+        String numOfPassengers = mockNeat.strings().valStr();
+        String paymentMethod = mockNeat.strings().valStr();
+
+        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode,
+                destinationZipcode, numOfPassengers, paymentMethod);
+        FlightInfo persistedFlight = flightService.createFlight(flightInfo);
+        this.mvc.perform(delete("/flight/{flightId}", persistedFlight.getFlightId())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(flightInfo)))
+                .andExpect(status().isNoContent());
+    }
+
 }
