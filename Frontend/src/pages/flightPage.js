@@ -19,7 +19,7 @@ class FlightPage extends BaseClass {
     async mount() {
        document.getElementById('search-flight-form').addEventListener('submit', this.onGetFlight);
        document.getElementById('create-flight-form').addEventListener('submit', this.onCreateFlight);
-//       document.getElementById('flight-list-form').addEventListener('submit', this.onGetAllFlights);
+       document.getElementById('delete-flight-form').addEventListener('submit', this.onDeleteFlight);
        this.client = new FlightClient();
 
        this.dataStore.addChangeListener(this.renderFlight);
@@ -68,7 +68,7 @@ class FlightPage extends BaseClass {
             `
         }
         else {
-            searchingFlight.innerHTML = "Flight doesn't exist in database!!!!!!!!!!!"
+            searchingFlight.innerHTML = "Flight doesn't exist in database!"
         }
     }
 
