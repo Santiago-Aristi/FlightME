@@ -7,10 +7,14 @@ import com.kenzie.appserver.controller.model.FlightCreateRequest;
 import com.kenzie.appserver.service.FlightService;
 import com.kenzie.appserver.service.model.FlightInfo;
 import net.andreinc.mockneat.MockNeat;
+import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.List;
 
 import static java.util.UUID.randomUUID;
 import static org.hamcrest.Matchers.is;
@@ -122,4 +126,27 @@ public class FlightControllerTest {
                 .andExpect(status().isNoContent());
     }
 
+    @Test
+    public void getAllFlights_GetSuccessful() throws Exception {
+        String flightId = randomUUID().toString();
+        String name = mockNeat.strings().valStr();
+        String email = mockNeat.strings().valStr();
+        String originZipcode = mockNeat.strings().valStr();
+        String destinationZipcode = mockNeat.strings().valStr();
+        String numOfPassengers = mockNeat.strings().valStr();
+        String paymentMethod = mockNeat.strings().valStr();
+
+        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode,
+                destinationZipcode, numOfPassengers, paymentMethod);
+        List<FlightInfo> persistedFlight = flightService.getAllFlights();
+        this.mvc.perform(get("/flight/all/", persistedFlight.get(0).getFlightId(), persistedFlight.get(0).getName(),
+                        persistedFlight.get(0).getEmail(), persistedFlight.get(0).getOriginZipcode(),
+                        persistedFlight.get(0).getDestinationZipcode(), persistedFlight.get(0).getNumOfPassengers(),
+                        persistedFlight.get(0).getPaymentMethod())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON))
+//                        .content(mapper.writeValueAsString(flightInfo)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.size()", CoreMatchers.is(persistedFlight.size())));
+    }
 }
