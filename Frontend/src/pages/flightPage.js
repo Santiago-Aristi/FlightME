@@ -153,7 +153,7 @@ class FlightPage extends BaseClass {
         this.dataStore.set("flightInformation", null);
 
         if (deletedFlight) {
-           this.showMessage(`Cancelled ${deletedFlight.name}!`)
+           this.showMessage(`Cancelled your flight!`)
         } else {
            this.errorHandler("Error finding flight, please enter a valid flight ID!");
         }
