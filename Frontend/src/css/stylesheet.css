@@ -1,12 +1,12 @@
-/*@font-face {*/
-/*    font-family: Bebas;*/
-/*    src: url(../styles/BebasNeue-Regular.ttf);*/
-/*}*/
+@font-face {
+    font-family: Bebas;
+    src: url(./styles/BebasNeue-Regular.ttf);
+}
 
-/*@font-face {*/
-/*    font-family: Alfa;*/
-/*    src: url(../styles/AlfaSlabOne-Regular.ttf);*/
-/*}*/
+@font-face {
+   font-family: Alfa;
+  src: url(./styles/AlfaSlabOne-Regular.ttf);
+}
 
 body{
     background-repeat: no-repeat;
@@ -27,6 +27,32 @@ h3{
     margin-bottom: 20px;
     text-decoration: underline;
     text-align: center;
+}
+
+.deleteForm{
+    text-align: center;
+    border: 1px solid;
+    border-radius: 5px;
+    margin-left: 40%;
+    margin-right: 40%;
+    background-color: rgba(245, 29, 29, 0.7);
+}
+
+.deleteForm label{
+    font-size: 25px;
+    font-family: Alfa;
+}
+
+.delete-message{
+    font-size: 25px;
+    text-align: center;
+    font-family: Alfa;
+}
+
+homepage a:hover{
+    box-shadow: 0px 4px;
+    color: aqua;
+    background-color: black;
 }
 
 .createForm{
