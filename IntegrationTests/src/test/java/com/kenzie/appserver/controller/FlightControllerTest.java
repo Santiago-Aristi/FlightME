@@ -144,9 +144,10 @@ public class FlightControllerTest {
                         persistedFlight.get(0).getDestinationZipcode(), persistedFlight.get(0).getNumOfPassengers(),
                         persistedFlight.get(0).getPaymentMethod())
                         .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON))
-//                        .content(mapper.writeValueAsString(flightInfo)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(flightInfo)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.size()", CoreMatchers.is(persistedFlight.size())));
     }
+
 }
