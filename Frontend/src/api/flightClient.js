@@ -65,6 +65,14 @@ export default class FlightClient extends BaseClass {
         }
     }
 
+    async deleteFlight(flightId, errorCallback){
+        try{
+            const response = await this.client.delete(`/flight/${flightId}`)
+        }catch(error) {
+            this.handleError("deleteFlight", error, errorCallback)
+        }
+    }
+
     /**
      * Helper method to log the error and run any error functions.
      * @param error The error received from the server.
