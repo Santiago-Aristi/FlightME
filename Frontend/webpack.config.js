@@ -38,7 +38,15 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html',
       inject: false
-    }),
+    }),new HtmlWebpackPlugin({
+       template: './src/delete.html',
+       filename: 'delete.html',
+       inject: false
+    }),new HtmlWebpackPlugin({
+       template: './src/about.html',
+       filename: 'about.html',
+       inject: false
+       }),
     new CopyPlugin({
       patterns: [
         {
