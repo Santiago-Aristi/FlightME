@@ -87,7 +87,8 @@ class FlightPage extends BaseClass {
                <div>Origin ZipCode: ${flight.originZipcode}</div>
                <div>Destination ZipCode: ${flight.destinationZipcode}</div>
                <div>Number of Passengers: ${flight.numOfPassengers}</div>
-               <div>Payment Method: ${flight.paymentMethod}</div>`;
+               <div>Payment Method: ${flight.paymentMethod}</div>
+               <br>`;
         }
 
         if(result){
