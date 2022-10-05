@@ -25,7 +25,7 @@ class FlightPage extends BaseClass {
        this.dataStore.addChangeListener(this.renderFlight);
        this.dataStore.addChangeListener(this.renderFlightSearched);
        this.dataStore.addChangeListener(this.renderAllFlights);
-//       this.onGetAllFlights();
+       this.onGetAllFlights();
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
@@ -45,18 +45,18 @@ class FlightPage extends BaseClass {
                 <div>Number of Passengers: ${flights.numOfPassengers}</div>
                 <div>Payment Method: ${flights.paymentMethod}</div>
             `
-        } else {
-            creatingFlight.innerHTML = "Flight doesn't exist in database!!!";
         }
-
+//        else {
+//            creatingFlight.innerHTML = "Flight doesn't exist in database!!!";
+//        }
     }
 
     async renderFlightSearched() {
         let searchingFlight = document.getElementById("result-info");
 
-        const getFlightData = this.dataStore.get("flightInformation");
+        const flights = this.dataStore.get("flightInformation");
 
-        if(getFlightData) {
+        if(flights) {
             searchingFlight.innerHTML =`
                 <div>FlightId: ${flights.flightId}</div>
                 <div>Name: ${flights.name}</div>
@@ -66,13 +66,14 @@ class FlightPage extends BaseClass {
                 <div>Number of Passengers: ${flights.numOfPassengers}</div>
                 <div>Payment Method: ${flights.paymentMethod}</div>
             `
-        } else {
-            searchingFlight.innerHTML = "Flight doesn't exist in database!!!!!!"
+        }
+        else {
+            searchingFlight.innerHTML = "Flight doesn't exist in database!!!!!!!!!!!"
         }
     }
 
     async renderAllFlights(){
-        let allFlights = document.getElementById("result-info");
+        let allFlights = document.getElementById("results-info");
 
         const flights = this.dataStore.get("flights");
 
