@@ -24,7 +24,8 @@ class FlightPage extends BaseClass {
 
        this.dataStore.addChangeListener(this.renderFlight);
        this.dataStore.addChangeListener(this.renderFlightSearched);
-       this.onGetAllFlights();
+       this.dataStore.addChangeListener(this.renderAllFlights);
+//       this.onGetAllFlights();
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
@@ -45,7 +46,7 @@ class FlightPage extends BaseClass {
                 <div>Payment Method: ${flights.paymentMethod}</div>
             `
         } else {
-            creatingFlight.innerHTML = "Flight doesn't exist in database!";
+            creatingFlight.innerHTML = "Flight doesn't exist in database!!!";
         }
 
     }
@@ -66,21 +67,17 @@ class FlightPage extends BaseClass {
                 <div>Payment Method: ${flights.paymentMethod}</div>
             `
         } else {
-            searchedFlight.innerHTML = "Flight doesn't exist in database!"
+            searchingFlight.innerHTML = "Flight doesn't exist in database!!!!!!"
         }
     }
 
     async renderAllFlights(){
-//        event.preventDefault();
-
         let allFlights = document.getElementById("result-info");
-//        this.dataStore.set("flightInformation", null);
 
-        const flights = this.dataStore.get("flightInformation");
+        const flights = this.dataStore.get("flights");
 
         let result = "";
         result += "<ul>"
-//        result += "<li>"
 
         for(let flight of flights) {
             result += `<li><div>FlightId: ${flight.flightId}</div></li>
@@ -91,12 +88,10 @@ class FlightPage extends BaseClass {
                <div>Number of Passengers: ${flight.numOfPassengers}</div>
                <div>Payment Method: ${flight.paymentMethod}</div>`;
         }
-//        result += "</li>"
-//        result += "</ul>"
 
         if(result){
             allFlights.innerHTML = result;
-        }else{
+        } else{
             allFlights.innerHTML = "No current flights";
         }
     }
@@ -123,7 +118,7 @@ class FlightPage extends BaseClass {
 
     async onGetAllFlights() {
         let result = await this.client.getAllFlights(this.errorHandler);
-        this.dataStore.set("flightInformation", result);
+        this.dataStore.set("flights", result);
     }
 
     async onCreateFlight(event) {

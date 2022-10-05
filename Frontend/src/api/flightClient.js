@@ -40,7 +40,7 @@ export default class FlightClient extends BaseClass {
         }
     }
 
-    async getAllFlights(errorCallback){
+    async getAllFlights(all, errorCallback){
         try{
             const response = await this.client.get(`/flight/all/`);
             return response.data;
