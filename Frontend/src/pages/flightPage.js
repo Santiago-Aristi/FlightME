@@ -9,7 +9,7 @@ class FlightPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGetFlight', 'onCreateFlight', 'onGetAllFlights', 'renderFlight', 'renderFlightSearched', 'renderAllFlights'], this);
+        this.bindClassMethods(['onGetFlight', 'onCreateFlight', 'onGetAllFlights', 'onDeleteFlight', 'renderFlight', 'renderFlightSearched', 'renderAllFlights'], this);
         this.dataStore = new DataStore();
     }
 
@@ -141,6 +141,20 @@ class FlightPage extends BaseClass {
             this.showMessage(`Sky travel initiated successfully by ${createdFlight.name}!`)
         } else {
             this.errorHandler("Error creating!  Try again...");
+        }
+    }
+
+    async onDeleteFlight(){
+        let flightId = document.getElementById("delete-flight-id").value;
+        this.dataStore.set("flightInformation", flightId);
+
+        let deletedFlight = await this.client.deleteFlight(flightId, this.errorHandler);
+        this.dataStore.set("flightInformation", null);
+
+        if (deletedFlight) {
+           this.showMessage(`Cancelled ${deletedFlight.name}!`)
+        } else {
+           this.errorHandler("Error finding flight, please enter a valid flight ID!");
         }
     }
 }
