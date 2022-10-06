@@ -35,6 +35,7 @@ public class FlightController {
                 flightCreateRequest.getPaymentMethod(),
                 flightCreateRequest.getRate());
 
+
         flightService.createFlight(flightInfo);
 
         FlightResponse flightResponse = createFlightResponse(flightInfo);
