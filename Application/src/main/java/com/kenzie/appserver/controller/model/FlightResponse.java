@@ -21,7 +21,7 @@ public class FlightResponse {
     private String destinationZipcode;
 
     @JsonProperty("numOfPassengers")
-    private String numOfPassengers;
+    private Integer numOfPassengers;
 
     @JsonProperty("paymentMethod")
     private String paymentMethod;
@@ -69,11 +69,11 @@ public class FlightResponse {
         this.destinationZipcode = destinationZipcode;
     }
 
-    public String getNumOfPassengers() {
+    public Integer getNumOfPassengers() {
         return numOfPassengers;
     }
 
-    public void setNumOfPassengers(String numOfPassengers) {
+    public void setNumOfPassengers(Integer numOfPassengers) {
         this.numOfPassengers = numOfPassengers;
     }
 

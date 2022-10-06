@@ -14,7 +14,7 @@ public class FlightRecord {
     private String email;
     private String originZipcode;
     private String destinationZipcode;
-    private String numOfPassengers;
+    private Integer numOfPassengers;
     private String paymentMethod;
     private Integer rate;
 
@@ -64,11 +64,11 @@ public class FlightRecord {
     }
 
     @DynamoDBAttribute(attributeName = "numOfPassengers")
-    public String getNumOfPassengers() {
+    public Integer getNumOfPassengers() {
         return numOfPassengers;
     }
 
-    public void setNumOfPassengers(String numOfPassengers) {
+    public void setNumOfPassengers(Integer numOfPassengers) {
         this.numOfPassengers = numOfPassengers;
     }
 
@@ -86,7 +86,7 @@ public class FlightRecord {
         return rate;
     }
     public void setRate(Integer rate) {
-        this.rate = Integer.valueOf(getNumOfPassengers()) * 1300;
+        this.rate = getNumOfPassengers() * 1300;
     }
 
 
