@@ -104,6 +104,7 @@ public class FlightControllerTest {
                 .andExpect(jsonPath("paymentMethod")
                         .value(is(paymentMethod)))
                 .andExpect(status().isCreated());
+
     }
 
     @Test
