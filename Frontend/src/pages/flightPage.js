@@ -44,11 +44,9 @@ class FlightPage extends BaseClass {
                 <div>Destination ZipCode: ${flights.destinationZipcode}</div>
                 <div>Number of Passengers: ${flights.numOfPassengers}</div>
                 <div>Payment Method: ${flights.paymentMethod}</div>
+                <div>Rate: $${flights.rate}</div>
             `
         }
-//        else {
-//            creatingFlight.innerHTML = "Flight doesn't exist in database!!!";
-//        }
     }
 
     async renderFlightSearched() {
@@ -65,6 +63,7 @@ class FlightPage extends BaseClass {
                 <div>Destination ZipCode: ${flights.destinationZipcode}</div>
                 <div>Number of Passengers: ${flights.numOfPassengers}</div>
                 <div>Payment Method: ${flights.paymentMethod}</div>
+                <div>Rate: $${flights.rate}</div>
             `
         }
         else {
@@ -88,6 +87,7 @@ class FlightPage extends BaseClass {
                <div>Destination ZipCode: ${flight.destinationZipcode}</div>
                <div>Number of Passengers: ${flight.numOfPassengers}</div>
                <div>Payment Method: ${flight.paymentMethod}</div>
+               <div>Rate: $${flight.rate}</div>
                <br>`;
         }
 

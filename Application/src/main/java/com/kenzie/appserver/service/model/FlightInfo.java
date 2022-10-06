@@ -8,9 +8,10 @@ public class FlightInfo {
     private final String destinationZipcode;
     private final String numOfPassengers;
     private final String paymentMethod;
+    private final Integer rate;
 
     public FlightInfo(String flightId, String name, String email, String originZipcode,
-                      String destinationZipcode, String numOfPassengers, String paymentMethod){
+                      String destinationZipcode, String numOfPassengers, String paymentMethod, Integer rate){
         this.flightId = flightId;
         this.name = name;
         this.email = email;
@@ -18,6 +19,7 @@ public class FlightInfo {
         this.destinationZipcode = destinationZipcode;
         this.numOfPassengers = numOfPassengers;
         this.paymentMethod = paymentMethod;
+        this.rate = rate;
     }
 
     public String getName() {
@@ -46,6 +48,10 @@ public class FlightInfo {
 
     public String getPaymentMethod(){
         return this.paymentMethod;
+    }
+
+    public Integer getRate() {
+        return this.rate;
     }
 
 }

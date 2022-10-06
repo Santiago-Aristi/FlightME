@@ -26,6 +26,9 @@ public class FlightResponse {
     @JsonProperty("paymentMethod")
     private String paymentMethod;
 
+    @JsonProperty("rate")
+    private Integer rate;
+
     public String getFlightId() {
         return flightId;
     }
@@ -80,5 +83,13 @@ public class FlightResponse {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public Integer getRate() {
+        return rate;
+    }
+
+    public void setRate(Integer rate) {
+        this.rate = Integer.valueOf(getNumOfPassengers()) * 1300;
     }
 }

@@ -29,6 +29,10 @@ public class FlightCreateRequest {
     @JsonProperty("paymentMethod")
     private String paymentMethod;
 
+    @NotEmpty
+    @JsonProperty("rate")
+    private Integer rate;
+
     public String getName() {
         return name;
     }
@@ -75,6 +79,13 @@ public class FlightCreateRequest {
 
     public void setNumOfPassengers(String numOfPassengers) {
         this.numOfPassengers = numOfPassengers;
+    }
+
+    public Integer getRate() {
+        return rate;
+    }
+    public void setRate(Integer rate) {
+        this.rate = Integer.valueOf(getNumOfPassengers()) * 1300;
     }
 }
 

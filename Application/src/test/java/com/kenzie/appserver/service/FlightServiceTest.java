@@ -25,6 +25,8 @@ public class FlightServiceTest {
     public static final String originZipcode = "12345";
     public static final String destinationZipcode = "54321";
 
+    public static final Integer rate = Integer.valueOf(numOfPassengers) * 1300;
+
     private FlightRepository flightRepository;
 
     private FlightService flightService;
@@ -46,6 +48,7 @@ public class FlightServiceTest {
         flightRecord.setDestinationZipcode(destinationZipcode);
         flightRecord.setNumOfPassengers(numOfPassengers);
         flightRecord.setPaymentMethod(paymentMethod);
+        flightRecord.setRate(rate);
 
         // WHEN
         when(flightRepository.findById(flightId)).thenReturn(Optional.of(flightRecord));
@@ -60,6 +63,7 @@ public class FlightServiceTest {
         assertEquals(flightRecord.getDestinationZipcode(), flightInfo.getDestinationZipcode(), "Both zip codes match");
         assertEquals(flightRecord.getNumOfPassengers(), flightInfo.getNumOfPassengers(), "Both number of passengers match");
         assertEquals(flightRecord.getPaymentMethod(), flightInfo.getPaymentMethod(), "Both payments match");
+        assertEquals(flightRecord.getRate(), flightInfo.getRate(), "Both rates match");
     }
 
     @Test
@@ -143,7 +147,7 @@ public class FlightServiceTest {
 
     @Test
     void createFlight_validInput_CreatesValidFlight(){
-        FlightInfo flightInfo = new FlightInfo(name, email, flightId, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
+        FlightInfo flightInfo = new FlightInfo(name, email, flightId, originZipcode, destinationZipcode, numOfPassengers, paymentMethod, rate);
         ArgumentCaptor<FlightRecord> flightRecordCaptor = ArgumentCaptor.forClass(FlightRecord.class);
 
         // WHEN
@@ -162,12 +166,13 @@ public class FlightServiceTest {
         assertEquals(flightRecord.getDestinationZipcode(), flightInfo.getDestinationZipcode(), "The flight destination zipcode matches");
         assertEquals(flightRecord.getNumOfPassengers(), flightInfo.getNumOfPassengers(), "The number of passengers match");
         assertEquals(flightRecord.getPaymentMethod(), flightInfo.getPaymentMethod(), "The payment method matches");
+        assertEquals(flightRecord.getRate(), flightInfo.getRate(), "Both rates match");
     }
 
     @Test
     void deleteFlight() {
         // GIVEN
-        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
+        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod, rate);
         ArgumentCaptor<FlightRecord> flightRecordCaptor = ArgumentCaptor.forClass(FlightRecord.class);
 
         // WHEN
@@ -186,7 +191,7 @@ public class FlightServiceTest {
     @Test
     void deleteFlight_invalidFlightIdType_throwsException() throws FlightNotFoundException {
         // GIVEN
-        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
+        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod, rate);
         String flightId = "abc";
 
         // THEN
@@ -199,7 +204,7 @@ public class FlightServiceTest {
     @Test
     void deleteFlight_emptyFlightId_throwsException() throws FlightNotFoundException {
         // GIVEN
-        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod);
+        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod, rate);
         String flightId = "";
 
         // THEN

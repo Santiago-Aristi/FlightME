@@ -32,7 +32,9 @@ public class FlightController {
                 flightCreateRequest.getOriginZipcode(),
                 flightCreateRequest.getDestinationZipcode(),
                 flightCreateRequest.getNumOfPassengers(),
-                flightCreateRequest.getPaymentMethod());
+                flightCreateRequest.getPaymentMethod(),
+                flightCreateRequest.getRate());
+
         flightService.createFlight(flightInfo);
 
         FlightResponse flightResponse = createFlightResponse(flightInfo);
@@ -42,17 +44,6 @@ public class FlightController {
 
     @GetMapping("/all/")
     public ResponseEntity<List<FlightResponse>> getAllFlights() {
-//        List<FlightInfo> allFlights = flightService.getAllFlights();
-//
-//        if (allFlights.isEmpty() || allFlights == null) {
-//            return ResponseEntity.noContent().build();
-//        }
-//
-//        List<FlightResponse> flightList = new ArrayList<>();
-//        for (FlightInfo flight : allFlights) {
-//            flightList.add(this.createFlightResponse(flight));
-//        }
-
         List<FlightInfo> flights = flightService.getAllFlights();
 
         List<FlightResponse> responses = flights.stream().map(this::createFlightResponse).collect(Collectors.toList());
@@ -91,6 +82,7 @@ public class FlightController {
         flightResponse.setDestinationZipcode(flightInfo.getDestinationZipcode());
         flightResponse.setNumOfPassengers(flightInfo.getNumOfPassengers());
         flightResponse.setPaymentMethod(flightInfo.getPaymentMethod());
+        flightResponse.setRate(flightInfo.getRate());
 
         return flightResponse;
     }

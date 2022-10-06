@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.awt.*;
 import java.util.List;
 
 import static java.util.UUID.randomUUID;
@@ -43,9 +44,10 @@ public class FlightControllerTest {
         String destinationZipcode = mockNeat.strings().valStr();
         String numOfPassengers = mockNeat.strings().valStr();
         String paymentMethod = mockNeat.strings().valStr();
+        Integer rate = mockNeat.ints().val();
 
         FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode,
-                destinationZipcode, numOfPassengers, paymentMethod);
+                destinationZipcode, numOfPassengers, paymentMethod, rate);
         FlightInfo persistedFlight = flightService.createFlight(flightInfo);
         this.mvc.perform(get("/flight/{flightId}", persistedFlight.getFlightId())
                         .accept(MediaType.APPLICATION_JSON))
@@ -116,9 +118,10 @@ public class FlightControllerTest {
         String destinationZipcode = mockNeat.strings().valStr();
         String numOfPassengers = mockNeat.strings().valStr();
         String paymentMethod = mockNeat.strings().valStr();
+        Integer rate = mockNeat.ints().val();
 
         FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode,
-                destinationZipcode, numOfPassengers, paymentMethod);
+                destinationZipcode, numOfPassengers, paymentMethod, rate);
         FlightInfo persistedFlight = flightService.createFlight(flightInfo);
         this.mvc.perform(delete("/flight/{flightId}", persistedFlight.getFlightId())
                         .accept(MediaType.APPLICATION_JSON)
@@ -136,9 +139,10 @@ public class FlightControllerTest {
         String destinationZipcode = mockNeat.strings().valStr();
         String numOfPassengers = mockNeat.strings().valStr();
         String paymentMethod = mockNeat.strings().valStr();
+        Integer rate = mockNeat.ints().val();
 
         FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode,
-                destinationZipcode, numOfPassengers, paymentMethod);
+                destinationZipcode, numOfPassengers, paymentMethod, rate);
         List<FlightInfo> persistedFlight = flightService.getAllFlights();
         this.mvc.perform(get("/flight/all/", persistedFlight.get(0).getFlightId(), persistedFlight.get(0).getName(),
                         persistedFlight.get(0).getEmail(), persistedFlight.get(0).getOriginZipcode(),

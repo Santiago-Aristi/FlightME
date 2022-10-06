@@ -24,7 +24,6 @@ public class FlightService {
         if (StringUtils.isEmpty(flightId) || isInvalidUuid(flightId)) {
             throw new FlightNotFoundException("Flight doesn't exist in our database!");
         }
-
             FlightInfo flightInfo = flightRepository
                     .findById(flightId)
                     .map(flight -> new FlightInfo(flight.getFlightId(),
@@ -33,31 +32,17 @@ public class FlightService {
                             flight.getOriginZipcode(),
                             flight.getDestinationZipcode(),
                             flight.getNumOfPassengers(),
-                            flight.getPaymentMethod()))
+                            flight.getPaymentMethod(), flight.getRate()))
                     .orElse(null);
             return flightInfo;
-//        } catch (RuntimeException e) {
-//            throw new FlightNotFoundException("Flight was unable to be found!");
-//        }
     }
 
     public List<FlightInfo> getAllFlights() {
         List<FlightInfo> flightInfoList = new ArrayList<>();
-
-//        Iterable<FlightRecord> flightIterator = flightRepository.findAll();
-//        for (FlightRecord record : flightIterator) {
-//            flightInfoList.add(new FlightInfo(record.getFlightId(),
-//                    record.getName(),
-//                    record.getEmail(),
-//                    record.getOriginZipcode(),
-//                    record.getDestinationZipcode(),
-//                    record.getNumOfPassengers(),
-//                    record.getPaymentMethod()));
-//        }
         flightRepository
                 .findAll()
                 .forEach(flight -> flightInfoList.add(new FlightInfo(flight.getFlightId(), flight.getName(), flight.getEmail(), flight.getOriginZipcode(),
-                        flight.getDestinationZipcode(), flight.getNumOfPassengers(), flight.getPaymentMethod())));
+                        flight.getDestinationZipcode(), flight.getNumOfPassengers(), flight.getPaymentMethod(), flight.getRate())));
         return flightInfoList;
     }
 
@@ -70,6 +55,7 @@ public class FlightService {
         flightRecord.setDestinationZipcode(flightInfo.getDestinationZipcode());
         flightRecord.setNumOfPassengers(flightInfo.getNumOfPassengers());
         flightRecord.setPaymentMethod(flightInfo.getPaymentMethod());
+        flightRecord.setRate(flightInfo.getRate());
         flightRepository.save(flightRecord);
 
         return flightInfo;
