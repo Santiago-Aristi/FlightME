@@ -20,13 +20,11 @@ public class FlightServiceTest {
     public static final String flightId = randomUUID().toString();
     public static final String name = "name";
     public static final String email = "email@gmail.com";
-    public static final String numOfPassengers = "3";
+    public static final Integer numOfPassengers = 3;
     public static final String paymentMethod = "Credit Card";
     public static final String originZipcode = "12345";
     public static final String destinationZipcode = "54321";
-
-    public static final Integer rate = Integer.valueOf(numOfPassengers) * 1300;
-
+    public static final Integer rate = numOfPassengers * 1300;
     private FlightRepository flightRepository;
 
     private FlightService flightService;

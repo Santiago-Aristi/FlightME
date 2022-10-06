@@ -23,7 +23,7 @@ public class FlightCreateRequest {
 
     @NotEmpty
     @JsonProperty("numOfPassengers")
-    private String numOfPassengers;
+    private Integer numOfPassengers;
 
     @NotEmpty
     @JsonProperty("paymentMethod")
@@ -73,11 +73,11 @@ public class FlightCreateRequest {
         this.paymentMethod = paymentMethod;
     }
 
-    public String getNumOfPassengers() {
+    public Integer getNumOfPassengers() {
         return numOfPassengers;
     }
 
-    public void setNumOfPassengers(String numOfPassengers) {
+    public void setNumOfPassengers(Integer numOfPassengers) {
         this.numOfPassengers = numOfPassengers;
     }
 

@@ -42,7 +42,7 @@ public class FlightControllerTest {
         String email = mockNeat.strings().valStr();
         String originZipcode = mockNeat.strings().valStr();
         String destinationZipcode = mockNeat.strings().valStr();
-        String numOfPassengers = mockNeat.strings().valStr();
+        Integer numOfPassengers = mockNeat.ints().val();
         String paymentMethod = mockNeat.strings().valStr();
         Integer rate = mockNeat.ints().val();
 
@@ -76,7 +76,7 @@ public class FlightControllerTest {
         String email = mockNeat.strings().valStr();
         String originZipcode = mockNeat.strings().valStr();
         String destinationZipcode = mockNeat.strings().valStr();
-        String numOfPassengers = mockNeat.strings().valStr();
+        Integer numOfPassengers = mockNeat.ints().val();
         String paymentMethod = mockNeat.strings().valStr();
         Integer rate = mockNeat.ints().val();
 
@@ -122,7 +122,7 @@ public class FlightControllerTest {
         String email = mockNeat.strings().valStr();
         String originZipcode = mockNeat.strings().valStr();
         String destinationZipcode = mockNeat.strings().valStr();
-        String numOfPassengers = mockNeat.strings().valStr();
+        Integer numOfPassengers = mockNeat.ints().val();
         String paymentMethod = mockNeat.strings().valStr();
         Integer rate = mockNeat.ints().val();
 
@@ -143,7 +143,7 @@ public class FlightControllerTest {
         String email = mockNeat.strings().valStr();
         String originZipcode = mockNeat.strings().valStr();
         String destinationZipcode = mockNeat.strings().valStr();
-        String numOfPassengers = mockNeat.strings().valStr();
+        Integer numOfPassengers = mockNeat.ints().val();
         String paymentMethod = mockNeat.strings().valStr();
         Integer rate = mockNeat.ints().val();
 
