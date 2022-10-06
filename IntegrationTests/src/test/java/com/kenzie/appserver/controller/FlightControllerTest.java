@@ -65,6 +65,8 @@ public class FlightControllerTest {
                         .value(is(numOfPassengers)))
                 .andExpect(jsonPath("paymentMethod")
                         .value(is(paymentMethod)))
+                .andExpect((jsonPath("rate")
+                        .value(is(rate))))
                 .andExpect(status().isOk());
     }
 
@@ -76,6 +78,7 @@ public class FlightControllerTest {
         String destinationZipcode = mockNeat.strings().valStr();
         String numOfPassengers = mockNeat.strings().valStr();
         String paymentMethod = mockNeat.strings().valStr();
+        Integer rate = mockNeat.ints().val();
 
         FlightCreateRequest flightCreateRequest = new FlightCreateRequest();
         flightCreateRequest.setName(name);
@@ -84,6 +87,7 @@ public class FlightControllerTest {
         flightCreateRequest.setDestinationZipcode(destinationZipcode);
         flightCreateRequest.setNumOfPassengers(numOfPassengers);
         flightCreateRequest.setPaymentMethod(paymentMethod);
+        flightCreateRequest.setRate(rate);
 
         mapper.registerModule(new JavaTimeModule());
 
@@ -105,6 +109,8 @@ public class FlightControllerTest {
                         .value(is(numOfPassengers)))
                 .andExpect(jsonPath("paymentMethod")
                         .value(is(paymentMethod)))
+                .andExpect((jsonPath("rate")
+                        .value(is(rate))))
                 .andExpect(status().isCreated());
 
     }
@@ -147,7 +153,7 @@ public class FlightControllerTest {
         this.mvc.perform(get("/flight/all/", persistedFlight.get(0).getFlightId(), persistedFlight.get(0).getName(),
                         persistedFlight.get(0).getEmail(), persistedFlight.get(0).getOriginZipcode(),
                         persistedFlight.get(0).getDestinationZipcode(), persistedFlight.get(0).getNumOfPassengers(),
-                        persistedFlight.get(0).getPaymentMethod())
+                        persistedFlight.get(0).getPaymentMethod(), persistedFlight.get(0).getRate())
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(flightInfo)))

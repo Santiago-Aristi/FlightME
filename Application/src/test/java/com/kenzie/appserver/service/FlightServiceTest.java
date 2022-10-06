@@ -89,6 +89,7 @@ public class FlightServiceTest {
         flightRecord.setDestinationZipcode(destinationZipcode);
         flightRecord.setNumOfPassengers(numOfPassengers);
         flightRecord.setPaymentMethod(paymentMethod);
+        flightRecord.setRate(rate);
 
         when(flightRepository.findById(flightRecord.getFlightId())).thenReturn(Optional.of(flightRecord));
 
@@ -108,6 +109,7 @@ public class FlightServiceTest {
         flightRecord.setDestinationZipcode(destinationZipcode);
         flightRecord.setNumOfPassengers(numOfPassengers);
         flightRecord.setPaymentMethod(paymentMethod);
+        flightRecord.setRate(rate);
 
         when(flightRepository.findById(flightRecord.getFlightId())).thenReturn(Optional.of(flightRecord));
 
@@ -128,7 +130,9 @@ public class FlightServiceTest {
         flightRecord.setDestinationZipcode(destinationZipcode);
         flightRecord.setNumOfPassengers(numOfPassengers);
         flightRecord.setPaymentMethod(paymentMethod);
+        flightRecord.setRate(rate);
         flightRecordList.add(flightRecord);
+
 
         // WHEN
         when(flightRepository.findAll()).thenReturn(flightRecordList);
@@ -143,6 +147,7 @@ public class FlightServiceTest {
         assertEquals(flightInfoList.get(0).getDestinationZipcode(), destinationZipcode);
         assertEquals(flightInfoList.get(0).getNumOfPassengers(), numOfPassengers);
         assertEquals(flightInfoList.get(0).getPaymentMethod(), paymentMethod);
+        assertEquals(flightInfoList.get(0).getRate(), rate);
     }
 
     @Test
