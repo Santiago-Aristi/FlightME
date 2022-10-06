@@ -88,4 +88,5 @@ export default class FlightClient extends BaseClass {
             errorCallback(method + " failed - " + error);
         }
     }
+
 }
