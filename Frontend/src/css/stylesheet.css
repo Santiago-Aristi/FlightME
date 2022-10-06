@@ -35,6 +35,8 @@ h3{
     border: 1px solid black;
     background-color: rgb(37, 202, 202);
     margin: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 .deleteForm{
@@ -63,6 +65,7 @@ h3{
     background-color: rgb(37, 202, 111);
     margin: 20px;
     text-align: center;
+    border-radius: 5px;
 }
 
 homepage a:hover{
@@ -143,6 +146,8 @@ h2{
     background-color: rgba(245, 29, 29, 0.7);
     padding: 10px;
     font-family: Bebas;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 .flex-container{
@@ -156,6 +161,8 @@ h2{
     margin: 20px;
     padding-bottom: 10px;
     padding-top: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 .flightList h4{
