@@ -46,9 +46,6 @@ class FlightPage extends BaseClass {
                 <div>Payment Method: ${flights.paymentMethod}</div>
             `
         }
-//        else {
-//            creatingFlight.innerHTML = "Flight doesn't exist in database!!!";
-//        }
     }
 
     async renderFlightSearched() {
@@ -68,7 +65,7 @@ class FlightPage extends BaseClass {
             `
         }
         else {
-            searchingFlight.innerHTML = "Flight doesn't exist in database!"
+            searchingFlight.innerHTML = "No current flight to display"
         }
     }
 

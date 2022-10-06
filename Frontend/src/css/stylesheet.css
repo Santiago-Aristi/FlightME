@@ -130,6 +130,20 @@ h2{
     font-family: Alfa;
 }
 
+.deletePage{
+    background-color: rgba(245, 29, 29, 0.7);
+    padding: 10px;
+    margin: 20px;
+}
+
+.deletePage{
+    font-size: 20px;
+    text-align: center;
+    background-color: rgba(245, 29, 29, 0.7);
+    padding: 10px;
+    font-family: Bebas;
+}
+
 .flex-container{
     display: flex;
     flex-direction: row;
@@ -139,6 +153,8 @@ h2{
     text-align: center;
     background-color: rgb(37, 202, 111, 0.85);
     margin: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .flightList h4{
