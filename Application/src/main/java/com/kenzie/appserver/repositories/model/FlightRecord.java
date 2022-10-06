@@ -16,6 +16,7 @@ public class FlightRecord {
     private String destinationZipcode;
     private String numOfPassengers;
     private String paymentMethod;
+    private Integer rate;
 
     @DynamoDBHashKey(attributeName = "flightId")
     public String getFlightId() {
@@ -78,6 +79,14 @@ public class FlightRecord {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    @DynamoDBAttribute(attributeName = "rate")
+    public Integer getRate() {
+        return rate;
+    }
+    public void setRate(Integer rate) {
+        this.rate = Integer.valueOf(getNumOfPassengers()) * 1300;
     }
 
 
