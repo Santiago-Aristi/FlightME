@@ -44,7 +44,7 @@ public class FlightControllerTest {
         String destinationZipcode = mockNeat.strings().valStr();
         Integer numOfPassengers = mockNeat.ints().val();
         String paymentMethod = mockNeat.strings().valStr();
-        Integer rate = mockNeat.ints().val();
+        Integer rate = numOfPassengers * 1300;
 
         FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode,
                 destinationZipcode, numOfPassengers, paymentMethod, rate);
@@ -78,7 +78,7 @@ public class FlightControllerTest {
         String destinationZipcode = mockNeat.strings().valStr();
         Integer numOfPassengers = mockNeat.ints().val();
         String paymentMethod = mockNeat.strings().valStr();
-        Integer rate = mockNeat.ints().val();
+        Integer rate = numOfPassengers * 1300;
 
         FlightCreateRequest flightCreateRequest = new FlightCreateRequest();
         flightCreateRequest.setName(name);
@@ -124,7 +124,7 @@ public class FlightControllerTest {
         String destinationZipcode = mockNeat.strings().valStr();
         Integer numOfPassengers = mockNeat.ints().val();
         String paymentMethod = mockNeat.strings().valStr();
-        Integer rate = mockNeat.ints().val();
+        Integer rate = numOfPassengers * 1300;
 
         FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode,
                 destinationZipcode, numOfPassengers, paymentMethod, rate);
@@ -145,7 +145,7 @@ public class FlightControllerTest {
         String destinationZipcode = mockNeat.strings().valStr();
         Integer numOfPassengers = mockNeat.ints().val();
         String paymentMethod = mockNeat.strings().valStr();
-        Integer rate = mockNeat.ints().val();
+        Integer rate = numOfPassengers * 1300;
 
         FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode,
                 destinationZipcode, numOfPassengers, paymentMethod, rate);
