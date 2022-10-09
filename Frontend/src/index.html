@@ -35,13 +35,35 @@
         <p class="form-field">
             <label>Leaving From</label>
             <br>
-            <input type="text" required class="validated-field" id="create-flight-from" placeholder="From">
+            <select required class="validated-field" id="create-flight-select1">
+                <option selected="selected" disabled="true" hidden>Leaving From...</option>
+                <option>Atlanta</option>
+                <option>Chicago</option>
+                <option>Detroit</option>
+                <option>Houston</option>
+                <option>Indianapolis</option>
+                <option>Los Angeles</option>
+                <option>Miami</option>
+                <option>New York</option>
+                <option>San Francisco</option>
+            </select>
         </p>
 
         <p class="form-field">
             <label>Going To</label>
             <br>
-            <input type="text" required class="validated-field" id="create-flight-goingTo" placeholder="Going To">
+            <select required class="validated-field" id="create-flight-select2">
+                <option selected="selected" disabled="true" hidden>Select Destination</option>
+                <option>Atlanta</option>
+                <option>Chicago</option>
+                <option>Detroit</option>
+                <option>Houston</option>
+                <option>Indianapolis</option>
+                <option>Los Angeles</option>
+                <option>Miami</option>
+                <option>New York</option>
+                <option>San Francisco</option>
+            </select>
         </p>
 
         <p class="form-field">
@@ -53,7 +75,14 @@
         <p class="form-field">
             <label>Payment Method</label>
             <br>
-            <input type="text" required class="validated-field" id="create-flight-pay" placeholder="Payment Method">
+            <select required="validated-field" id="create-flight-pay">
+                <option selected="selected" disabled="true" hidden>Select Payment</option>
+                <option>Card</option>
+                <option>PayPal</option>
+                <option>Western Union</option>
+                <option>BitCoin</option>
+                <option>Check</option>
+            </select>
         </p>
         <button type="submit">Create Flight</button>
     </form>
