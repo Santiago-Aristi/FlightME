@@ -40,8 +40,8 @@ class FlightPage extends BaseClass {
                 <div>FlightId: ${flights.flightId}</div>
                 <div>Name: ${flights.name}</div>
                 <div>Email: ${flights.email}</div>
-                <div>Origin ZipCode: ${flights.originZipcode}</div>
-                <div>Destination ZipCode: ${flights.destinationZipcode}</div>
+                <div>Origin City: ${flights.originCity}</div>
+                <div>Destination City: ${flights.destinationCity}</div>
                 <div>Number of Passengers: ${flights.numOfPassengers}</div>
                 <div>Payment Method: ${flights.paymentMethod}</div>
                 <div>Rate: $${flights.rate}</div>
@@ -59,8 +59,8 @@ class FlightPage extends BaseClass {
                 <div>FlightId: ${flights.flightId}</div>
                 <div>Name: ${flights.name}</div>
                 <div>Email: ${flights.email}</div>
-                <div>Origin ZipCode: ${flights.originZipcode}</div>
-                <div>Destination ZipCode: ${flights.destinationZipcode}</div>
+                <div>Origin City: ${flights.originCity}</div>
+                <div>Destination City: ${flights.destinationCity}</div>
                 <div>Number of Passengers: ${flights.numOfPassengers}</div>
                 <div>Payment Method: ${flights.paymentMethod}</div>
                 <div>Rate: $${flights.rate}</div>
@@ -83,8 +83,8 @@ class FlightPage extends BaseClass {
             result += `<li><div>FlightId: ${flight.flightId}</div></li>
                <div>Name: ${flight.name}</div>
                <div>Email: ${flight.email}</div>
-               <div>Origin ZipCode: ${flight.originZipcode}</div>
-               <div>Destination ZipCode: ${flight.destinationZipcode}</div>
+               <div>Origin City: ${flight.originCity}</div>
+               <div>Destination City: ${flight.destinationCity}</div>
                <div>Number of Passengers: ${flight.numOfPassengers}</div>
                <div>Payment Method: ${flight.paymentMethod}</div>
                <div>Rate: $${flight.rate}</div>
@@ -130,12 +130,12 @@ class FlightPage extends BaseClass {
 
         let name = document.getElementById("create-flight-name").value;
         let email = document.getElementById("create-flight-email").value;
-        let originZipcode = document.getElementById("create-flight-from").value;
-        let destinationZipcode = document.getElementById("create-flight-goingTo").value;
+        let originCity = document.getElementById("create-flight-select1").value;
+        let destinationCity = document.getElementById("create-flight-select2").value;
         let numOfPassengers = document.getElementById("create-flight-passenger").value;
         let paymentMethod = document.getElementById("create-flight-pay").value;
 
-        const createdFlight = await this.client.createFlight(name, email, originZipcode, destinationZipcode, numOfPassengers, paymentMethod, this.errorHandler);
+        const createdFlight = await this.client.createFlight(name, email, originCity, destinationCity, numOfPassengers, paymentMethod, this.errorHandler);
         this.dataStore.set("flightInformation", createdFlight);
 
         if (createdFlight) {
