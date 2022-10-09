@@ -12,8 +12,8 @@ public class FlightRecord {
     private String flightId;
     private String name;
     private String email;
-    private String originZipcode;
-    private String destinationZipcode;
+    private String originCity;
+    private String destinationCity;
     private Integer numOfPassengers;
     private String paymentMethod;
     private Integer rate;
@@ -45,22 +45,22 @@ public class FlightRecord {
         this.email = email;
     }
 
-    @DynamoDBAttribute(attributeName = "originZipcode")
-    public String getOriginZipcode() {
-        return originZipcode;
+    @DynamoDBAttribute(attributeName = "originCity")
+    public String getOriginCity() {
+        return originCity;
     }
 
-    public void setOriginZipcode(String originZipcode) {
-        this.originZipcode = originZipcode;
+    public void setOriginCity(String originCity) {
+        this.originCity = originCity;
     }
 
-    @DynamoDBAttribute(attributeName = "destinationZipcode")
-    public String getDestinationZipcode() {
-        return destinationZipcode;
+    @DynamoDBAttribute(attributeName = "destinationCity")
+    public String getDestinationCity() {
+        return destinationCity;
     }
 
-    public void setDestinationZipcode(String destinationZipcode) {
-        this.destinationZipcode = destinationZipcode;
+    public void setDestinationCity(String destinationCity) {
+        this.destinationCity = destinationCity;
     }
 
     @DynamoDBAttribute(attributeName = "numOfPassengers")
@@ -85,8 +85,9 @@ public class FlightRecord {
     public Integer getRate() {
         return rate;
     }
+
     public void setRate(Integer rate) {
-        this.rate = getNumOfPassengers() * 1300;
+        this.rate = rate;
     }
 
 

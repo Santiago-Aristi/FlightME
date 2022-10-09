@@ -29,10 +29,11 @@ public class FlightService {
                     .map(flight -> new FlightInfo(flight.getFlightId(),
                             flight.getName(),
                             flight.getEmail(),
-                            flight.getOriginZipcode(),
-                            flight.getDestinationZipcode(),
+                            flight.getOriginCity(),
+                            flight.getDestinationCity(),
                             flight.getNumOfPassengers(),
-                            flight.getPaymentMethod(), flight.getRate()))
+                            flight.getPaymentMethod(),
+                            flight.getRate()))
                     .orElse(null);
             return flightInfo;
     }
@@ -41,8 +42,8 @@ public class FlightService {
         List<FlightInfo> flightInfoList = new ArrayList<>();
         flightRepository
                 .findAll()
-                .forEach(flight -> flightInfoList.add(new FlightInfo(flight.getFlightId(), flight.getName(), flight.getEmail(), flight.getOriginZipcode(),
-                        flight.getDestinationZipcode(), flight.getNumOfPassengers(), flight.getPaymentMethod(), flight.getRate())));
+                .forEach(flight -> flightInfoList.add(new FlightInfo(flight.getFlightId(), flight.getName(), flight.getEmail(), flight.getOriginCity(),
+                        flight.getDestinationCity(), flight.getNumOfPassengers(), flight.getPaymentMethod(), flight.getRate())));
         return flightInfoList;
     }
 
@@ -51,8 +52,8 @@ public class FlightService {
         flightRecord.setFlightId(flightInfo.getFlightId());
         flightRecord.setName(flightInfo.getName());
         flightRecord.setEmail(flightInfo.getEmail());
-        flightRecord.setOriginZipcode(flightInfo.getOriginZipcode());
-        flightRecord.setDestinationZipcode(flightInfo.getDestinationZipcode());
+        flightRecord.setOriginCity(flightInfo.getOriginCity());
+        flightRecord.setDestinationCity(flightInfo.getDestinationCity());
         flightRecord.setNumOfPassengers(flightInfo.getNumOfPassengers());
         flightRecord.setPaymentMethod(flightInfo.getPaymentMethod());
         flightRecord.setRate(flightInfo.getRate());

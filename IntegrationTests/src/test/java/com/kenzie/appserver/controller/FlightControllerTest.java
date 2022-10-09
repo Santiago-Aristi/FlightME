@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.awt.*;
 import java.util.List;
 
 import static java.util.UUID.randomUUID;
@@ -40,14 +39,14 @@ public class FlightControllerTest {
         String flightId = randomUUID().toString();
         String name = mockNeat.strings().valStr();
         String email = mockNeat.strings().valStr();
-        String originZipcode = mockNeat.strings().valStr();
-        String destinationZipcode = mockNeat.strings().valStr();
+        String originCity = mockNeat.strings().valStr();
+        String destinationCity = mockNeat.strings().valStr();
         Integer numOfPassengers = mockNeat.ints().val();
         String paymentMethod = mockNeat.strings().valStr();
         Integer rate = numOfPassengers * 1300;
 
-        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode,
-                destinationZipcode, numOfPassengers, paymentMethod, rate);
+        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originCity,
+                destinationCity, numOfPassengers, paymentMethod, rate);
         FlightInfo persistedFlight = flightService.createFlight(flightInfo);
         this.mvc.perform(get("/flight/{flightId}", persistedFlight.getFlightId())
                         .accept(MediaType.APPLICATION_JSON))
@@ -57,10 +56,10 @@ public class FlightControllerTest {
                         .value(is(name)))
                 .andExpect(jsonPath("email")
                         .value(is(email)))
-                .andExpect(jsonPath("originZipcode")
-                        .value(is(originZipcode)))
-                .andExpect(jsonPath("destinationZipcode")
-                        .value(is(destinationZipcode)))
+                .andExpect(jsonPath("originCity")
+                        .value(is(originCity)))
+                .andExpect(jsonPath("destinationCity")
+                        .value(is(destinationCity)))
                 .andExpect(jsonPath("numOfPassengers")
                         .value(is(numOfPassengers)))
                 .andExpect(jsonPath("paymentMethod")
@@ -74,8 +73,8 @@ public class FlightControllerTest {
     public void createFlight_CreateSuccessful() throws Exception {
         String name = mockNeat.strings().valStr();
         String email = mockNeat.strings().valStr();
-        String originZipcode = mockNeat.strings().valStr();
-        String destinationZipcode = mockNeat.strings().valStr();
+        String originCity = mockNeat.strings().valStr();
+        String destinationCity = mockNeat.strings().valStr();
         Integer numOfPassengers = mockNeat.ints().val();
         String paymentMethod = mockNeat.strings().valStr();
         Integer rate = numOfPassengers * 1300;
@@ -83,8 +82,8 @@ public class FlightControllerTest {
         FlightCreateRequest flightCreateRequest = new FlightCreateRequest();
         flightCreateRequest.setName(name);
         flightCreateRequest.setEmail(email);
-        flightCreateRequest.setOriginZipcode(originZipcode);
-        flightCreateRequest.setDestinationZipcode(destinationZipcode);
+        flightCreateRequest.setOriginCity(originCity);
+        flightCreateRequest.setDestinationCity(destinationCity);
         flightCreateRequest.setNumOfPassengers(numOfPassengers);
         flightCreateRequest.setPaymentMethod(paymentMethod);
         flightCreateRequest.setRate(rate);
@@ -101,10 +100,10 @@ public class FlightControllerTest {
                         .value(is(name)))
                 .andExpect(jsonPath("email")
                         .value(is(email)))
-                .andExpect(jsonPath("originZipcode")
-                        .value(is(originZipcode)))
-                .andExpect(jsonPath("destinationZipcode")
-                        .value(is(destinationZipcode)))
+                .andExpect(jsonPath("originCity")
+                        .value(is(originCity)))
+                .andExpect(jsonPath("destinationCity")
+                        .value(is(destinationCity)))
                 .andExpect(jsonPath("numOfPassengers")
                         .value(is(numOfPassengers)))
                 .andExpect(jsonPath("paymentMethod")
@@ -120,14 +119,14 @@ public class FlightControllerTest {
         String flightId = randomUUID().toString();
         String name = mockNeat.strings().valStr();
         String email = mockNeat.strings().valStr();
-        String originZipcode = mockNeat.strings().valStr();
-        String destinationZipcode = mockNeat.strings().valStr();
+        String originCity = mockNeat.strings().valStr();
+        String destinationCity = mockNeat.strings().valStr();
         Integer numOfPassengers = mockNeat.ints().val();
         String paymentMethod = mockNeat.strings().valStr();
         Integer rate = numOfPassengers * 1300;
 
-        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode,
-                destinationZipcode, numOfPassengers, paymentMethod, rate);
+        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originCity,
+                destinationCity, numOfPassengers, paymentMethod, rate);
         FlightInfo persistedFlight = flightService.createFlight(flightInfo);
         this.mvc.perform(delete("/flight/{flightId}", persistedFlight.getFlightId())
                         .accept(MediaType.APPLICATION_JSON)
@@ -141,18 +140,18 @@ public class FlightControllerTest {
         String flightId = randomUUID().toString();
         String name = mockNeat.strings().valStr();
         String email = mockNeat.strings().valStr();
-        String originZipcode = mockNeat.strings().valStr();
-        String destinationZipcode = mockNeat.strings().valStr();
+        String originCity = mockNeat.strings().valStr();
+        String destinationCity = mockNeat.strings().valStr();
         Integer numOfPassengers = mockNeat.ints().val();
         String paymentMethod = mockNeat.strings().valStr();
         Integer rate = numOfPassengers * 1300;
 
-        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originZipcode,
-                destinationZipcode, numOfPassengers, paymentMethod, rate);
+        FlightInfo flightInfo = new FlightInfo(flightId, name, email, originCity,
+                destinationCity, numOfPassengers, paymentMethod, rate);
         List<FlightInfo> persistedFlight = flightService.getAllFlights();
         this.mvc.perform(get("/flight/all/", persistedFlight.get(0).getFlightId(), persistedFlight.get(0).getName(),
-                        persistedFlight.get(0).getEmail(), persistedFlight.get(0).getOriginZipcode(),
-                        persistedFlight.get(0).getDestinationZipcode(), persistedFlight.get(0).getNumOfPassengers(),
+                        persistedFlight.get(0).getEmail(), persistedFlight.get(0).getOriginCity(),
+                        persistedFlight.get(0).getDestinationCity(), persistedFlight.get(0).getNumOfPassengers(),
                         persistedFlight.get(0).getPaymentMethod(), persistedFlight.get(0).getRate())
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -160,5 +159,4 @@ public class FlightControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.size()", CoreMatchers.is(persistedFlight.size())));
     }
-
 }

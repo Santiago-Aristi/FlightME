@@ -14,11 +14,11 @@ public class FlightResponse {
     @JsonProperty("email")
     private String email;
 
-    @JsonProperty("originZipcode")
-    private String originZipcode;
+    @JsonProperty("originCity")
+    private String originCity;
 
-    @JsonProperty("destinationZipcode")
-    private String destinationZipcode;
+    @JsonProperty("destinationCity")
+    private String destinationCity;
 
     @JsonProperty("numOfPassengers")
     private Integer numOfPassengers;
@@ -53,20 +53,20 @@ public class FlightResponse {
         this.email = email;
     }
 
-    public String getOriginZipcode() {
-        return originZipcode;
+    public String getOriginCity() {
+        return originCity;
     }
 
-    public void setOriginZipcode(String originZipcode) {
-        this.originZipcode = originZipcode;
+    public void setOriginCity(String originCity) {
+        this.originCity = originCity;
     }
 
-    public String getDestinationZipcode() {
-        return destinationZipcode;
+    public String getDestinationCity() {
+        return destinationCity;
     }
 
-    public void setDestinationZipcode(String destinationZipcode) {
-        this.destinationZipcode = destinationZipcode;
+    public void setDestinationCity(String destinationCity) {
+        this.destinationCity = destinationCity;
     }
 
     public Integer getNumOfPassengers() {
@@ -90,6 +90,6 @@ public class FlightResponse {
     }
 
     public void setRate(Integer rate) {
-        this.rate = Integer.valueOf(getNumOfPassengers()) * 1300;
+        this.rate = rate;
     }
 }

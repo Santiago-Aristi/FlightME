@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,12 +28,11 @@ public class FlightController {
         FlightInfo flightInfo = new FlightInfo(randomUUID().toString(),
                 flightCreateRequest.getName(),
                 flightCreateRequest.getEmail(),
-                flightCreateRequest.getOriginZipcode(),
-                flightCreateRequest.getDestinationZipcode(),
+                flightCreateRequest.getOriginCity(),
+                flightCreateRequest.getDestinationCity(),
                 flightCreateRequest.getNumOfPassengers(),
                 flightCreateRequest.getPaymentMethod(),
                 flightCreateRequest.getRate());
-
 
         flightService.createFlight(flightInfo);
 
@@ -79,8 +77,8 @@ public class FlightController {
         flightResponse.setFlightId(flightInfo.getFlightId());
         flightResponse.setName(flightInfo.getName());
         flightResponse.setEmail(flightInfo.getEmail());
-        flightResponse.setOriginZipcode(flightInfo.getOriginZipcode());
-        flightResponse.setDestinationZipcode(flightInfo.getDestinationZipcode());
+        flightResponse.setOriginCity(flightInfo.getOriginCity());
+        flightResponse.setDestinationCity(flightInfo.getDestinationCity());
         flightResponse.setNumOfPassengers(flightInfo.getNumOfPassengers());
         flightResponse.setPaymentMethod(flightInfo.getPaymentMethod());
         flightResponse.setRate(flightInfo.getRate());
