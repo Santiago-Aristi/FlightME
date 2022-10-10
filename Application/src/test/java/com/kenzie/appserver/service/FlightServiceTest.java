@@ -1,6 +1,7 @@
 package com.kenzie.appserver.service;
 
 import com.kenzie.appserver.FlightNotFoundException;
+import com.kenzie.appserver.controller.model.FlightResponse;
 import com.kenzie.appserver.repositories.FlightRepository;
 import com.kenzie.appserver.repositories.model.FlightRecord;
 import com.kenzie.appserver.service.model.FlightInfo;
@@ -19,7 +20,7 @@ public class FlightServiceTest {
     public static final String flightId = randomUUID().toString();
     public static final String name = "name";
     public static final String email = "email@gmail.com";
-    public static final Integer numOfPassengers = 3;
+    public static final Integer numOfPassengers = 4;
     public static final String paymentMethod = "Credit Card";
     public static final String originCity = "New York";
     public static final String destinationCity = "Miami";
