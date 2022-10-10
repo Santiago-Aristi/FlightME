@@ -30,7 +30,7 @@ public class FlightResponse {
     private Integer rate;
 
     public String getFlightId() {
-        return flightId;
+        return this.flightId;
     }
 
     public void setFlightId(String flightId) {
@@ -38,7 +38,7 @@ public class FlightResponse {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -46,7 +46,7 @@ public class FlightResponse {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -54,7 +54,7 @@ public class FlightResponse {
     }
 
     public String getOriginCity() {
-        return originCity;
+        return this.originCity;
     }
 
     public void setOriginCity(String originCity) {
@@ -62,7 +62,7 @@ public class FlightResponse {
     }
 
     public String getDestinationCity() {
-        return destinationCity;
+        return this.destinationCity;
     }
 
     public void setDestinationCity(String destinationCity) {
@@ -70,7 +70,7 @@ public class FlightResponse {
     }
 
     public Integer getNumOfPassengers() {
-        return numOfPassengers;
+        return this.numOfPassengers;
     }
 
     public void setNumOfPassengers(Integer numOfPassengers) {
@@ -78,7 +78,7 @@ public class FlightResponse {
     }
 
     public String getPaymentMethod() {
-        return paymentMethod;
+        return this.paymentMethod;
     }
 
     public void setPaymentMethod(String paymentMethod) {
@@ -86,7 +86,7 @@ public class FlightResponse {
     }
 
     public Integer getRate() {
-        return rate;
+        return this.rate;
     }
 
     public void setRate(Integer rate) {

@@ -23,27 +23,27 @@ public class FlightInfo {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public String getFlightId() {
-        return flightId;
+        return this.flightId;
     }
 
     public String getOriginCity() {
-        return originCity;
+        return this.originCity;
     }
 
     public String getDestinationCity() {
-        return destinationCity;
+        return this.destinationCity;
     }
 
     public Integer getNumOfPassengers() {
-        return numOfPassengers;
+        return this.numOfPassengers;
     }
 
     public String getPaymentMethod(){
