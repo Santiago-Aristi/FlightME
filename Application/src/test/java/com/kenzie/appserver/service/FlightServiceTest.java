@@ -18,6 +18,7 @@ import static org.mockito.Mockito.*;
 
 public class FlightServiceTest {
     public static final String flightId = randomUUID().toString();
+
     public static final String name = "name";
     public static final String email = "email@gmail.com";
     public static final Integer numOfPassengers = 4;
@@ -25,7 +26,6 @@ public class FlightServiceTest {
     public static final String originCity = "New York";
     public static final String destinationCity = "Miami";
     public static final Integer rate = numOfPassengers * 1300;
-
     private FlightRepository flightRepository;
     private FlightService flightService;
 
