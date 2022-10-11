@@ -18,6 +18,10 @@ public class FlightRecord {
     private String paymentMethod;
     private Integer rate;
 
+    public FlightRecord(){
+
+    }
+
     @DynamoDBHashKey(attributeName = "flightId")
     public String getFlightId() {
         return flightId;
