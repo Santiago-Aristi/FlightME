@@ -11,6 +11,8 @@ class FlightPage extends BaseClass {
         super();
         this.bindClassMethods(['onGetFlight', 'onCreateFlight', 'onGetAllFlights', 'onDeleteFlight', 'renderFlight', 'renderFlightSearched', 'renderAllFlights'], this);
         this.dataStore = new DataStore();
+        this.dataStore1 = new DataStore();
+        this.dataStore2 = new DataStore();
     }
 
     /**
@@ -23,9 +25,8 @@ class FlightPage extends BaseClass {
        this.client = new FlightClient();
 
        this.dataStore.addChangeListener(this.renderFlight);
-       this.dataStore.addChangeListener(this.renderFlightSearched);
-       this.dataStore.addChangeListener(this.renderAllFlights);
-       this.onGetAllFlights();
+       this.dataStore1.addChangeListener(this.renderFlightSearched);
+       this.dataStore2.addChangeListener(this.renderAllFlights);
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
@@ -52,7 +53,7 @@ class FlightPage extends BaseClass {
     async renderFlightSearched() {
         let searchingFlight = document.getElementById("result-info");
 
-        const flights = this.dataStore.get("flightInformation");
+        const flights = this.dataStore1.get("flightInformation");
 
         if(flights) {
             searchingFlight.innerHTML =`
@@ -74,7 +75,7 @@ class FlightPage extends BaseClass {
     async renderAllFlights(){
         let allFlights = document.getElementById("results-info");
 
-        const flights = this.dataStore.get("flights");
+        const flights = this.dataStore2.get("flights");
 
         let result = "";
         result += "<ul>"
@@ -105,10 +106,10 @@ class FlightPage extends BaseClass {
         event.preventDefault();
 
         let flightId = document.getElementById("search-flight-field").value;
-        this.dataStore.set("flightInformation", null);
+        this.dataStore1.set("flightInformation", null);
 
         let searchedFlight = await this.client.getFlight(flightId, this.errorHandler);
-        this.dataStore.set("flightInformation", searchedFlight);
+        this.dataStore1.set("flightInformation", searchedFlight);
 
         if (searchedFlight) {
             this.showMessage(`Got ${searchedFlight.name}!`)
@@ -118,9 +119,10 @@ class FlightPage extends BaseClass {
 
     }
 
-    async onGetAllFlights() {
+    async onGetAllFlights(event) {
+        event.preventDefault();
         let result = await this.client.getAllFlights(this.errorHandler);
-        this.dataStore.set("flights", result);
+        this.dataStore2.set("flights", result);
     }
 
     async onCreateFlight(event) {
